@@ -6,8 +6,7 @@ author:
   - "Gabriel Marques Gonzalez"
 ---
 
-
-Notícias como "[Planeta atinge 1º ponto crítico climático catastrófico e irreversível](https://www.cnnbrasil.com.br/tecnologia/planeta-atinge-1o-ponto-critico-climatico-catastrofico-e-irreversivel/)" (CNN Brasil, 2025) são impactantes e evidenciam a necessidade de estudos sobre mudanças climáticas. Embora seja um alerta global, os efeitos mais dramáticos são frequentemente observados nos polos. A Península Antártica, onde se localiza o Arquipélago de Palmer, é reconhecida como uma das regiões de aquecimento mais rápido do planeta, tornando-se um laboratório natural ideal para estudar estas mudanças.
+Notícias como "[Planeta atinge 1º ponto crítico climático catastrófico e irreversível](https://www.cnnbrasil.com.br/tecnologia/planeta-atinge-1o-ponto-critico-climatico-catastrofico-e-irreversivel/)" [@cnn2025planeta] são impactantes e evidenciam a necessidade de estudos sobre mudanças climáticas. Embora seja um alerta global, os efeitos mais dramáticos são frequentemente observados nos polos. A Península Antártica, onde se localiza o Arquipélago de Palmer, é reconhecida como uma das regiões de aquecimento mais rápido do planeta, tornando-se um laboratório natural ideal para estudar estas mudanças.
 
 Neste sentido, no presente trabalho, serão explorados as consequências ecológicas das mudanças climáticas na Antártica, dos quais, serão utilizados dados diários de temperatura médias da Estação de Palmer [@lterweather2024] em conjunto como famoso conjunto de dados pinguins [@gorman2014], que detalha três espécies (Gentoo, Adelie, Chinsstrap) no mesmo arquipélago.
 
@@ -15,13 +14,14 @@ Espera-se extrair relações entre as populações de pinguins e as variáveis c
 
 Para conduzir essa análise, utilizaremos a linguagem R e o ecossistema `tidyverse` para a manipulação e visualização de dados, Git para versionamento de código e Quarto para a geração do relatório final.
 
+```{=html}
 <!-- TO DO --
 * Pesquisar motivos ecologicos, com referencias, para justificar o motivo dos pinguins serem indicadores de saude oceanica;
-* Pesquisar motivos da mudança climática, com referencias, não afetar os pinguins de maneira igualitária. O que torna uma espécie vencedora e outra perdedora;
+* Pesquisar motivos da mudança climática, com referencias, não afetar os pinguins de maneira igualitária. O que torna uma espécie vencedora e outra perdedora; (Elias)
 * Pesquisar sobre as três espécies presentes no conjunto de dados e elaborar um breve resumo sobre cada uma;
 * Descrever os conjuntos de dados que serão utilizados.
 -->
-
+```
 
 # Referências {.unnumbered}
 
