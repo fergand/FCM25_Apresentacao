@@ -11,10 +11,16 @@ Notícias como "[Planeta atinge 1º ponto crítico climático catastrófico e ir
 
 Neste sentido, no presente trabalho, serão explorados as consequências ecológicas das mudanças climáticas na Antártica, dos quais, serão utilizados dados diários de temperatura médias da Estação de Palmer [@lterweather2024] em conjunto como famoso conjunto de dados pinguins [@gorman2014], que detalha três espécies (Gentoo, Adelie, Chinsstrap) no mesmo arquipélago.
 
-Espera-se extrair relações entre as populações de pinguins e as variáveis climáticas, visto que tais aves são fortes indicadores de saúde oceânica. Buscaremos entender como a dinâmica populacional e as características biométricas dessas espécies responderam às alterações ambientais, revelando possíveis "vencedores" e "perdedores" neste novo cenário ecológico.
+Espera-se extrair relações entre as populações de pinguins e as variáveis climáticas, visto que tais aves são fortes indicadores "de saúde oceânica. Buscaremos entender como a dinâmica populacional e as características biométricas dessas espécies responderam às alterações ambientais, revelando possíveis "vencedores" e "perdedores" neste novo cenário ecológico.
 
 Para conduzir essa análise, utilizaremos a linguagem R e o ecossistema `tidyverse` para a manipulação e visualização de dados, Git para versionamento de código e Quarto para a geração do relatório final.
 
+<!-- TO DO --
+* Pesquisar motivos ecologicos, com referencias, para justificar o motivo dos pinguins serem indicadores de saude oceanica;
+* Pesquisar motivos da mudança climática, com referencias, não afetar os pinguins de maneira igualitária. O que torna uma espécie vencedora e outra perdedora;
+* Pesquisar sobre as três espécies presentes no conjunto de dados e elaborar um breve resumo sobre cada uma;
+* Descrever os conjuntos de dados que serão utilizados.
+-->
 
 
 # Referências {.unnumbered}
