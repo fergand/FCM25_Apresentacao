@@ -1,0 +1,23 @@
+project:
+  title: "Pinguins de Palmer: uma análise estatística ecológica"
+  
+lang: pt-br
+csl: abnt.csl
+bibliography: references.bib
+
+format:
+  pdf:
+    documentclass: scrartcl
+    latex-engine: lualatex
+    number-sections: true
+    mainfont: "XITS"
+    mathfont: "XITS Math"
+    fontsize: 12pt
+    link-citations: true
+    colorlinks: true
+    include-in-header: header.tex
+    filters: 
+      - ambientes-latex.lua
+
+editor: visual
+

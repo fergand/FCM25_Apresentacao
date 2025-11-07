@@ -1,0 +1,115 @@
+% header.tex
+
+% -------------------------------------------------
+% 1. Layout geral e margens
+% -------------------------------------------------
+\usepackage{geometry}
+  \geometry{margin=1in}
+\usepackage{float}
+\usepackage[shortlabels]{enumitem}
+
+% -------------------------------------------------
+% 2. Matemática e teoremas
+% -------------------------------------------------
+\usepackage{amsmath, amssymb}
+\usepackage{amsthm}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{mathtools}
+% -------------------------------------------------
+% 2.1. Desenhos
+% -------------------------------------------------
+
+\usepackage{pgfplotstable}
+\usepackage{pgfplots}
+  \pgfplotsset{compat=1.17}
+  \usepgfplotslibrary{statistics}
+  \usepgfplotslibrary{colorbrewer}
+\usepackage{tikz}
+  \usetikzlibrary{intersections}
+  \usetikzlibrary{patterns}
+  \usetikzlibrary{arrows,fit,shapes.geometric}
+  \usetikzlibrary{pgfplots.statistics, pgfplots.colorbrewer}
+\usepackage{tkz-euclide}
+
+% -------------------------------------------------
+% 2.2. Ambientes
+% -------------------------------------------------
+\theoremstyle{definition}
+\newtheorem{questao}{Questão}[section]
+\renewcommand{\thequestao}{\arabic{questao}}
+\newtheorem*{solucao}{Solução}
+\theoremstyle{exemplo}
+\newmdtheoremenv[
+  hidealllines=true,
+  leftline=true,
+  linewidth=3pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=0pt,
+  linecolor=black!10,
+]{exemple}{Exemplo}
+\newtheorem*{exemplo}{Exemplo}
+
+% -------------------------------------------------
+% 3. Fonte, espaçamento e microtipografia
+% -------------------------------------------------
+% \usepackage{lmodern}
+% \usepackage{textcomp}
+% \usepackage[varg]{newtxmath}
+  % \usepackage{bm}
+\usepackage{microtype}
+\usepackage{setspace}
+  \onehalfspacing
+
+% -------------------------------------------------
+% 4. Primeiro parágrafo e identação
+% -------------------------------------------------
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{0pt}
+
+% -------------------------------------------------
+% 5. Sumário (toc) customizado
+% -------------------------------------------------
+% \usepackage{tocloft}
+% \renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}}
+% \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+
+% -------------------------------------------------
+% 6. Tabelas
+% -------------------------------------------------
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{tabu}
+
+% -------------------------------------------------
+% 7. Backref (referências com página)
+% -------------------------------------------------
+\usepackage[brazilian,hyperpageref]{backref}
+
+% -------------------------------------------------
+% 8. Verbose & blocos de código
+% -------------------------------------------------
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{
+	breaklines=true,
+	breakanywhere=true,
+	breaksymbolleft={}, 
+	breaksymbolright={},
+	fontsize=\small
+}
+% se você quiser que o ambiente Shaded (usado pelo quarto)
+% também ganhe fonte menor:
+\AtBeginEnvironment{Shaded}{\small}
+
+% e se algum chunk acabar usando listings:
+\usepackage{listings}
+\lstset{
+	breaklines=true,
+	breakatwhitespace=true,
+	postbreak=\mbox{\textcolor{gray}{$\hookrightarrow$}\space},
+	basicstyle=\ttfamily\small,
+	columns=fullflexible
+}
