@@ -8,7 +8,6 @@ library(lubridate)
 library(feasts)
 library(mice)
 
-
 # descrevendo os dados ----------------------------------------------------
 
 df <- read.csv("Data/PalmerStation_Daily_Weather.csv", sep = ",", header = T) %>%
@@ -118,8 +117,48 @@ analisa_trend <- function(x) {
   print(trend::sens.slope(comp$trend))
 }
 
+stl_min <- palmerweather_imp %>% 
+  model(
+    STL(Temp_min~trend()+season(period = 365.25),
+        robust = T)
+  ) %>% 
+  components()
+
+stl_min %>% autoplot()+
+  theme(plot.title = element_blank(),
+        plot.subtitle = element_blank())
+
 analisa_trend("Temp_min")
+
+stl_max <- palmerweather_imp %>% 
+  model(
+    STL(Temp_max~trend()+season(period = 365.25),
+        robust = T)
+  ) %>% 
+  components()
+stl_max %>% autoplot()+
+  theme(plot.title = element_blank(),
+        plot.subtitle = element_blank())
 analisa_trend("Temp_max")
+
+
+# Retas ajustadas para pontos de tendencia --------------------------------
+
+stl_dec %>% 
+  select(Date, trend) %>% 
+  ggplot(aes(x = Date, y = trend))+
+  geom_line()+
+  geom_smooth(formula = y~x, method = lm)
+stl_min %>% 
+  select(Date, trend) %>% 
+  ggplot(aes(x = Date, y = trend))+
+  geom_line()+
+  geom_smooth(formula = y~x, method = lm)
+stl_max %>% 
+  select(Date, trend) %>% 
+  ggplot(aes(x = Date, y = trend))+
+  geom_line()+
+  geom_smooth(formula = y~x, method = lm)
 
 # library(leaflet)
 # m = leaflet() %>% addTiles()
