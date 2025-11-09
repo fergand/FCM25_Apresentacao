@@ -5,10 +5,93 @@ author:
   - "Elias Oliveira Vieira dos Santos"
   - "Gabriel Marques Gonzalez"
 ---
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(palmerpenguins)
+library(kableExtra)
+```
+
+
+# Introdução
 
 Notícias como "[Planeta atinge 1º ponto crítico climático catastrófico e irreversível](https://www.cnnbrasil.com.br/tecnologia/planeta-atinge-1o-ponto-critico-climatico-catastrofico-e-irreversivel/)" [@cnn2025planeta] são impactantes e evidenciam a necessidade de estudos sobre mudanças climáticas. Embora seja um alerta global, os efeitos mais dramáticos são frequentemente observados nos polos. A Península Antártica, onde se localiza o Arquipélago de Palmer, é reconhecida como uma das regiões de aquecimento mais rápido do planeta, tornando-se um laboratório natural ideal para estudar estas mudanças.
 
-Neste sentido, no presente trabalho, serão exploradas as consequências ecológicas das mudanças climáticas na Antártica, utilizando-se dados diários de temperatura médias da Estação de Palmer [@lterweather2024] em conjunto com o famoso conjunto de dados pinguins [@gorman2014], que detalham três espécies de pinguins no mesmo arquipélado: : **Pinguim-Gentoo** (*Pygoscelis papua*), **Pinguim-Adelie** (*Pygoscelis adeliae*) e **Pinguim-Chinstrap** (*Pygoscelis antarcticus*). Todas pertencem ao gênero *Pygoscelis*, conhecidos como pinguins de "cauda de escova" (brush-tailed penguins).
+Neste sentido, no presente trabalho, serão exploradas as consequências ecológicas das mudanças climáticas na Antártica, utilizando-se dados diários de temperatura médias da Estação de Palmer [@lterweather2024] em conjunto com o famoso conjunto de dados pinguins [@gorman2014], que detalham três espécies de pinguins no mesmo arquipélago. **Pinguim-Gentoo** (*Pygoscelis papua*), **Pinguim-Adelie** (*Pygoscelis adeliae*) e **Pinguim-Chinstrap** (*Pygoscelis antarcticus*). Todas pertencem ao gênero *Pygoscelis*, conhecidos como pinguins de "cauda de escova" (brush-tailed penguins).
+
+# Conjunto de dados
+
+O conjunto de dados sobre os pinguins do arquipélago de Palmer estão livremente disponíveis e podem acessados facilmente através do pacote `palmerpenguins` no R [@R2025]. Há dois datasets contidos nessa biblioteca: `penguins` e `penguins_raw`, cuja descrição está presente na @tbl-penguins. Entre as variáveis disponíveis, serão utilizadas `Species`, `Culmen Length`, `Culmen Depth`, `Body Mass`, `Sex`. Também espera-se utilizar as variáveis `Delta 15 N` e `Delta 13 C` para complementação de análises ecológicas.
+
+Por outro lado, a descrição do conjunto de dados meteorológicos na estação de Palmer está presente na @tbl-weather. No presente estudo, apenas as variáveis sobre temperatura serão utilizadas.
+
+```{r}
+#| echo: false
+#| tbl-cap: "Descrição das variáveis do conjunto de dados `penguins_raw`."
+#| label: tbl-penguins
+tibble::tribble(
+  ~Variável, ~Tipo, ~Descrição,
+  "studyName", "Texto", "Identificação do estudo/expedição",
+  "Sample Number", "Numérica", "Número da amostra",
+  "Species", "Fator", "Espécie do pinguim",
+  "Region", "Fator", "Região da coleta",
+  "Island", "Factor", "Ilha onde o pinguim foi registrado",
+  "Stage", "Fator", "Estágio do ciclo reprodutivo",
+  "Individual ID", "Texto", "Identificador individual do pinguim",
+  "Clutch Completion", "Fator", "Se os ovos completaram o ciclo (Yes/No)",
+  "Date Egg", "Data", "Data da postura do ovo",
+  "Culmen Length (mm)", "Numérica", "Comprimento do bico (mm)",
+  "Culmen Depth (mm)", "Numérica",  "Profundidade do bico (mm)",
+  "Flipper Length (mm)", "Numérica", "Comprimento da nadadeira (mm)",
+  "Body Mass (g)", "Numérica",   "Massa corporal (g)",
+  "Sex", "Fator", "Sexo do pinguim (Male/Female)",
+  "Delta 15 N (o/oo)", "Numérica", "Isótopo δ15N (‰)",
+  "Delta 13 C (o/oo)", "Numérica", "Isótopo δ13C (‰)",
+  "Comments", "Texto", "Comentários adicionais do pesquisador"
+) %>% 
+  kable(
+    align = "lll"
+  )
+```
+
+```{r}
+#| echo: false
+#| tbl-cap: "Descrição das variáveis do conjunto de dados meteorológico na estação de Palmer."
+#| label: tbl-weather
+
+tibble::tribble(
+  ~Variável,                      ~Tipo,        ~Descrição,
+  "Date",                         "Data",       "Dia da medição meteorológica",
+  "Temperature.High..C.",         "Numérica",   "Temperatura máxima diária (°C)",
+  "Temperature.Low..C.",          "Numérica",   "Temperatura mínima diária (°C)",
+  "Temperature.Average..C.",      "Numérica",   "Temperatura média diária (°C)",
+  "Sea.Surface.Temperature..C.",  "Numérica",   "Temperatura da superfície do mar (°C)",
+  "Sea.Ice..WMO.Code.",           "Fator",      "Código WMO de condição de gelo no mar",
+  "Pressure.High..mbar.",         "Numérica",   "Pressão atmosférica máxima (mbar)",
+  "Pressure.Low..mbar.",          "Numérica",   "Pressão atmosférica mínima (mbar)",
+  "Pressure.Average..mbar.",      "Numérica",   "Pressão atmosférica média (mbar)",
+  "Wind.Peak..knots.",            "Numérica",   "Velocidade máxima do vento (nós)",
+  "Wind.5.Sec.Peak..knots.",      "Numérica",   "Pico do vento em intervalo de 5s (nós)",
+  "Wind.2.Min.Peak..knots.",      "Numérica",   "Pico do vento em intervalo de 2min (nós)",
+  "Wind.Average..knots.",         "Numérica",   "Velocidade média do vento (nós)",
+  "Wind.Peak.Direction",          "Numérica",   "Direção (graus) do pico de vento",
+  "Wind.5.Sec.Peak.Direction",    "Numérica",   "Direção do vento em pico de 5s",
+  "Wind.2.Min.Peak.Direction",    "Numérica",   "Direção do vento em pico de 2min",
+  "Wind.Prevailing.Direction",    "Fator",      "Direção predominante do vento",
+  "Precipitation.Melted..mm.",    "Numérica",   "Precipitação derretida (mm)",
+  "Precipitation.Snow..cm.",      "Numérica",   "Precipitação de neve (cm)",
+  "Depth.at.Snowstake..cm.",      "Numérica",   "Profundidade da neve medida (cm)",
+  "Sky.Coverage..tenths.",        "Numérica",   "Cobertura do céu ($10^{-1}$)"
+) %>% 
+  kable(
+    escape = F,
+    align = "l"
+  )
+```
+
 
 ## Pinguim-Gentoo (*Pygoscelis papua*)
 
@@ -49,10 +132,10 @@ Espera-se extrair relações entre as populações de pinguins e as variáveis c
 Para conduzir essa análise, utilizaremos a linguagem R e o ecossistema `tidyverse` para a manipulação e visualização de dados, Git para versionamento de código e Quarto para a geração do relatório final.
 
 <!-- TO DO --
-* Pesquisar motivos ecologicos, com referencias, para justificar o motivo dos pinguins serem indicadores de saude oceanica;
+* Pesquisar motivos ecologicos, com referencias, para justificar o motivo dos pinguins serem indicadores de saude oceanica; (Fernando)
 * Pesquisar motivos da mudança climática, com referencias, não afetar os pinguins de maneira igualitária. O que torna uma espécie vencedora e outra perdedora; (Elias)
 * Pesquisar sobre as três espécies presentes no conjunto de dados e elaborar um breve resumo sobre cada uma; (Gabriel)
-* Descrever os conjuntos de dados que serão utilizados.
+* Descrever os conjuntos de dados que serão utilizados. (Fernando)
 -->
 
 
