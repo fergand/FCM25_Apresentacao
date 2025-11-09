@@ -48,14 +48,13 @@ Espera-se extrair relações entre as populações de pinguins e as variáveis c
 
 Para conduzir essa análise, utilizaremos a linguagem R e o ecossistema `tidyverse` para a manipulação e visualização de dados, Git para versionamento de código e Quarto para a geração do relatório final.
 
-```{=html}
 <!-- TO DO --
 * Pesquisar motivos ecologicos, com referencias, para justificar o motivo dos pinguins serem indicadores de saude oceanica;
 * Pesquisar motivos da mudança climática, com referencias, não afetar os pinguins de maneira igualitária. O que torna uma espécie vencedora e outra perdedora; (Elias)
 * Pesquisar sobre as três espécies presentes no conjunto de dados e elaborar um breve resumo sobre cada uma; (Gabriel)
 * Descrever os conjuntos de dados que serão utilizados.
 -->
-```
+
 
 # Referências {.unnumbered}
 
