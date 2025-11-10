@@ -50,8 +50,12 @@ tibble::tribble(
   column_spec(4, width = "9em")
 ```
 
+Enquanto o Pinguim Gentoo (*P. papu*) apresenta maior flexibilidade, adaptando até sua dieta quando o krill se torna escasso [@mcmahon2019], o Adelie (*P. adeliae*) e o Chinstrap (*P. antarcticus*) são os mais sensíveis às mudanças ambientais, pois dependem fortemente do gelo marinho e do krill associado a ele. O krill antártico (*Euphausia superba*) é altamente vulnerável ao aquecimento e à redução do gelo, que afeta seu habitat [@kawaguchi2023]. Assim, uma diminuição do Adelie e Chinstrap podem estar ligadas ao declínio do krill, o que reforça a importância dessas espécie como indicadores das mudanças climáticas na Antártica.
+
 O Pinguim Gentoo (*P. papua*), mais adaptável e associado a águas abertas, parece beneficiar-se do aquecimento que reduz a cobertura de gelo, permitindo-lhe expandir sua área de reprodução. Em contrapartida, tanto o Pinguim Adelie (*P. adeliae*) quanto o Chinstrap (*P. antarcticus*) estão em uma situação mais precária. O Adelie depende diretamente do gelo marinho para seu ciclo de vida [@adelie_natgeo]. Já o Chinstrap também é afetado, pois o krill, que é sua principal fonte de alimento, depende do gelo para se desenvolver.
 
+
+mcmahon2019
 
 <!-- ## Gentoo  -->
 
