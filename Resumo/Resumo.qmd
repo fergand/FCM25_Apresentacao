@@ -18,15 +18,88 @@ library(kableExtra)
 
 # Introdução
 
-Notícias como "[Planeta atinge 1º ponto crítico climático catastrófico e irreversível](https://www.cnnbrasil.com.br/tecnologia/planeta-atinge-1o-ponto-critico-climatico-catastrofico-e-irreversivel/)" [@cnn2025planeta] são impactantes e evidenciam a necessidade de estudos sobre mudanças climáticas. Embora seja um alerta global, os efeitos mais dramáticos são frequentemente observados nos polos. A Península Antártica, onde se localiza o Arquipélago de Palmer, é reconhecida como uma das regiões de aquecimento mais rápido do planeta, tornando-se um laboratório natural ideal para estudar estas mudanças.
+Notícias recentes como "[Planeta atinge 1º ponto crítico climático catastrófico e irreversível](https://www.cnnbrasil.com.br/tecnologia/planeta-atinge-1o-ponto-critico-climatico-catastrofico-e-irreversivel/)" [@cnn2025planeta] são impactantes e evidenciam a necessidade de estudos sobre mudanças climáticas. Embora seja um alerta global, os efeitos mais dramáticos são frequentemente observados nos polos. A Península Antártica, onde se localiza o Arquipélago de Palmer, é reconhecida como uma das regiões de aquecimento mais rápido do planeta, tornando-se um laboratório natural ideal para estudar estas mudanças.
 
-Neste sentido, no presente trabalho, serão exploradas as consequências ecológicas das mudanças climáticas na Antártica, utilizando-se dados diários de temperatura médias da Estação de Palmer [@lterweather2024] em conjunto com o famoso conjunto de dados pinguins [@gorman2014], que detalham três espécies de pinguins no mesmo arquipélago. **Pinguim-Gentoo** (*Pygoscelis papua*), **Pinguim-Adelie** (*Pygoscelis adeliae*) e **Pinguim-Chinstrap** (*Pygoscelis antarcticus*). Todas pertencem ao gênero *Pygoscelis*, conhecidos como pinguins de "cauda de escova" (brush-tailed penguins).
+Neste sentido, no presente trabalho, serão exploradas as consequências ecológicas das mudanças climáticas na Antártica, utilizando-se dados diários de temperatura médias da Estação de Palmer [@lterweather2024] em conjunto com o clássico conjunto de dados pinguins [@gorman2014], que detalham características de três espécies de pinguins no mesmo arquipélago: Gentoo (*Pygoscelis papua*), Adelie (*Pygoscelis adeliae*) e Chinstrap (*Pygoscelis antarcticus*), que pertencem ao gênero *Pygoscelis* e são conhecidos como pinguins de "cauda de escova" (*brush-tailed penguins*).
+
+O objetivo principal é investigar relações entre as populações de pinguins e as variáveis climáticas, visto que estas aves são fortes indicadores de saúde oceânica. Buscaremos compreender como a dinâmica populacional e as características biométricas dessas espécies responderam às alterações ambientais, revelando possíveis "vencedores" e "perdedores" neste novo cenário ecológico.
+
+# As Espécies de pinguins
+
+Conforme apresentado na introdução, o estudo contempla três espécies de pinguins do gênero *Pygoscelis*, que coexistem e competem no Arquipélago de Palmer. Embora sejam parentes próximos, suas características biológicas e, crucialmente, suas relações com o ambiente de gelo são distintas. Essas são a chave para entender por que o aquecimento global favorece certas espécies enquanto coloca outras em desvantagem.
+
+A @tbl-pin-comp resume as principais características de cada espécie, com foco em sua ecologia e vulnerabilidade às mudanças climáticas.
+
+```{r}
+#| echo: false
+#| tbl-cap: "Resumo comparativo das três espécies de pinguins (Pygoscelis) do Arquipélago de Palmer. Fonte: @penguins_species; @gentoo_secret_atlas; @adelie_natgeo; @chinstrap_marinebio."
+#| label: tbl-pin-comp
+tibble::tribble(
+  ~Característica, ~Gentoo, ~Adelie, ~Chinstrap,
+  "Porte Físico", "Grande (5-8 kg)", "Médio (3-6 kg)", "Médio (3-6 kg)",
+  "Marcas Distintivas", "Faixa branca no topo da cabeça e bico vermelho-alaranjado vibrante", "Anel branco distintivo ao redor dos olhos", 'Fina faixa preta sob o queixo, "barbicha"',
+  "Distribuição", "A mais ampla e adaptável das três, habitando desde costas rochosas a ilhas com gelo", "Estritamente Antártico, nidificando no continente e ilhas adjacentes", "Habita ilhas e costas no Pacífico Sul e no setor Antártico", 
+  "Ecologia", 'Prefere águas abertas para forrageamento. Sua adaptabilidade e menor dependência do gelo o tornam um potencial "vencedor", expandindo seu território para o sul à medida que o gelo recua.', "Fortemente dependente do gelo marinho para descanso e acesso a áreas de alimentação (krill). Sua população é altamente vulnerável ao recuo do gelo.", "Fortemente dependente do gelo marinho para descanso e acesso a áreas de alimentação (krill). Sua população é altamente vulnerável ao recuo do gelo."
+) %>% 
+  kable(
+    align = "l"
+  ) %>% 
+  column_spec(1, width = "8em") %>%
+  column_spec(2, width = "9em") %>% 
+  column_spec(3, width = "9em") %>% 
+  column_spec(4, width = "9em")
+```
+
+O Pinguim Gentoo (*P. papua*), mais adaptável e associado a águas abertas, parece beneficiar-se do aquecimento que reduz a cobertura de gelo, permitindo-lhe expandir sua área de reprodução. Em contrapartida, tanto o Pinguim Adelie (*P. adeliae*) quanto o Chinstrap (*P. antarcticus*) estão em uma situação mais precária. O Adelie depende diretamente do gelo marinho para seu ciclo de vida [@adelie_natgeo]. Já o Chinstrap também é afetado, pois o krill, que é sua principal fonte de alimento, depende do gelo para se desenvolver.
+
+
+<!-- ## Gentoo  -->
+
+<!-- O Pinguim-Gentoo é a terceira maior espécie de pinguim viva, ficando atrás apenas do Pinguim-Imperador e do Pinguim-Rei [@gentoo_wiki]. É facilmente reconhecido pela ampla faixa branca que se estende sobre o topo da cabeça, conectando os olhos, e pelo seu bico de cor vermelho-alaranjada vibrante [@gentoo_penguins_int]. -->
+
+<!-- | Característica | Detalhe | -->
+<!-- | :--- | :--- | -->
+<!-- | **Tamanho** | Terceiro maior pinguim (5–8 kg) [@gentoo_aad] | -->
+<!-- | **Marca Distintiva** | Faixa branca proeminente na cabeça e bico vermelho-alaranjado [@gentoo_penguins_int] | -->
+<!-- | **Distribuição** | Possui a maior área de reprodução de todas as espécies de pinguins, abrangendo uma ampla gama de habitats, desde costas rochosas até ilhas cobertas de gelo [@gentoo_secret_atlas; @gentoo_aurora]. | -->
+<!-- | **Ecologia** | Membro do grupo de pinguins de cauda de escova, relacionado ao Adelie e Chinstrap [@gentoo_wiki]. Sua adaptabilidade a diferentes habitats o torna um potencial "vencedor" em cenários de mudanças climáticas, embora ainda enfrente ameaças. | -->
+
+<!-- ## Adelie (*Pygoscelis adeliae*) -->
+
+<!-- O Pinguim-Adelie é uma espécie que habita exclusivamente a Antártida e é uma das poucas espécies que nidificam no continente [@adelie_wiki; @adelie_bioverso]. Foi descoberto em 1840 durante uma expedição francesa [@adelie_aad]. -->
+
+<!-- | Característica | Detalhe | -->
+<!-- | :--- | :--- | -->
+<!-- | **Tamanho** | Porte médio (3–6 kg, cerca de 70 cm de altura) [@adelie_bioverso] | -->
+<!-- | **Marca Distintiva** | Anel branco circular ao redor dos olhos e plumagem preta e branca clássica [@adelie_bioverso]. | -->
+<!-- | **Distribuição** | Estritamente Antártico, nidificando no continente e ilhas adjacentes [@adelie_wiki]. | -->
+<!-- | **Ecologia** | Constrói ninhos em áreas escavadas no solo, onde a fêmea geralmente põe dois ovos [@adelie_natgeo]. Sua dependência do gelo marinho para alimentação e reprodução o torna particularmente vulnerável às mudanças climáticas. | -->
+
+<!-- ## Chinstrap (*Pygoscelis antarcticus*) -->
+
+<!-- O Pinguim-Chinstrap, ou Pinguim-de-barbicha, é facilmente reconhecido pela fina faixa preta que se estende de orelha a orelha sob o queixo, parecendo a alça de um capacete (daí o nome "chinstrap" - barbicha) [@chinstrap_nzbirds]. É a segunda espécie de pinguim mais abundante, depois do Pinguim-Macaroni [@chinstrap_marinebio]. -->
+
+<!-- | Característica | Detalhe | -->
+<!-- | :--- | :--- | -->
+<!-- | **Tamanho** | Porte médio, semelhante ao Adelie [@chinstrap_nzbirds]. | -->
+<!-- | **Marca Distintiva** | Faixa preta fina sob o queixo, como uma barbicha [@chinstrap_nzbirds]. | -->
+<!-- | **Distribuição** | Habita várias ilhas e costas no Pacífico Sul e no setor Antártico [@chinstrap_wiki]. | -->
+<!-- | **Ecologia** | Aves altamente sociais, que se reúnem em grandes colônias para viver e se reproduzir [@chinstrap_animalia]. São forrageadores costeiros, alimentando-se em águas próximas à costa [@chinstrap_animalia]. | -->
 
 # Conjunto de dados
 
-O conjunto de dados sobre os pinguins do arquipélago de Palmer estão livremente disponíveis e podem acessados facilmente através do pacote `palmerpenguins` no R [@R2025]. Há dois datasets contidos nessa biblioteca: `penguins` e `penguins_raw`, cuja descrição está presente na @tbl-penguins. Entre as variáveis disponíveis, serão utilizadas `Species`, `Culmen Length`, `Culmen Depth`, `Body Mass`, `Sex`. Também espera-se utilizar as variáveis `Delta 15 N` e `Delta 13 C` para complementação de análises ecológicas.
+Para explorar a relação entre o clima e a ecologia dos pinguins, dois conjuntos de dados principais serão utilizados.
 
-Por outro lado, a descrição do conjunto de dados meteorológicos na estação de Palmer está presente na @tbl-weather. No presente estudo, apenas as variáveis sobre temperatura serão utilizadas.
+## Dados Meteorológicos
+
+O contexto ambiental é fornecido pelos dados diários da estação meteorológica de Palmer [@lterweather2024]. Entre as variáveis disponíveis (ver @tbl-weather), as variáveis de temperatura serão o foco principal do estudo.
+
+## Dados Biológicos
+
+O conjunto de dados sobre os pinguins do arquipélago de Palmer está livremente disponíveis e pode ser acessado facilmente através do pacote `palmerpenguins` no R [@R2025]. que disponibiliza os dados originalmente publicados por @gorman2014. Há dois datasets contidos nessa biblioteca: `penguins` (versão limpa) e `penguins_raw` (dados bruta).
+
+A descrição completa dos dados brutos está presente na @tbl-penguins. Entre as variáveis disponíveis, serão utilizadas `Species`, `Island`, `Culmen Length`, `Culmen Depth`, `Body Mass`, `Sex`. Também espera-se utilizar as variáveis `Delta 15 N` e `Delta 13 C`, pois os isótopos estáveis são indicadores da dieta a nível trófico dos pinguins.
+
 
 ```{r}
 #| echo: false
@@ -92,42 +165,9 @@ tibble::tribble(
   )
 ```
 
+# Metodologia
 
-## Pinguim-Gentoo (*Pygoscelis papua*)
-
-O Pinguim-Gentoo é a **terceira maior espécie de pinguim** viva, ficando atrás apenas do Pinguim-Imperador e do Pinguim-Rei [@gentoo_wiki]. É facilmente reconhecido pela **ampla faixa branca** que se estende sobre o topo da cabeça, conectando os olhos, e pelo seu **bico de cor vermelho-alaranjada vibrante** [@gentoo_penguins_int].
-
-| Característica | Detalhe |
-| :--- | :--- |
-| **Tamanho** | Terceiro maior pinguim (5–8 kg) [@gentoo_aad] |
-| **Marca Distintiva** | Faixa branca proeminente na cabeça e bico vermelho-alaranjado [@gentoo_penguins_int] |
-| **Distribuição** | Possui a maior área de reprodução de todas as espécies de pinguins, abrangendo uma ampla gama de habitats, desde costas rochosas até ilhas cobertas de gelo [@gentoo_secret_atlas; @gentoo_aurora]. |
-| **Ecologia** | Membro do grupo de pinguins de cauda de escova, relacionado ao Adelie e Chinstrap [@gentoo_wiki]. Sua adaptabilidade a diferentes habitats o torna um potencial "vencedor" em cenários de mudanças climáticas, embora ainda enfrente ameaças. |
-
-## Pinguim-Adelie (*Pygoscelis adeliae*)
-
-O Pinguim-Adelie é uma espécie que habita exclusivamente a **Antártida** e é uma das poucas espécies que nidificam no continente [@adelie_wiki; @adelie_bioverso]. Foi descoberto em 1840 durante uma expedição francesa [@adelie_aad].
-
-| Característica | Detalhe |
-| :--- | :--- |
-| **Tamanho** | Porte médio (3–6 kg, cerca de 70 cm de altura) [@adelie_bioverso] |
-| **Marca Distintiva** | Anel branco circular ao redor dos olhos e plumagem preta e branca clássica [@adelie_bioverso]. |
-| **Distribuição** | Estritamente Antártico, nidificando no continente e ilhas adjacentes [@adelie_wiki]. |
-| **Ecologia** | Constrói ninhos em áreas escavadas no solo, onde a fêmea geralmente põe dois ovos [@adelie_natgeo]. Sua dependência do gelo marinho para alimentação e reprodução o torna particularmente vulnerável às mudanças climáticas. |
-
-## Pinguim-Chinstrap (*Pygoscelis antarcticus*)
-
-O Pinguim-Chinstrap, ou Pinguim-de-barbicha, é facilmente reconhecido pela **fina faixa preta** que se estende de orelha a orelha sob o queixo, parecendo a alça de um capacete (daí o nome "chinstrap" - barbicha) [@chinstrap_nzbirds]. É a segunda espécie de pinguim mais abundante, depois do Pinguim-Macaroni [@chinstrap_marinebio].
-
-| Característica | Detalhe |
-| :--- | :--- |
-| **Tamanho** | Porte médio, semelhante ao Adelie [@chinstrap_nzbirds]. |
-| **Marca Distintiva** | Faixa preta fina sob o queixo, como uma barbicha [@chinstrap_nzbirds]. |
-| **Distribuição** | Habita várias ilhas e costas no Pacífico Sul e no setor Antártico [@chinstrap_wiki]. |
-| **Ecologia** | Aves altamente sociais, que se reúnem em grandes colônias para viver e se reproduzir [@chinstrap_animalia]. São forrageadores costeiros, alimentando-se em águas próximas à costa [@chinstrap_animalia]. |
-
-
-Espera-se extrair relações entre as populações de pinguins e as variáveis climáticas, visto que tais aves são fortes indicadores de saúde oceânica. Buscaremos entender como a dinâmica populacional e as características biométricas dessas espécies responderam às alterações ambientais, revelando possíveis "vencedores" e "perdedores" neste novo cenário ecológico.
+A análise será conduzida por etapas: primeiramente, será realizada a exploração dos dados para inspecionar e resumir as informações de cada variável em ambos conjuntos de dados; Em seguida, a análise de série temporal para a temperatura. Nesta etapa, utilizar-se-á a decomposição STL para separar as observações brutas em componentes de tendência e sazonalidade; Por fim, análise da relação clima-ecologia, verificando se há correlação entre a tendência da temperatura e possíveis mudanças nas populações de pinguins. 
 
 Para conduzir essa análise, utilizaremos a linguagem R e o ecossistema `tidyverse` para a manipulação e visualização de dados, Git para versionamento de código e Quarto para a geração do relatório final.
 
