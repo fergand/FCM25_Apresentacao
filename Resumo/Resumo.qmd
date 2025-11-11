@@ -66,8 +66,6 @@ Enquanto o Pinguim Gentoo (*P. papu*) apresenta maior flexibilidade, adaptando a
 O Pinguim Gentoo (*P. papua*), mais adaptável e associado a águas abertas, parece beneficiar-se do aquecimento que reduz a cobertura de gelo, permitindo-lhe expandir sua área de reprodução. Em contrapartida, tanto o Pinguim Adelie (*P. adeliae*) quanto o Chinstrap (*P. antarcticus*) estão em uma situação mais precária. O Adelie depende diretamente do gelo marinho para seu ciclo de vida [@adelie_natgeo]. Já o Chinstrap também é afetado, pois o krill, que é sua principal fonte de alimento, depende do gelo para se desenvolver.
 
 
-mcmahon2019
-
 <!-- ## Gentoo  -->
 
 <!-- O Pinguim-Gentoo é a terceira maior espécie de pinguim viva, ficando atrás apenas do Pinguim-Imperador e do Pinguim-Rei [@gentoo_wiki]. É facilmente reconhecido pela ampla faixa branca que se estende sobre o topo da cabeça, conectando os olhos, e pelo seu bico de cor vermelho-alaranjada vibrante [@gentoo_penguins_int]. -->
