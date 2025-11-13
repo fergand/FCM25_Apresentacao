@@ -1,40 +1,181 @@
 ---
 title: "Pinguins de Palmer"
 subtitle: "Uma análise estatística ecológica"
+author: 
+  - name: Fernando Andrade
+    affiliations:
+      - IBB/UNESP
+    email: f.andrade@unesp.br
+  - name: Elias Oliveira Vieira dos Santos
+    affiliations:
+      - IBB/UNESP
+    email: elias.ov.santos@unesp.br
+  - name: Gabriel Marques Gonzalez
+    affiliations:
+      - IBB/UNESP
+    email: gabriel.m.gonzalez@unesp.br
 toc: true
 
-format: 
+lang: pt-br
+csl: abnt.csl
+bibliography: references.bib
+
+format:
   html:
-    theme: cosmo
+    theme:
+      - cosmo
+      - brand
+    toc-title: "Sumário"
+    number-sections: true
+    code-copy: true
 
 
 editor: visual
 ---
 
-# Introdução
-
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-
 ```{r}
-1 + 1
+#| include: false
+
+library(tidyverse)
+library(palmerpenguins)
+library(kableExtra)
 ```
 
-You can add options to executable code like this
+<!-- O conteúdo que está aqui é o mesmo do Resumo. A ideia é, conforme as análises forem feitas, irmos lapidando o texto -->
+
+# Introdução
+
+Notícias recentes como "[Planeta atinge 1º ponto crítico climático catastrófico e irreversível](https://www.cnnbrasil.com.br/tecnologia/planeta-atinge-1o-ponto-critico-climatico-catastrofico-e-irreversivel/)" [@cnn2025planeta] são impactantes e evidenciam a necessidade de estudos sobre mudanças climáticas. Embora seja um alerta global, os efeitos mais dramáticos são frequentemente observados nos polos. A Península Antártica, onde se localiza o Arquipélago de Palmer, é reconhecida como uma das regiões de aquecimento mais rápido do planeta, tornando-se um laboratório natural ideal para estudar estas mudanças.
+
+Neste sentido, no presente trabalho, serão exploradas as consequências ecológicas das mudanças climáticas na Antártica, utilizando-se dados diários de temperatura médias da Estação de Palmer [@lterweather2024] em conjunto com o clássico conjunto de dados pinguins [@gorman2014], que detalham características de três espécies de pinguins no mesmo arquipélago: Gentoo (*Pygoscelis papua*), Adelie (*Pygoscelis adeliae*) e Chinstrap (*Pygoscelis antarcticus*), que pertencem ao gênero *Pygoscelis* e são conhecidos como pinguins de "cauda de escova" (*brush-tailed penguins*).
+
+O impacto das mudanças climáticas sobre as populações de pinguins não é uniforme, devido primariamente às distintas afinidades ecológicas de cada espécie. O primeiro motivo reside na diferença do habitat de inverno preferencial. Espécies como os Pinguins-de-adélia são dependentes do gelo marinho, utilizando-o como plataforma para descanso e forrageamento. Em contrapartida, os Pinguins-gentoo habitam preferencialmente águas abertas e livres de gelo, próximas à costa. O segundo motivo, uma consequência direta do primeiro, é o nível de acoplamento da cadeia alimentar de cada espécie a esse habitat. A estratégia de forrageamento dos Adélies está intrinsecamente ligada à presença do gelo, enquanto a dos Gentoos não demonstra a mesma dependência. Portanto, o aquecimento oceânico, ao reduzir a cobertura de gelo, restringe o ambiente de caça dos Adélies, ao mesmo tempo que expande o habitat disponível para os Gentoos [@gorman2014].
+
+Assim, o que torna uma espécie "vencedora" ou "perdedora" é o alinhamento, ou desalinhamento, de seu nicho ecológico com as novas condições ambientais impostas pela mudança climática. Dessa forma, a espécie vencedora é aquela cujas necessidades e estratégias de vida são favorecidas pelas mudanças. Por outro lado, a espécie perdedora é aquela altamente especializada, ou seja, ecologicamente dependente de condições ambientais que estão em declínio.
+
+O objetivo principal é investigar relações entre as populações de pinguins e as variáveis climáticas, visto que estas aves são fortes indicadores de saúde oceânica. Buscaremos compreender como a dinâmica populacional e as características biométricas dessas espécies responderam às alterações ambientais, revelando possíveis "vencedores" e "perdedores" neste novo cenário ecológico.
+
+# As Espécies de pinguins
+
+Conforme apresentado na introdução, o estudo contempla três espécies de pinguins do gênero *Pygoscelis*, que coexistem e competem no Arquipélago de Palmer. Embora sejam parentes próximos, suas características biológicas e, crucialmente, suas relações com o ambiente de gelo são distintas. Essas são a chave para entender por que o aquecimento global favorece certas espécies enquanto coloca outras em desvantagem.
+
+A @tbl-pin-comp resume as principais características de cada espécie, com foco em sua ecologia e vulnerabilidade às mudanças climáticas.
 
 ```{r}
 #| echo: false
-2 * 2
+#| tbl-cap: "Resumo comparativo das três espécies de pinguins (Pygoscelis) do Arquipélago de Palmer. Fonte: @penguins_species; @gentoo_secret_atlas; @adelie_natgeo; @chinstrap_marinebio."
+#| label: tbl-pin-comp
+tibble::tribble(
+  ~Característica, ~Gentoo, ~Adelie, ~Chinstrap,
+  "Porte Físico", "Grande (5-8 kg)", "Médio (3-6 kg)", "Médio (3-6 kg)",
+  "Marcas Distintivas", "Faixa branca no topo da cabeça e bico vermelho-alaranjado vibrante", "Anel branco distintivo ao redor dos olhos", 'Fina faixa preta sob o queixo, "barbicha"',
+  "Distribuição", "A mais ampla e adaptável das três, habitando desde costas rochosas a ilhas com gelo", "Estritamente Antártico, nidificando no continente e ilhas adjacentes", "Habita ilhas e costas no Pacífico Sul e no setor Antártico", 
+  "Ecologia", 'Prefere águas abertas para forrageamento. Sua adaptabilidade e menor dependência do gelo o tornam um potencial "vencedor", expandindo seu território para o sul à medida que o gelo recua.', "Fortemente dependente do gelo marinho para descanso e acesso a áreas de alimentação (krill). Sua população é altamente vulnerável ao recuo do gelo.", "Fortemente dependente do gelo marinho para descanso e acesso a áreas de alimentação (krill). Sua população é altamente vulnerável ao recuo do gelo."
+) %>% 
+  kable(
+    align = "l"
+  ) %>% 
+  column_spec(1, width = "8em") %>%
+  column_spec(2, width = "9em") %>% 
+  column_spec(3, width = "9em") %>% 
+  column_spec(4, width = "9em")
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+Enquanto o Pinguim Gentoo (*P. papu*) apresenta maior flexibilidade, adaptando até sua dieta quando o krill se torna escasso [@mcmahon2019], o Adelie (*P. adeliae*) e o Chinstrap (*P. antarcticus*) são os mais sensíveis às mudanças ambientais, pois dependem fortemente do gelo marinho e do krill associado a ele. O krill antártico (*Euphausia superba*) é altamente vulnerável ao aquecimento e à redução do gelo, que afeta seu habitat [@kawaguchi2023]. Assim, uma diminuição do Adelie e Chinstrap podem estar ligadas ao declínio do krill, o que reforça a importância dessas espécie como indicadores das mudanças climáticas na Antártica.
 
+O Pinguim Gentoo (*P. papua*), mais adaptável e associado a águas abertas, parece beneficiar-se do aquecimento que reduz a cobertura de gelo, permitindo-lhe expandir sua área de reprodução. Em contrapartida, tanto o Pinguim Adelie (*P. adeliae*) quanto o Chinstrap (*P. antarcticus*) estão em uma situação mais precária. O Adelie depende diretamente do gelo marinho para seu ciclo de vida [@adelie_natgeo]. Já o Chinstrap também é afetado, pois o krill, que é sua principal fonte de alimento, depende do gelo para se desenvolver.
+
+# Conjunto de dados
+
+Para explorar a relação entre o clima e a ecologia dos pinguins, dois conjuntos de dados principais serão utilizados.
+
+## Dados Meteorológicos
+
+O contexto ambiental é fornecido pelos dados diários da estação meteorológica de Palmer [@lterweather2024]. Entre as variáveis disponíveis (ver @tbl-weather), as variáveis de temperatura serão o foco principal do estudo.
+
+## Dados Biológicos
+
+O conjunto de dados sobre os pinguins do arquipélago de Palmer está livremente disponíveis e pode ser acessado facilmente através do pacote `palmerpenguins` no R [@R2025]. que disponibiliza os dados originalmente publicados por @gorman2014. Há dois datasets contidos nessa biblioteca: `penguins` (versão limpa) e `penguins_raw` (dados bruta).
+
+A descrição completa dos dados brutos está presente na @tbl-penguins. Entre as variáveis disponíveis, serão utilizadas `Species`, `Island`, `Culmen Length`, `Culmen Depth`, `Body Mass`, `Sex`. Também espera-se utilizar as variáveis `Delta 15 N` e `Delta 13 C`, pois os isótopos estáveis são indicadores da dieta a nível trófico dos pinguins.
+
+
+```{r}
+#| echo: false
+#| tbl-cap: "Descrição das variáveis do conjunto de dados `penguins_raw`."
+#| label: tbl-penguins
+tibble::tribble(
+  ~Variável, ~Tipo, ~Descrição,
+  "studyName", "Texto", "Identificação do estudo/expedição",
+  "Sample Number", "Numérica", "Número da amostra",
+  "Species", "Fator", "Espécie do pinguim",
+  "Region", "Fator", "Região da coleta",
+  "Island", "Factor", "Ilha onde o pinguim foi registrado",
+  "Stage", "Fator", "Estágio do ciclo reprodutivo",
+  "Individual ID", "Texto", "Identificador individual do pinguim",
+  "Clutch Completion", "Fator", "Se os ovos completaram o ciclo (Yes/No)",
+  "Date Egg", "Data", "Data da postura do ovo",
+  "Culmen Length (mm)", "Numérica", "Comprimento do bico (mm)",
+  "Culmen Depth (mm)", "Numérica",  "Profundidade do bico (mm)",
+  "Flipper Length (mm)", "Numérica", "Comprimento da nadadeira (mm)",
+  "Body Mass (g)", "Numérica",   "Massa corporal (g)",
+  "Sex", "Fator", "Sexo do pinguim (Male/Female)",
+  "Delta 15 N (o/oo)", "Numérica", "Isótopo δ15N (‰)",
+  "Delta 13 C (o/oo)", "Numérica", "Isótopo δ13C (‰)",
+  "Comments", "Texto", "Comentários adicionais do pesquisador"
+) %>% 
+  kable(
+    align = "lll"
+  )
+```
+
+```{r}
+#| echo: false
+#| tbl-cap: "Descrição das variáveis do conjunto de dados meteorológico na estação de Palmer."
+#| label: tbl-weather
+
+tibble::tribble(
+  ~Variável,                      ~Tipo,        ~Descrição,
+  "Date",                         "Data",       "Dia da medição meteorológica",
+  "Temperature.High..C.",         "Numérica",   "Temperatura máxima diária (°C)",
+  "Temperature.Low..C.",          "Numérica",   "Temperatura mínima diária (°C)",
+  "Temperature.Average..C.",      "Numérica",   "Temperatura média diária (°C)",
+  "Sea.Surface.Temperature..C.",  "Numérica",   "Temperatura da superfície do mar (°C)",
+  "Sea.Ice..WMO.Code.",           "Fator",      "Código WMO de condição de gelo no mar",
+  "Pressure.High..mbar.",         "Numérica",   "Pressão atmosférica máxima (mbar)",
+  "Pressure.Low..mbar.",          "Numérica",   "Pressão atmosférica mínima (mbar)",
+  "Pressure.Average..mbar.",      "Numérica",   "Pressão atmosférica média (mbar)",
+  "Wind.Peak..knots.",            "Numérica",   "Velocidade máxima do vento (nós)",
+  "Wind.5.Sec.Peak..knots.",      "Numérica",   "Pico do vento em intervalo de 5s (nós)",
+  "Wind.2.Min.Peak..knots.",      "Numérica",   "Pico do vento em intervalo de 2min (nós)",
+  "Wind.Average..knots.",         "Numérica",   "Velocidade média do vento (nós)",
+  "Wind.Peak.Direction",          "Numérica",   "Direção (graus) do pico de vento",
+  "Wind.5.Sec.Peak.Direction",    "Numérica",   "Direção do vento em pico de 5s",
+  "Wind.2.Min.Peak.Direction",    "Numérica",   "Direção do vento em pico de 2min",
+  "Wind.Prevailing.Direction",    "Fator",      "Direção predominante do vento",
+  "Precipitation.Melted..mm.",    "Numérica",   "Precipitação derretida (mm)",
+  "Precipitation.Snow..cm.",      "Numérica",   "Precipitação de neve (cm)",
+  "Depth.at.Snowstake..cm.",      "Numérica",   "Profundidade da neve medida (cm)",
+  "Sky.Coverage..tenths.",        "Numérica",   "Cobertura do céu ($10^{-1}$)"
+) %>% 
+  kable(
+    escape = F,
+    align = "l"
+  )
+```
+
+# Metodologia
+
+A análise será conduzida por etapas: primeiramente, será realizada a exploração dos dados para inspecionar e resumir as informações de cada variável em ambos conjuntos de dados; Em seguida, a análise de série temporal para a temperatura. Nesta etapa, utilizar-se-á a decomposição STL para separar as observações brutas em componentes de tendência e sazonalidade; Por fim, análise da relação clima-ecologia, verificando se há correlação entre a tendência da temperatura e possíveis mudanças nas populações de pinguins. 
+
+Para conduzir essa análise, utilizaremos a linguagem R e o ecossistema `tidyverse` para a manipulação e visualização de dados, Git para versionamento de código e Quarto para a geração do relatório final. O conteúdo está disponibilizado no repositório [GitHub](https://github.com/fergand/FCM25_Apresentacao).
+
+
+# Referências {.unnumbered}
+
+::: {#refs}
+\bibliography{references}
+:::
 
 
 <!-- # TODO -->

@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Fernando Andrade">
+<meta name="author" content="Elias Oliveira Vieira dos Santos">
+<meta name="author" content="Gabriel Marques Gonzalez">
 
 <title>Pinguins de Palmer</title>
 <style>
@@ -20,42 +23,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
 }
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
 }
-</style>
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="Apresentacao_files/libs/clipboard/clipboard.min.js"></script>
@@ -69,8 +57,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="Apresentacao_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="Apresentacao_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="Apresentacao_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="Apresentacao_files/libs/bootstrap/bootstrap-4d7f0bce1131f3e5f9547cd857cfbfc8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="Apresentacao_files/libs/bootstrap/bootstrap-aa0105776fd3927005c22f8dddba4a5d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="Apresentacao_files/libs/kePrint-0.0.1/kePrint.js"></script>
 
+<link href="Apresentacao_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -79,11 +100,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
   <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+    <h2 id="toc-title">Sumário</h2>
    
   <ul>
-  <li><a href="#quarto" id="toc-quarto" class="nav-link active" data-scroll-target="#quarto">Quarto</a></li>
-  <li><a href="#running-code" id="toc-running-code" class="nav-link" data-scroll-target="#running-code">Running Code</a></li>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">1</span> Introdução</a></li>
+  <li><a href="#as-espécies-de-pinguins" id="toc-as-espécies-de-pinguins" class="nav-link" data-scroll-target="#as-espécies-de-pinguins"><span class="header-section-number">2</span> As Espécies de pinguins</a></li>
+  <li><a href="#conjunto-de-dados" id="toc-conjunto-de-dados" class="nav-link" data-scroll-target="#conjunto-de-dados"><span class="header-section-number">3</span> Conjunto de dados</a>
+  <ul class="collapse">
+  <li><a href="#dados-meteorológicos" id="toc-dados-meteorológicos" class="nav-link" data-scroll-target="#dados-meteorológicos"><span class="header-section-number">3.1</span> Dados Meteorológicos</a></li>
+  <li><a href="#dados-biológicos" id="toc-dados-biológicos" class="nav-link" data-scroll-target="#dados-biológicos"><span class="header-section-number">3.2</span> Dados Biológicos</a></li>
+  </ul></li>
+  <li><a href="#metodologia" id="toc-metodologia" class="nav-link" data-scroll-target="#metodologia"><span class="header-section-number">4</span> Metodologia</a></li>
+  <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
   </ul>
 </nav>
 </div>
@@ -96,10 +124,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 
 
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Autores</div>
+  <div class="quarto-title-meta-heading">Afiliação</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Fernando Andrade <a href="mailto:f.andrade@unesp.br" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            IBB/UNESP
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Elias Oliveira Vieira dos Santos <a href="mailto:elias.ov.santos@unesp.br" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            IBB/UNESP
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Gabriel Marques Gonzalez <a href="mailto:gabriel.m.gonzalez@unesp.br" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            IBB/UNESP
+          </p>
+      </div>
+  </div>
 
 <div class="quarto-title-meta">
 
-    
+      
   
     
   </div>
@@ -109,26 +166,378 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="quarto" class="level2">
-<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
-<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
+<!-- O conteúdo que está aqui é o mesmo do Resumo. A ideia é, conforme as análises forem feitas, irmos lapidando o texto -->
+<section id="introdução" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introdução</h1>
+<p>Notícias recentes como “<a href="https://www.cnnbrasil.com.br/tecnologia/planeta-atinge-1o-ponto-critico-climatico-catastrofico-e-irreversivel/">Planeta atinge 1º ponto crítico climático catastrófico e irreversível</a>” <span class="citation" data-cites="cnn2025planeta">(<a href="#ref-cnn2025planeta" role="doc-biblioref">CNN BRASIL, 2025</a>)</span> são impactantes e evidenciam a necessidade de estudos sobre mudanças climáticas. Embora seja um alerta global, os efeitos mais dramáticos são frequentemente observados nos polos. A Península Antártica, onde se localiza o Arquipélago de Palmer, é reconhecida como uma das regiões de aquecimento mais rápido do planeta, tornando-se um laboratório natural ideal para estudar estas mudanças.</p>
+<p>Neste sentido, no presente trabalho, serão exploradas as consequências ecológicas das mudanças climáticas na Antártica, utilizando-se dados diários de temperatura médias da Estação de Palmer <span class="citation" data-cites="lterweather2024">(<a href="#ref-lterweather2024" role="doc-biblioref">LTER, 2024</a>)</span> em conjunto com o clássico conjunto de dados pinguins <span class="citation" data-cites="gorman2014">(<a href="#ref-gorman2014" role="doc-biblioref">GORMAN ET AL., 2014</a>)</span>, que detalham características de três espécies de pinguins no mesmo arquipélago: Gentoo (<em>Pygoscelis papua</em>), Adelie (<em>Pygoscelis adeliae</em>) e Chinstrap (<em>Pygoscelis antarcticus</em>), que pertencem ao gênero <em>Pygoscelis</em> e são conhecidos como pinguins de “cauda de escova” (<em>brush-tailed penguins</em>).</p>
+<p>O impacto das mudanças climáticas sobre as populações de pinguins não é uniforme, devido primariamente às distintas afinidades ecológicas de cada espécie. O primeiro motivo reside na diferença do habitat de inverno preferencial. Espécies como os Pinguins-de-adélia são dependentes do gelo marinho, utilizando-o como plataforma para descanso e forrageamento. Em contrapartida, os Pinguins-gentoo habitam preferencialmente águas abertas e livres de gelo, próximas à costa. O segundo motivo, uma consequência direta do primeiro, é o nível de acoplamento da cadeia alimentar de cada espécie a esse habitat. A estratégia de forrageamento dos Adélies está intrinsecamente ligada à presença do gelo, enquanto a dos Gentoos não demonstra a mesma dependência. Portanto, o aquecimento oceânico, ao reduzir a cobertura de gelo, restringe o ambiente de caça dos Adélies, ao mesmo tempo que expande o habitat disponível para os Gentoos <span class="citation" data-cites="gorman2014">(<a href="#ref-gorman2014" role="doc-biblioref">GORMAN ET AL., 2014</a>)</span>.</p>
+<p>Assim, o que torna uma espécie “vencedora” ou “perdedora” é o alinhamento, ou desalinhamento, de seu nicho ecológico com as novas condições ambientais impostas pela mudança climática. Dessa forma, a espécie vencedora é aquela cujas necessidades e estratégias de vida são favorecidas pelas mudanças. Por outro lado, a espécie perdedora é aquela altamente especializada, ou seja, ecologicamente dependente de condições ambientais que estão em declínio.</p>
+<p>O objetivo principal é investigar relações entre as populações de pinguins e as variáveis climáticas, visto que estas aves são fortes indicadores de saúde oceânica. Buscaremos compreender como a dinâmica populacional e as características biométricas dessas espécies responderam às alterações ambientais, revelando possíveis “vencedores” e “perdedores” neste novo cenário ecológico.</p>
 </section>
-<section id="running-code" class="level2">
-<h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
+<section id="as-espécies-de-pinguins" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> As Espécies de pinguins</h1>
+<p>Conforme apresentado na introdução, o estudo contempla três espécies de pinguins do gênero <em>Pygoscelis</em>, que coexistem e competem no Arquipélago de Palmer. Embora sejam parentes próximos, suas características biológicas e, crucialmente, suas relações com o ambiente de gelo são distintas. Essas são a chave para entender por que o aquecimento global favorece certas espécies enquanto coloca outras em desvantagem.</p>
+<p>A <a href="#tbl-pin-comp" class="quarto-xref">Tabela&nbsp;1</a> resume as principais características de cada espécie, com foco em sua ecologia e vulnerabilidade às mudanças climáticas.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<div id="tbl-pin-comp" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pin-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;1: Resumo comparativo das três espécies de pinguins (Pygoscelis) do Arquipélago de Palmer. Fonte: <span class="citation" data-cites="penguins_species">Penguins International (<a href="#ref-penguins_species" role="doc-biblioref">2025</a>)</span>; <span class="citation" data-cites="gentoo_secret_atlas">Secret Atlas (<a href="#ref-gentoo_secret_atlas" role="doc-biblioref">2025</a>)</span>; <span class="citation" data-cites="adelie_natgeo">National Geographic Kids (<a href="#ref-adelie_natgeo" role="doc-biblioref">2025</a>)</span>; <span class="citation" data-cites="chinstrap_marinebio">MarineBio (<a href="#ref-chinstrap_marinebio" role="doc-biblioref">2025</a>)</span>.
+</figcaption>
+<div aria-describedby="tbl-pin-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Característica</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Gentoo</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Adelie</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Chinstrap</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; width: 8em;">Porte Físico</td>
+<td style="text-align: left; width: 9em;">Grande (5-8 kg)</td>
+<td style="text-align: left; width: 9em;">Médio (3-6 kg)</td>
+<td style="text-align: left; width: 9em;">Médio (3-6 kg)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 8em;">Marcas Distintivas</td>
+<td style="text-align: left; width: 9em;">Faixa branca no topo da cabeça e bico vermelho-alaranjado vibrante</td>
+<td style="text-align: left; width: 9em;">Anel branco distintivo ao redor dos olhos</td>
+<td style="text-align: left; width: 9em;">Fina faixa preta sob o queixo, "barbicha"</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 8em;">Distribuição</td>
+<td style="text-align: left; width: 9em;">A mais ampla e adaptável das três, habitando desde costas rochosas a ilhas com gelo</td>
+<td style="text-align: left; width: 9em;">Estritamente Antártico, nidificando no continente e ilhas adjacentes</td>
+<td style="text-align: left; width: 9em;">Habita ilhas e costas no Pacífico Sul e no setor Antártico</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 8em;">Ecologia</td>
+<td style="text-align: left; width: 9em;">Prefere águas abertas para forrageamento. Sua adaptabilidade e menor dependência do gelo o tornam um potencial "vencedor", expandindo seu território para o sul à medida que o gelo recua.</td>
+<td style="text-align: left; width: 9em;">Fortemente dependente do gelo marinho para descanso e acesso a áreas de alimentação (krill). Sua população é altamente vulnerável ao recuo do gelo.</td>
+<td style="text-align: left; width: 9em;">Fortemente dependente do gelo marinho para descanso e acesso a áreas de alimentação (krill). Sua população é altamente vulnerável ao recuo do gelo.</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<p>You can add options to executable code like this</p>
+</figure>
+</div>
+</div>
+<p>Enquanto o Pinguim Gentoo (<em>P. papu</em>) apresenta maior flexibilidade, adaptando até sua dieta quando o krill se torna escasso <span class="citation" data-cites="mcmahon2019">(<a href="#ref-mcmahon2019" role="doc-biblioref">MCMAHON ET AL., 2019</a>)</span>, o Adelie (<em>P. adeliae</em>) e o Chinstrap (<em>P. antarcticus</em>) são os mais sensíveis às mudanças ambientais, pois dependem fortemente do gelo marinho e do krill associado a ele. O krill antártico (<em>Euphausia superba</em>) é altamente vulnerável ao aquecimento e à redução do gelo, que afeta seu habitat <span class="citation" data-cites="kawaguchi2023">(<a href="#ref-kawaguchi2023" role="doc-biblioref">KAWAGUCHI ET AL., 2023</a>)</span>. Assim, uma diminuição do Adelie e Chinstrap podem estar ligadas ao declínio do krill, o que reforça a importância dessas espécie como indicadores das mudanças climáticas na Antártica.</p>
+<p>O Pinguim Gentoo (<em>P. papua</em>), mais adaptável e associado a águas abertas, parece beneficiar-se do aquecimento que reduz a cobertura de gelo, permitindo-lhe expandir sua área de reprodução. Em contrapartida, tanto o Pinguim Adelie (<em>P. adeliae</em>) quanto o Chinstrap (<em>P. antarcticus</em>) estão em uma situação mais precária. O Adelie depende diretamente do gelo marinho para seu ciclo de vida <span class="citation" data-cites="adelie_natgeo">(<a href="#ref-adelie_natgeo" role="doc-biblioref">NATIONAL GEOGRAPHIC KIDS, 2025</a>)</span>. Já o Chinstrap também é afetado, pois o krill, que é sua principal fonte de alimento, depende do gelo para se desenvolver.</p>
+</section>
+<section id="conjunto-de-dados" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Conjunto de dados</h1>
+<p>Para explorar a relação entre o clima e a ecologia dos pinguins, dois conjuntos de dados principais serão utilizados.</p>
+<section id="dados-meteorológicos" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="dados-meteorológicos"><span class="header-section-number">3.1</span> Dados Meteorológicos</h2>
+<p>O contexto ambiental é fornecido pelos dados diários da estação meteorológica de Palmer <span class="citation" data-cites="lterweather2024">(<a href="#ref-lterweather2024" role="doc-biblioref">LTER, 2024</a>)</span>. Entre as variáveis disponíveis (ver <a href="#tbl-weather" class="quarto-xref">Tabela&nbsp;3</a>), as variáveis de temperatura serão o foco principal do estudo.</p>
+</section>
+<section id="dados-biológicos" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="dados-biológicos"><span class="header-section-number">3.2</span> Dados Biológicos</h2>
+<p>O conjunto de dados sobre os pinguins do arquipélago de Palmer está livremente disponíveis e pode ser acessado facilmente através do pacote <code>palmerpenguins</code> no R <span class="citation" data-cites="R2025">(<a href="#ref-R2025" role="doc-biblioref">R CORE TEAM, 2025</a>)</span>. que disponibiliza os dados originalmente publicados por <span class="citation" data-cites="gorman2014">Gorman et al. (<a href="#ref-gorman2014" role="doc-biblioref">2014</a>)</span>. Há dois datasets contidos nessa biblioteca: <code>penguins</code> (versão limpa) e <code>penguins_raw</code> (dados bruta).</p>
+<p>A descrição completa dos dados brutos está presente na <a href="#tbl-penguins" class="quarto-xref">Tabela&nbsp;2</a>. Entre as variáveis disponíveis, serão utilizadas <code>Species</code>, <code>Island</code>, <code>Culmen Length</code>, <code>Culmen Depth</code>, <code>Body Mass</code>, <code>Sex</code>. Também espera-se utilizar as variáveis <code>Delta 15 N</code> e <code>Delta 13 C</code>, pois os isótopos estáveis são indicadores da dieta a nível trófico dos pinguins.</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
+<div id="tbl-penguins" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-penguins-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2: Descrição das variáveis do conjunto de dados <code>penguins_raw</code>.
+</figcaption>
+<div aria-describedby="tbl-penguins-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 13%">
+<col style="width: 57%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variável</th>
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: left;">Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">studyName</td>
+<td style="text-align: left;">Texto</td>
+<td style="text-align: left;">Identificação do estudo/expedição</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sample Number</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Número da amostra</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Species</td>
+<td style="text-align: left;">Fator</td>
+<td style="text-align: left;">Espécie do pinguim</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Region</td>
+<td style="text-align: left;">Fator</td>
+<td style="text-align: left;">Região da coleta</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Island</td>
+<td style="text-align: left;">Factor</td>
+<td style="text-align: left;">Ilha onde o pinguim foi registrado</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Stage</td>
+<td style="text-align: left;">Fator</td>
+<td style="text-align: left;">Estágio do ciclo reprodutivo</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Individual ID</td>
+<td style="text-align: left;">Texto</td>
+<td style="text-align: left;">Identificador individual do pinguim</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Clutch Completion</td>
+<td style="text-align: left;">Fator</td>
+<td style="text-align: left;">Se os ovos completaram o ciclo (Yes/No)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Date Egg</td>
+<td style="text-align: left;">Data</td>
+<td style="text-align: left;">Data da postura do ovo</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Culmen Length (mm)</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Comprimento do bico (mm)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Culmen Depth (mm)</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Profundidade do bico (mm)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Flipper Length (mm)</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Comprimento da nadadeira (mm)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Body Mass (g)</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Massa corporal (g)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sex</td>
+<td style="text-align: left;">Fator</td>
+<td style="text-align: left;">Sexo do pinguim (Male/Female)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Delta 15 N (o/oo)</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Isótopo δ15N (‰)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Delta 13 C (o/oo)</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Isótopo δ13C (‰)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Comments</td>
+<td style="text-align: left;">Texto</td>
+<td style="text-align: left;">Comentários adicionais do pesquisador</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
+</figure>
+</div>
+</div>
+<div class="cell">
+<div id="tbl-weather" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-weather-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;3: Descrição das variáveis do conjunto de dados meteorológico na estação de Palmer.
+</figcaption>
+<div aria-describedby="tbl-weather-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 11%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variável</th>
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: left;">Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Date</td>
+<td style="text-align: left;">Data</td>
+<td style="text-align: left;">Dia da medição meteorológica</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Temperature.High..C.</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Temperatura máxima diária (°C)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Temperature.Low..C.</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Temperatura mínima diária (°C)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Temperature.Average..C.</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Temperatura média diária (°C)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sea.Surface.Temperature..C.</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Temperatura da superfície do mar (°C)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sea.Ice..WMO.Code.</td>
+<td style="text-align: left;">Fator</td>
+<td style="text-align: left;">Código WMO de condição de gelo no mar</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Pressure.High..mbar.</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Pressão atmosférica máxima (mbar)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pressure.Low..mbar.</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Pressão atmosférica mínima (mbar)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Pressure.Average..mbar.</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Pressão atmosférica média (mbar)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Wind.Peak..knots.</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Velocidade máxima do vento (nós)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Wind.5.Sec.Peak..knots.</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Pico do vento em intervalo de 5s (nós)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Wind.2.Min.Peak..knots.</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Pico do vento em intervalo de 2min (nós)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Wind.Average..knots.</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Velocidade média do vento (nós)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Wind.Peak.Direction</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Direção (graus) do pico de vento</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Wind.5.Sec.Peak.Direction</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Direção do vento em pico de 5s</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Wind.2.Min.Peak.Direction</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Direção do vento em pico de 2min</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Wind.Prevailing.Direction</td>
+<td style="text-align: left;">Fator</td>
+<td style="text-align: left;">Direção predominante do vento</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Precipitation.Melted..mm.</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Precipitação derretida (mm)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Precipitation.Snow..cm.</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Precipitação de neve (cm)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Depth.at.Snowstake..cm.</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Profundidade da neve medida (cm)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sky.Coverage..tenths.</td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Cobertura do céu (<span class="math inline">\(10^{-1}\)</span>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+</section>
+<section id="metodologia" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Metodologia</h1>
+<p>A análise será conduzida por etapas: primeiramente, será realizada a exploração dos dados para inspecionar e resumir as informações de cada variável em ambos conjuntos de dados; Em seguida, a análise de série temporal para a temperatura. Nesta etapa, utilizar-se-á a decomposição STL para separar as observações brutas em componentes de tendência e sazonalidade; Por fim, análise da relação clima-ecologia, verificando se há correlação entre a tendência da temperatura e possíveis mudanças nas populações de pinguins.</p>
+<p>Para conduzir essa análise, utilizaremos a linguagem R e o ecossistema <code>tidyverse</code> para a manipulação e visualização de dados, Git para versionamento de código e Quarto para a geração do relatório final. O conteúdo está disponibilizado no repositório <a href="https://github.com/fergand/FCM25_Apresentacao">GitHub</a>.</p>
+</section>
+<section id="referências" class="level1 unnumbered">
+<h1 class="unnumbered">Referências</h1>
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-cnn2025planeta" class="csl-entry" role="listitem">
+CNN BRASIL. <strong>Planeta atinge 1º ponto crítico climático catastrófico e irreversível</strong>. CNN Brasil, 14 out. 2025. Disponível em: &lt;<a href="https://www.cnnbrasil.com.br/tecnologia/planeta-atinge-1o-ponto-critico-climatico-catastrofico-e-irreversivel/">https://www.cnnbrasil.com.br/tecnologia/planeta-atinge-1o-ponto-critico-climatico-catastrofico-e-irreversivel/</a>&gt;
+</div>
+<div id="ref-gorman2014" class="csl-entry" role="listitem">
+GORMAN, Kristen B. <em>et al.</em> <a href="https://doi.org/10.1371/journal.pone.0090081">Ecological <span>Sexual Dimorphism</span> and <span>Environmental Variability</span> within a <span>Community</span> of <span>Antarctic Penguins</span> (<span>Genus Pygoscelis</span>)</a>. <strong>PLOS ONE</strong>, v. 9, n. 3, p. e90081, 2014.
+</div>
+<div id="ref-kawaguchi2023" class="csl-entry" role="listitem">
+KAWAGUCHI, So <em>et al.</em> Climate change impacts on Antarctic krill behaviour and population dynamics. <strong>Nat. Rev. Earth Environ.</strong>, v. 5, n. 1, p. 43–58, dez. 2023.
+</div>
+<div id="ref-lterweather2024" class="csl-entry" role="listitem">
+LTER, Palmer Station Antarctica. <strong>Daily weather averages for Palmer Station, Antarctica (1989-2024)</strong>. Environmental Data Initiative, 2024.
+</div>
+<div id="ref-chinstrap_marinebio" class="csl-entry" role="listitem">
+MARINEBIO. <strong>Chinstrap Penguins, Pygoscelis antarcticus</strong>. MarineBio, 2025. Disponível em: &lt;<a href="https://www.marinebio.org/species/chinstrap-penguins/pygoscelis-antarcticus/">https://www.marinebio.org/species/chinstrap-penguins/pygoscelis-antarcticus/</a>&gt;
+</div>
+<div id="ref-mcmahon2019" class="csl-entry" role="listitem">
+MCMAHON, Kelton W. <em>et al.</em> <a href="https://doi.org/10.1073/pnas.1913093116">Divergent trophic responses of sympatric penguin species to historic anthropogenic exploitation and recent climate change</a>. <strong>Proceedings of the National Academy of Sciences</strong>, v. 116, n. 51, p. 25721–25727, 2019.
+</div>
+<div id="ref-adelie_natgeo" class="csl-entry" role="listitem">
+NATIONAL GEOGRAPHIC KIDS. <strong>Adélie Penguin</strong>. National Geographic Kids, 2025. Disponível em: &lt;<a href="https://kids.nationalgeographic.com/animals/birds/facts/adelie-penguin">https://kids.nationalgeographic.com/animals/birds/facts/adelie-penguin</a>&gt;
+</div>
+<div id="ref-penguins_species" class="csl-entry" role="listitem">
+PENGUINS INTERNATIONAL. <strong>Penguins Species</strong>. Penguins International, 2025. Disponível em: &lt;<a href="https://www.penguinsinternational.org/penguin-species">https://www.penguinsinternational.org/penguin-species</a>&gt;
+</div>
+<div id="ref-R2025" class="csl-entry" role="listitem">
+R CORE TEAM. <strong><a href="https://www.R-project.org/">R: A Language and Environment for Statistical Computing</a></strong>. Vienna, Austria: R Foundation for Statistical Computing, 2025.
+</div>
+<div id="ref-gentoo_secret_atlas" class="csl-entry" role="listitem">
+SECRET ATLAS. <strong>Gentoo Penguins in the Wild: Habtitat &amp; Behavior Guide</strong>. Secret Atlas, 2025. Disponível em: &lt;<a href="https://www.secretatlas.com/handbook/wildlife-and-nature-guides/antarctic/gentoo-penguins">https://www.secretatlas.com/handbook/wildlife-and-nature-guides/antarctic/gentoo-penguins</a>&gt;
+</div>
+</div>
+<!-- # TODO -->
+<!-- 1. Pesquisar relações para efetuar a metodologia -->
+<!-- 2. Pesquisar relações para fazer analises exploratorias de dados -->
+<!-- 3. Fazer previsao da populacao de pinguins em 2 anos; -->
+<!-- 4. Investigar relação entre peso em funcao do comprimento e tamanho do bico -->
+<!-- 5. Buscar geolocalizações das ilhas para fazer graficos de mapa -->
+<!-- 6. Após pesquisas, mencionar aqui ou no grupo, para discutimos melhor as próximas etapas -->
 </section>
 
 </main>
@@ -158,12 +567,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copiada");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copiada");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
