@@ -62,3 +62,18 @@ git checkout main
 git merge sua-branch
 git push origin main
 ```
+
+# Dicas para commits
+
+Segue uma lista de palavras diretas para utilizarmos em commits
+
+add:      adicionando arquivo/seção/código
+fix:      corrigindo erro
+update:   modificando algo já existente
+refactor: limpando ou reorganizando código
+remove:   deletando algo
+docs:     documentação ou texto
+style:    formatação
+plot:     ajustes em gráficos
+data:     alterações nos dados
+test:     experimentos ou testes
