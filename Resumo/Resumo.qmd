@@ -182,7 +182,9 @@ tibble::tribble(
 
 A análise será conduzida por etapas: primeiramente, será realizada a exploração dos dados para inspecionar e resumir as informações de cada variável em ambos conjuntos de dados; Em seguida, a análise de série temporal para a temperatura. Nesta etapa, utilizar-se-á a decomposição STL para separar as observações brutas em componentes de tendência e sazonalidade; Por fim, análise da relação clima-ecologia, verificando se há correlação entre a tendência da temperatura e possíveis mudanças nas populações de pinguins. 
 
-Para conduzir essa análise, utilizaremos a linguagem R e o ecossistema `tidyverse` para a manipulação e visualização de dados, Git para versionamento de código e Quarto para a geração do relatório final.
+Para conduzir essa análise, utilizaremos a linguagem R e o ecossistema `tidyverse` para a manipulação e visualização de dados, Git para versionamento de código e Quarto para a geração do relatório final. O conteúdo está disponibilizado no repositório [GitHub](https://github.com/fergand/FCM25_Apresentacao).
+
+
 
 <!-- TO DO --
 * Pesquisar motivos ecologicos, com referencias, para justificar o motivo dos pinguins serem indicadores de saude oceanica; (Fernando)
@@ -190,6 +192,8 @@ Para conduzir essa análise, utilizaremos a linguagem R e o ecossistema `tidyver
 * Pesquisar sobre as três espécies presentes no conjunto de dados e elaborar um breve resumo sobre cada uma; (Gabriel)
 * Descrever os conjuntos de dados que serão utilizados. (Fernando)
 -->
+
+
 
 
 # Referências {.unnumbered}
