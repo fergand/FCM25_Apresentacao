@@ -35,9 +35,13 @@ You can add options to executable code like this
 
 The `echo: false` option disables the printing of code (only output is displayed).
 
+
+
 <!-- # TODO -->
 
 <!-- 1. Pesquisar relações para efetuar a metodologia -->
-<!-- 2. quantidade de pinguins por ano; -->
-<!-- 3. Investigar relação entre peso em funcao do comprimento e tamanho do bico -->
-<!-- 4. Buscar geolocalizações das ilhas para fazer graficos de mapa -->
+<!-- 2. Pesquisar relações para fazer analises exploratorias de dados -->
+<!-- 3. Fazer previsao da populacao de pinguins em 2 anos; -->
+<!-- 4. Investigar relação entre peso em funcao do comprimento e tamanho do bico -->
+<!-- 5. Buscar geolocalizações das ilhas para fazer graficos de mapa -->
+<!-- 6. Após pesquisas, mencionar aqui ou no grupo, para discutimos melhor as próximas etapas -->
