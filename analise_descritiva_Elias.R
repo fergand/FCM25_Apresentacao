@@ -438,3 +438,98 @@ knitr::kable(
   caption = "Estatísticas Descritivas Completas da Massa Corporal"
 )
 
+#....................................................
+
+
+# Gráficos
+
+### 3.4. Visualizações Chave (Gráficos)
+
+library(ggplot2)
+library(dplyr)
+
+# Tabela de Frequência: Espécies por Ilha (Reutilizando a lógica da Tabela 2)
+# O dataframe 'tabela_especie_ilha' já existe e está ordenado
+tabela_especie_ilha_plot <- data_pinguins %>%
+  drop_na(Species, Island) %>%
+  count(Species, Island, name = "Contagem") %>%
+  mutate(Percentual = (Contagem / sum(Contagem)) * 100)
+
+# Gráfico de Barras da Distribuição Geográfica
+plot_distribuicao_ilha <- tabela_especie_ilha_plot %>%
+  ggplot(aes(x = fct_reorder(Island, Contagem, .fun = sum), 
+             y = Contagem, 
+             fill = Species)) +
+  geom_col(position = position_stack()) + # Barras empilhadas (stack)
+  
+  labs(
+    title = "Distribuição da Amostra de Pinguins por Ilha e Espécie",
+    subtitle = "Contexto Espacial e Amostral no Arquipélago de Palmer",
+    x = "Ilha de Amostragem",
+    y = "Contagem de Indivíduos",
+    fill = "Espécie"
+  ) +
+  # Adicionar rótulos de porcentagem na barra (para facilitar a leitura da Tabela)
+  geom_text(aes(label = paste0(round(Percentual, 1), "%")), 
+            position = position_stack(vjust = 0.5), 
+            color = "white", size = 4) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+print(plot_distribuicao_ilha)
+
+# Gráfico A: Massa Corporal (Dimorfismo Sexual)
+plot_mass <- data_pinguins %>%
+  drop_na(`Body Mass (g)`, Species, Sex) %>%
+  ggplot(aes(x = Species, y = `Body Mass (g)`, fill = Sex)) +
+  geom_boxplot(outlier.shape = NA) +
+  labs(title = "Massa Corporal por Espécie e Dimorfismo Sexual")
+print(plot_mass)
+
+# Gráfico B: Dispersão Bivariada do Bico (Separação Morfológica)
+plot_culmen_bivariado <- data_pinguins %>%
+  drop_na(`Culmen Length (mm)`, `Culmen Depth (mm)`, Species) %>%
+  ggplot(aes(x = `Culmen Length (mm)`, y = `Culmen Depth (mm)`, color = Species)) +
+  geom_point(alpha = 0.7) +
+  stat_ellipse(type = "t", linewidth = 1) +
+  labs(title = "Relação Comprimento vs. Profundidade do Bico")
+print(plot_culmen_bivariado)
+
+
+#GRÁFICOS  Evidência de Nicho Trófico
+
+
+# Gráfico C: Comparação do Isótopo Delta 15N (Nível Trófico) por Espécie
+plot_delta_15n <- data_pinguins %>%
+  drop_na(`Delta 15 N (o/oo)`, Species) %>%
+  ggplot(aes(x = Species, y = `Delta 15 N (o/oo)`, fill = Species)) +
+  geom_boxplot(show.legend = FALSE) +
+  labs(
+    title = "Estratificação Alimentar: Nível Trófico (Delta 15N)",
+    subtitle = "Posição na Cadeia Alimentar por Espécie",
+    y = "Delta 15 N (‰)",
+    x = NULL
+  ) +
+  theme_minimal()
+
+print(plot_delta_15n)
+
+
+
+
+
+
+# Gráfico: Comparação do Isótopo Delta 13 C (Fonte de Energia) por Espécie
+plot_delta_13c <- data_pinguins %>%
+  drop_na(`Delta 13 C (o/oo)`, Species) %>%
+  ggplot(aes(x = Species, y = `Delta 13 C (o/oo)`, fill = Species)) +
+  geom_boxplot(show.legend = FALSE) +
+  labs(
+    title = "Segregação Espacial: Fonte de Carbono (Delta 13C)",
+    subtitle = "Indicador do Nicho de Forrageamento Trófico",
+    y = "Delta 13 C (‰)",
+    x = "Espécie de Pinguim"
+  ) +
+  theme_minimal()
+
+print(plot_delta_13c)
