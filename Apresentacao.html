@@ -6,6 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Fernando Andrade">
+<meta name="author" content="Elias Oliveira Vieira dos Santos">
+<meta name="author" content="Gabriel Marques Gonzalez">
 
 <title>Pinguins de Palmer</title>
 <style>
@@ -19,41 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -95,7 +63,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#o-cenário-climático" id="toc-o-cenário-climático" class="nav-link" data-scroll-target="#o-cenário-climático"><span class="header-section-number">1.1</span> O cenário climático</a></li>
   <li><a href="#objetivo-de-estudo" id="toc-objetivo-de-estudo" class="nav-link" data-scroll-target="#objetivo-de-estudo"><span class="header-section-number">1.2</span> Objetivo de estudo</a></li>
-  <li><a href="#running-code" id="toc-running-code" class="nav-link" data-scroll-target="#running-code"><span class="header-section-number">1.3</span> Running Code</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -111,10 +78,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 
 
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Autores</div>
+  <div class="quarto-title-meta-heading">Afiliação</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Fernando Andrade <a href="mailto:f.andrade@unesp.br" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            IBB/UNESP
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Elias Oliveira Vieira dos Santos <a href="mailto:elias.ov.santos@unesp.br" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            IBB/UNESP
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Gabriel Marques Gonzalez <a href="mailto:gabriel.m.gonzalez@unesp.br" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            IBB/UNESP
+          </p>
+      </div>
+  </div>
 
 <div class="quarto-title-meta">
 
-    
+      
   
     
   </div>
@@ -136,23 +132,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="objetivo-de-estudo" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="objetivo-de-estudo"><span class="header-section-number">1.2</span> Objetivo de estudo</h2>
 <p>Investigar a relação entre as variáveis climáticas – temperatura e gelo – e a dinâmica populacional de pinguins do gênero <em>Pygoscelis</em>.</p>
-</section>
-<section id="running-code" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="running-code"><span class="header-section-number">1.3</span> Running Code</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
-<p>You can add options to executable code like this</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
-</div>
-</div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
 <!-- # TODO -->
 <!-- 1. Pesquisar relações para efetuar a metodologia -->
 <!-- 2. quantidade de pinguins por ano; -->
