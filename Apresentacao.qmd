@@ -1,43 +1,43 @@
 ---
 title: "Pinguins de Palmer"
 subtitle: "Uma análise estatística ecológica"
-toc: true
+
 
 format: 
   html:
-    theme: cosmo
+    theme: flatly
+    toc: true
+    number-sections: true
+    toc-location: left
+    include-in-header: "cabecalho.html"
 
+toc-title: "Sumário"
+
+lang: pt-br
 
 editor: visual
 ---
 
 # Introdução
 
-## Quarto
+## O cenário climático
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+- A Península Antártica é uma das regiões de aquecimento mais rápido do planeta.
+- O Arquipélago de Palmer atua como um "laboratório natural" para estudar as consequências ecológicas.
 
-## Running Code
+## Objetivo de estudo
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+Investigar a relação entre as variáveis climáticas -- temperatura e gelo -- e a dinâmica populacional de pinguins do gênero *Pygoscelis*.
 
 
-```{r}
-1 + 1
-```
 
-You can add options to executable code like this
-
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of code (only output is displayed).
 
 <!-- # TODO -->
 
 <!-- 1. Pesquisar relações para efetuar a metodologia -->
+
 <!-- 2. quantidade de pinguins por ano; -->
+
 <!-- 3. Investigar relação entre peso em funcao do comprimento e tamanho do bico -->
+
 <!-- 4. Buscar geolocalizações das ilhas para fazer graficos de mapa -->
