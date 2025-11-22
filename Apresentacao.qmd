@@ -1,7 +1,24 @@
 ---
 title: "Pinguins de Palmer"
 subtitle: "Uma análise estatística ecológica"
+author: 
+  - name: Fernando Andrade
+    affiliations:
+      - IBB/UNESP
+    email: f.andrade@unesp.br
+  - name: Elias Oliveira Vieira dos Santos
+    affiliations:
+      - IBB/UNESP
+    email: elias.ov.santos@unesp.br
+  - name: Gabriel Marques Gonzalez
+    affiliations:
+      - IBB/UNESP
+    email: gabriel.m.gonzalez@unesp.br
+toc: true
 
+lang: pt-br
+csl: abnt.csl
+bibliography: references.bib
 
 format: 
   html:
@@ -12,8 +29,6 @@ format:
     include-in-header: "cabecalho.html"
 
 toc-title: "Sumário"
-
-lang: pt-br
 
 editor: visual
 ---
