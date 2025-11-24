@@ -57,7 +57,16 @@ div.csl-indent {
 <link href="Apresentacao_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="Apresentacao_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="Apresentacao_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="Apresentacao_files/libs/bootstrap/bootstrap-aa0105776fd3927005c22f8dddba4a5d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="Apresentacao_files/libs/bootstrap/bootstrap-0b716d6fe31096b8dc5b1cb48462c79f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link rel="shortcut icon" href="https://www.ibb.unesp.br/Home/sobreocampus/administracao/comissaodeapoioaoestudante-cae/logo_ibb_1.png">
+
+
+
+</head><body class="quarto-light"><div>
+
+  <img style="position:absolute; top:10px; right:50px; padding:10px;" src="https://www.ibb.unesp.br/Home/sobreocampus/administracao/comissaodeapoioaoestudante-cae/logo_ibb_1.png" width="200" height="200">
+
+</div>
 <script src="Apresentacao_files/libs/kePrint-0.0.1/kePrint.js"></script>
 
 <link href="Apresentacao_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
@@ -93,27 +102,41 @@ window.Quarto = {
 };
 </script>
 
-</head>
+<link rel="stylesheet" href="style.css">
 
-<body class="quarto-light">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
   <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Sumário</h2>
    
   <ul>
-  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">1</span> Introdução</a></li>
-  <li><a href="#as-espécies-de-pinguins" id="toc-as-espécies-de-pinguins" class="nav-link" data-scroll-target="#as-espécies-de-pinguins"><span class="header-section-number">2</span> As Espécies de pinguins</a></li>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">1</span> Introdução</a>
+  <ul class="collapse">
+  <li><a href="#o-cenário-climático" id="toc-o-cenário-climático" class="nav-link" data-scroll-target="#o-cenário-climático"><span class="header-section-number">1.1</span> O cenário climático</a></li>
+  <li><a href="#objetivo-de-estudo" id="toc-objetivo-de-estudo" class="nav-link" data-scroll-target="#objetivo-de-estudo"><span class="header-section-number">1.2</span> Objetivo de estudo</a></li>
+  </ul></li>
+  <li><a href="#conhecendo-os-pinguins" id="toc-conhecendo-os-pinguins" class="nav-link" data-scroll-target="#conhecendo-os-pinguins"><span class="header-section-number">2</span> Conhecendo os pinguins</a></li>
   <li><a href="#conjunto-de-dados" id="toc-conjunto-de-dados" class="nav-link" data-scroll-target="#conjunto-de-dados"><span class="header-section-number">3</span> Conjunto de dados</a>
   <ul class="collapse">
   <li><a href="#dados-meteorológicos" id="toc-dados-meteorológicos" class="nav-link" data-scroll-target="#dados-meteorológicos"><span class="header-section-number">3.1</span> Dados Meteorológicos</a></li>
   <li><a href="#dados-biológicos" id="toc-dados-biológicos" class="nav-link" data-scroll-target="#dados-biológicos"><span class="header-section-number">3.2</span> Dados Biológicos</a></li>
   </ul></li>
-  <li><a href="#metodologia" id="toc-metodologia" class="nav-link" data-scroll-target="#metodologia"><span class="header-section-number">4</span> Metodologia</a></li>
-  <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
+  <li><a href="#análise-exploratória-dos-dados" id="toc-análise-exploratória-dos-dados" class="nav-link" data-scroll-target="#análise-exploratória-dos-dados"><span class="header-section-number">4</span> Análise Exploratória dos Dados</a>
+  <ul class="collapse">
+  <li><a href="#validação-da-amostra-equilíbrio-sexual" id="toc-validação-da-amostra-equilíbrio-sexual" class="nav-link" data-scroll-target="#validação-da-amostra-equilíbrio-sexual"><span class="header-section-number">4.1</span> Validação da Amostra: Equilíbrio Sexual</a></li>
+  <li><a href="#contexto-amostral-distribuição-geográfica" id="toc-contexto-amostral-distribuição-geográfica" class="nav-link" data-scroll-target="#contexto-amostral-distribuição-geográfica"><span class="header-section-number">4.2</span> Contexto Amostral: Distribuição Geográfica</a></li>
+  <li><a href="#biometria-massa-corporal-e-dimorfismo" id="toc-biometria-massa-corporal-e-dimorfismo" class="nav-link" data-scroll-target="#biometria-massa-corporal-e-dimorfismo"><span class="header-section-number">4.3</span> Biometria: Massa Corporal e Dimorfismo</a></li>
+  <li><a href="#evidência-de-nicho-ecológico-morfologia-do-bico" id="toc-evidência-de-nicho-ecológico-morfologia-do-bico" class="nav-link" data-scroll-target="#evidência-de-nicho-ecológico-morfologia-do-bico"><span class="header-section-number">4.4</span> Evidência de Nicho Ecológico: Morfologia do Bico</a></li>
+  <li><a href="#síntese-evidência-de-nicho-trófico" id="toc-síntese-evidência-de-nicho-trófico" class="nav-link" data-scroll-target="#síntese-evidência-de-nicho-trófico"><span class="header-section-number">4.5</span> Síntese: Evidência de Nicho Trófico</a></li>
+  </ul></li>
+  <li><a href="#agradecimentos" id="toc-agradecimentos" class="nav-link" data-scroll-target="#agradecimentos"><span class="header-section-number">5</span> Agradecimentos</a></li>
   </ul>
 </nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
 </div>
 <main class="content" id="quarto-document-content">
 
@@ -166,18 +189,32 @@ window.Quarto = {
 </header>
 
 
-<!-- O conteúdo que está aqui é o mesmo do Resumo. A ideia é, conforme as análises forem feitas, irmos lapidando o texto -->
 <section id="introdução" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introdução</h1>
-<p>Notícias recentes como “<a href="https://www.cnnbrasil.com.br/tecnologia/planeta-atinge-1o-ponto-critico-climatico-catastrofico-e-irreversivel/">Planeta atinge 1º ponto crítico climático catastrófico e irreversível</a>” <span class="citation" data-cites="cnn2025planeta">(<a href="#ref-cnn2025planeta" role="doc-biblioref">CNN BRASIL, 2025</a>)</span> são impactantes e evidenciam a necessidade de estudos sobre mudanças climáticas. Embora seja um alerta global, os efeitos mais dramáticos são frequentemente observados nos polos. A Península Antártica, onde se localiza o Arquipélago de Palmer, é reconhecida como uma das regiões de aquecimento mais rápido do planeta, tornando-se um laboratório natural ideal para estudar estas mudanças.</p>
-<p>Neste sentido, no presente trabalho, serão exploradas as consequências ecológicas das mudanças climáticas na Antártica, utilizando-se dados diários de temperatura médias da Estação de Palmer <span class="citation" data-cites="lterweather2024">(<a href="#ref-lterweather2024" role="doc-biblioref">LTER, 2024</a>)</span> em conjunto com o clássico conjunto de dados pinguins <span class="citation" data-cites="gorman2014">(<a href="#ref-gorman2014" role="doc-biblioref">GORMAN ET AL., 2014</a>)</span>, que detalham características de três espécies de pinguins no mesmo arquipélago: Gentoo (<em>Pygoscelis papua</em>), Adelie (<em>Pygoscelis adeliae</em>) e Chinstrap (<em>Pygoscelis antarcticus</em>), que pertencem ao gênero <em>Pygoscelis</em> e são conhecidos como pinguins de “cauda de escova” (<em>brush-tailed penguins</em>).</p>
-<p>O impacto das mudanças climáticas sobre as populações de pinguins não é uniforme, devido primariamente às distintas afinidades ecológicas de cada espécie. O primeiro motivo reside na diferença do habitat de inverno preferencial. Espécies como os Pinguins-de-adélia são dependentes do gelo marinho, utilizando-o como plataforma para descanso e forrageamento. Em contrapartida, os Pinguins-gentoo habitam preferencialmente águas abertas e livres de gelo, próximas à costa. O segundo motivo, uma consequência direta do primeiro, é o nível de acoplamento da cadeia alimentar de cada espécie a esse habitat. A estratégia de forrageamento dos Adélies está intrinsecamente ligada à presença do gelo, enquanto a dos Gentoos não demonstra a mesma dependência. Portanto, o aquecimento oceânico, ao reduzir a cobertura de gelo, restringe o ambiente de caça dos Adélies, ao mesmo tempo que expande o habitat disponível para os Gentoos <span class="citation" data-cites="gorman2014">(<a href="#ref-gorman2014" role="doc-biblioref">GORMAN ET AL., 2014</a>)</span>.</p>
-<p>Assim, o que torna uma espécie “vencedora” ou “perdedora” é o alinhamento, ou desalinhamento, de seu nicho ecológico com as novas condições ambientais impostas pela mudança climática. Dessa forma, a espécie vencedora é aquela cujas necessidades e estratégias de vida são favorecidas pelas mudanças. Por outro lado, a espécie perdedora é aquela altamente especializada, ou seja, ecologicamente dependente de condições ambientais que estão em declínio.</p>
-<p>O objetivo principal é investigar relações entre as populações de pinguins e as variáveis climáticas, visto que estas aves são fortes indicadores de saúde oceânica. Buscaremos compreender como a dinâmica populacional e as características biométricas dessas espécies responderam às alterações ambientais, revelando possíveis “vencedores” e “perdedores” neste novo cenário ecológico.</p>
+<section id="o-cenário-climático" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="o-cenário-climático"><span class="header-section-number">1.1</span> O cenário climático</h2>
+<p>Notícias recentes como <a href="https://www.cnnbrasil.com.br/tecnologia/planeta-atinge-1o-ponto-critico-climatico-catastrofico-e-irreversivel/">Planeta atinge 1º ponto crítico climático catastrófico e irreversível</a> <span class="citation" data-cites="cnn2025planeta">(<a href="#ref-cnn2025planeta" role="doc-biblioref">CNN BRASIL, 2025</a>)</span> são impactantes e evidenciam a necessidade de estudos sobre mudanças climáticas.</p>
+<ul>
+<li>Embora seja um alerta global, os efeitos mais críticos são frequentemente observados nos polos;</li>
+<li>A Península Antártica é uma das regiões de aquecimento mais rápido do planeta;</li>
+<li>O Arquipélago de Palmer atua como um “laboratório natural” para estudar as consequências ecológicas.</li>
+</ul>
+<p>Arquipélago de Palmer abriga três espécies de Pinguins do gênero <em>Pygoscelis</em>: Gentoo (<em>Pygoscelis papua</em>), Adelie (<em>Pygoscelis adeliae</em>) e Chinstrap (<em>Pygoscelis antarcticus</em>).</p>
+<p><img src="Imagens/South_Shetland_Islands_and_Antarctic_Peninsula.jpg" class="img-fluid"></p>
 </section>
-<section id="as-espécies-de-pinguins" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> As Espécies de pinguins</h1>
-<p>Conforme apresentado na introdução, o estudo contempla três espécies de pinguins do gênero <em>Pygoscelis</em>, que coexistem e competem no Arquipélago de Palmer. Embora sejam parentes próximos, suas características biológicas e, crucialmente, suas relações com o ambiente de gelo são distintas. Essas são a chave para entender por que o aquecimento global favorece certas espécies enquanto coloca outras em desvantagem.</p>
+<section id="objetivo-de-estudo" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="objetivo-de-estudo"><span class="header-section-number">1.2</span> Objetivo de estudo</h2>
+<p>O impacto das mudanças climáticas sobre as populações de pinguins não são iguais para cada espécie, devido, principalmente, às distintas afinidades ecológicas.</p>
+<p>Neste sentido, o objetivo do trabalho é investigar a relação entre as variáveis climáticas – temperaturas e precipitação – e a dinâmica populacional de pinguins do gênero <em>Pygoscelis</em>. Em particular:</p>
+<ul>
+<li>Contabilizar a porcentagem entre sexo por espécies, avaliando as relações entre sexo, tamanho do bico e comprimento do bico;</li>
+<li>Contabilizar a frequência das espécies por ilha;</li>
+<li>Avaliar tendências de temperatura do ar, da superfície do mar e precipitação.</li>
+</ul>
+</section>
+</section>
+<section id="conhecendo-os-pinguins" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Conhecendo os pinguins</h1>
 <p>A <a href="#tbl-pin-comp" class="quarto-xref">Tabela&nbsp;1</a> resume as principais características de cada espécie, com foco em sua ecologia e vulnerabilidade às mudanças climáticas.</p>
 <div class="cell">
 <div id="tbl-pin-comp" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -228,8 +265,36 @@ Tabela&nbsp;1: Resumo comparativo das três espécies de pinguins (Pygoscelis) d
 </figure>
 </div>
 </div>
-<p>Enquanto o Pinguim Gentoo (<em>P. papu</em>) apresenta maior flexibilidade, adaptando até sua dieta quando o krill se torna escasso <span class="citation" data-cites="mcmahon2019">(<a href="#ref-mcmahon2019" role="doc-biblioref">MCMAHON ET AL., 2019</a>)</span>, o Adelie (<em>P. adeliae</em>) e o Chinstrap (<em>P. antarcticus</em>) são os mais sensíveis às mudanças ambientais, pois dependem fortemente do gelo marinho e do krill associado a ele. O krill antártico (<em>Euphausia superba</em>) é altamente vulnerável ao aquecimento e à redução do gelo, que afeta seu habitat <span class="citation" data-cites="kawaguchi2023">(<a href="#ref-kawaguchi2023" role="doc-biblioref">KAWAGUCHI ET AL., 2023</a>)</span>. Assim, uma diminuição do Adelie e Chinstrap podem estar ligadas ao declínio do krill, o que reforça a importância dessas espécie como indicadores das mudanças climáticas na Antártica.</p>
-<p>O Pinguim Gentoo (<em>P. papua</em>), mais adaptável e associado a águas abertas, parece beneficiar-se do aquecimento que reduz a cobertura de gelo, permitindo-lhe expandir sua área de reprodução. Em contrapartida, tanto o Pinguim Adelie (<em>P. adeliae</em>) quanto o Chinstrap (<em>P. antarcticus</em>) estão em uma situação mais precária. O Adelie depende diretamente do gelo marinho para seu ciclo de vida <span class="citation" data-cites="adelie_natgeo">(<a href="#ref-adelie_natgeo" role="doc-biblioref">NATIONAL GEOGRAPHIC KIDS, 2025</a>)</span>. Já o Chinstrap também é afetado, pois o krill, que é sua principal fonte de alimento, depende do gelo para se desenvolver.</p>
+<div class="quarto-layout-panel" data-layout="[[40, 60], [100]]">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 40.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Imagens/palmerpenguins.png" class="img-fluid figure-img"></p>
+<figcaption><span class="citation" data-cites="allisonhorst">Horst et al. (<a href="#ref-allisonhorst" role="doc-biblioref">2020</a>)</span>.</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 60.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Imagens/lter_penguins.png" class="img-fluid figure-img"></p>
+<figcaption>Ilustração por <span class="citation" data-cites="allisonhorst">Horst et al. (<a href="#ref-allisonhorst" role="doc-biblioref">2020</a>)</span>.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Imagens/foto_pinguins.jpg" class="img-fluid figure-img"></p>
+<figcaption>Os pínguins: Chinstrap, Gentoo e Adélie.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="conjunto-de-dados" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Conjunto de dados</h1>
@@ -337,12 +402,12 @@ Tabela&nbsp;2: Descrição das variáveis do conjunto de dados <code>penguins_ra
 <tr class="odd">
 <td style="text-align: left;">Delta 15 N (o/oo)</td>
 <td style="text-align: left;">Numérica</td>
-<td style="text-align: left;">Isótopo δ15N (‰)</td>
+<td style="text-align: left;">Isótopo <span class="math inline">\(\delta {}^{15}\)</span>N (‰)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Delta 13 C (o/oo)</td>
 <td style="text-align: left;">Numérica</td>
-<td style="text-align: left;">Isótopo δ13C (‰)</td>
+<td style="text-align: left;">Isótopo <span class="math inline">\(\delta {}^{13}\)</span>C (‰)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Comments</td>
@@ -492,31 +557,477 @@ Tabela&nbsp;3: Descrição das variáveis do conjunto de dados meteorológico na
 </div>
 </section>
 </section>
-<section id="metodologia" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Metodologia</h1>
-<p>A análise será conduzida por etapas: primeiramente, será realizada a exploração dos dados para inspecionar e resumir as informações de cada variável em ambos conjuntos de dados; Em seguida, a análise de série temporal para a temperatura. Nesta etapa, utilizar-se-á a decomposição STL para separar as observações brutas em componentes de tendência e sazonalidade; Por fim, análise da relação clima-ecologia, verificando se há correlação entre a tendência da temperatura e possíveis mudanças nas populações de pinguins.</p>
-<p>Para conduzir essa análise, utilizaremos a linguagem R e o ecossistema <code>tidyverse</code> para a manipulação e visualização de dados, Git para versionamento de código e Quarto para a geração do relatório final. O conteúdo está disponibilizado no repositório <a href="https://github.com/fergand/FCM25_Apresentacao">GitHub</a>.</p>
+<section id="análise-exploratória-dos-dados" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Análise Exploratória dos Dados</h1>
+<ol type="1">
+<li>Validação da Amostra: Equilíbrio Sexual</li>
+<li>Contexto Amostral: Distribuição Geográfica</li>
+<li>Biometria: Massa Corporal e Dimorfismo</li>
+<li>Evidência de Nicho Ecológico: Morfologia do Bico</li>
+<li>Síntese: Evidência de Nicho Trófico</li>
+</ol>
+<section id="validação-da-amostra-equilíbrio-sexual" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="validação-da-amostra-equilíbrio-sexual"><span class="header-section-number">4.1</span> Validação da Amostra: Equilíbrio Sexual</h2>
+<div class="cell">
+<div id="tbl-res-cons" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-res-cons-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;4: Estatísticas Descritivas Consolidadas das Variáveis Biométricas, Morfológicas e Tróficas.
+</figcaption>
+<div aria-describedby="tbl-res-cons-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variável</th>
+<th style="text-align: right;">Mínimo</th>
+<th style="text-align: right;">Mediana</th>
+<th style="text-align: right;">Máximo</th>
+<th style="text-align: right;">NAs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Body Mass (g)</td>
+<td style="text-align: right;">2700.00</td>
+<td style="text-align: right;">4050.00</td>
+<td style="text-align: right;">6300.00</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Flipper Length (mm)</td>
+<td style="text-align: right;">172.00</td>
+<td style="text-align: right;">197.00</td>
+<td style="text-align: right;">231.00</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Culmen Length (mm)</td>
+<td style="text-align: right;">32.10</td>
+<td style="text-align: right;">44.45</td>
+<td style="text-align: right;">59.60</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Culmen Depth (mm)</td>
+<td style="text-align: right;">13.10</td>
+<td style="text-align: right;">17.30</td>
+<td style="text-align: right;">21.50</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Delta 15 N (o/oo)</td>
+<td style="text-align: right;">7.63</td>
+<td style="text-align: right;">8.65</td>
+<td style="text-align: right;">10.03</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Delta 13 C (o/oo)</td>
+<td style="text-align: right;">-27.02</td>
+<td style="text-align: right;">-25.83</td>
+<td style="text-align: right;">-23.79</td>
+<td style="text-align: right;">13</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
 </section>
-<section id="referências" class="level1 unnumbered">
-<h1 class="unnumbered">Referências</h1>
-<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<section id="contexto-amostral-distribuição-geográfica" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="contexto-amostral-distribuição-geográfica"><span class="header-section-number">4.2</span> Contexto Amostral: Distribuição Geográfica</h2>
+<div class="cell">
+<div id="tbl-freq-ilha" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-freq-ilha-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;5: Distribuição de Frequência das Espécies de Pinguins por Ilha.
+</figcaption>
+<div aria-describedby="tbl-freq-ilha-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Species</th>
+<th style="text-align: left;">Island</th>
+<th style="text-align: right;">Contagem</th>
+<th style="text-align: right;">Percentual</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Adelie Penguin</td>
+<td style="text-align: left;">Biscoe</td>
+<td style="text-align: right;">44</td>
+<td style="text-align: right;">12.79</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adelie Penguin</td>
+<td style="text-align: left;">Torgersen</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">15.12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Adelie Penguin</td>
+<td style="text-align: left;">Dream</td>
+<td style="text-align: right;">56</td>
+<td style="text-align: right;">16.28</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chinstrap penguin</td>
+<td style="text-align: left;">Dream</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: right;">19.77</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gentoo penguin</td>
+<td style="text-align: left;">Biscoe</td>
+<td style="text-align: right;">124</td>
+<td style="text-align: right;">36.05</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<ul>
+<li><strong>Gentoo</strong> domina a amostra (36%), concentrado em Biscoe;</li>
+<li><strong>Adelie</strong> é a espécie mais dispersa.</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-freq-ilha" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-freq-ilha-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Apresentacao_files/figure-html/fig-freq-ilha-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-freq-ilha-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Distribuição da Amostra de Pinguins por Ilha e Espécie: Contexto Espacial e Amostral no Arquipélago de Palmer.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="biometria-massa-corporal-e-dimorfismo" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="biometria-massa-corporal-e-dimorfismo"><span class="header-section-number">4.3</span> Biometria: Massa Corporal e Dimorfismo</h2>
+<div class="cell">
+<div id="tbl-count-sex" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-count-sex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6: Contagem e Percentual de Sexo por Espécie.
+</figcaption>
+<div aria-describedby="tbl-count-sex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Species</th>
+<th style="text-align: left;">Sex</th>
+<th style="text-align: right;">Contagem</th>
+<th style="text-align: right;">Percentual_Especie</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Adelie Penguin</td>
+<td style="text-align: left;">FEMALE</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">50.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adelie Penguin</td>
+<td style="text-align: left;">MALE</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">50.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Chinstrap penguin</td>
+<td style="text-align: left;">FEMALE</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">50.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chinstrap penguin</td>
+<td style="text-align: left;">MALE</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">50.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gentoo penguin</td>
+<td style="text-align: left;">FEMALE</td>
+<td style="text-align: right;">58</td>
+<td style="text-align: right;">48.74</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Gentoo penguin</td>
+<td style="text-align: left;">MALE</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: right;">51.26</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<ul>
+<li>Em todas as espécies, os machos são mais pesados que as fêmeas;</li>
+<li>O <strong>Gentoo Macho</strong> é notavelmente maior (<span class="math inline">\(\approx 5.5\)</span>kg) que qualquer outro grupo, reforçando sua posição de “vencedor” em porte físico;</li>
+<li>O <strong>mínimo</strong> do Gentoo Macho (4750g) tem um valor próximo <strong>máximo</strong> do Adelie Macho (4775g), indicando que quase nenhuma sobreposição de tamanho.</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-count-sex" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-count-sex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Apresentacao_files/figure-html/fig-count-sex-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-count-sex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2: Massa Corporal por Espécie e Dimorfismo Sexual.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="evidência-de-nicho-ecológico-morfologia-do-bico" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="evidência-de-nicho-ecológico-morfologia-do-bico"><span class="header-section-number">4.4</span> Evidência de Nicho Ecológico: Morfologia do Bico</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Imagens/culmen_depth.png" class="img-fluid figure-img"></p>
+<figcaption>Ilustração de <span class="citation" data-cites="allisonhorst">Horst et al. (<a href="#ref-allisonhorst" role="doc-biblioref">2020</a>)</span>.</figcaption>
+</figure>
+</div>
+<div class="cell">
+<div id="tbl-biometrica-especie" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-biometrica-especie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;7: Médias Biométricas e Tróficas por Espécie.
+</figcaption>
+<div aria-describedby="tbl-biometrica-especie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 4%">
+<col style="width: 14%">
+<col style="width: 27%">
+<col style="width: 17%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Species</th>
+<th style="text-align: right;">N</th>
+<th style="text-align: right;">Massa_Media_g</th>
+<th style="text-align: right;">Comprimento_Bico_Media_mm</th>
+<th style="text-align: right;">Delta_15N_Media</th>
+<th style="text-align: right;">Delta_13C_Media</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Adelie Penguin</td>
+<td style="text-align: right;">141</td>
+<td style="text-align: right;">3703.72</td>
+<td style="text-align: right;">38.80</td>
+<td style="text-align: right;">8.86</td>
+<td style="text-align: right;">-25.80</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chinstrap penguin</td>
+<td style="text-align: right;">67</td>
+<td style="text-align: right;">3729.85</td>
+<td style="text-align: right;">48.79</td>
+<td style="text-align: right;">9.36</td>
+<td style="text-align: right;">-24.56</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gentoo penguin</td>
+<td style="text-align: right;">122</td>
+<td style="text-align: right;">5074.59</td>
+<td style="text-align: right;">47.51</td>
+<td style="text-align: right;">8.25</td>
+<td style="text-align: right;">-26.19</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Os dados confirmam que as diferenças não apenas em relação ao peso, mas estruturais (tamanho e forma do bico), sugerindo adaptações diferentes para forrageamento.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-biometrica-especie" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-biometrica-especie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Apresentacao_files/figure-html/fig-biometrica-especie-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-biometrica-especie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3: Relação Comprimento vs.&nbsp;Profundidade do Bico.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="síntese-evidência-de-nicho-trófico" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="síntese-evidência-de-nicho-trófico"><span class="header-section-number">4.5</span> Síntese: Evidência de Nicho Trófico</h2>
+<div class="cell">
+<div id="tbl-biometrica-espsex" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-biometrica-espsex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;8: Comparação de Médias Biométricas por Espécie e Sexo (Dimorfismo)
+</figcaption>
+<div aria-describedby="tbl-biometrica-espsex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 7%">
+<col style="width: 3%">
+<col style="width: 14%">
+<col style="width: 27%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Species</th>
+<th style="text-align: left;">Sex</th>
+<th style="text-align: right;">N</th>
+<th style="text-align: right;">Massa_Media_g</th>
+<th style="text-align: right;">Comprimento_Bico_Media_mm</th>
+<th style="text-align: right;">Profundidade_Bico_Media_mm</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Adelie Penguin</td>
+<td style="text-align: left;">FEMALE</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">3368.84</td>
+<td style="text-align: right;">37.26</td>
+<td style="text-align: right;">17.62</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adelie Penguin</td>
+<td style="text-align: left;">MALE</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">4043.49</td>
+<td style="text-align: right;">40.39</td>
+<td style="text-align: right;">19.07</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Chinstrap penguin</td>
+<td style="text-align: left;">FEMALE</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">3527.21</td>
+<td style="text-align: right;">46.57</td>
+<td style="text-align: right;">17.59</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chinstrap penguin</td>
+<td style="text-align: left;">MALE</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">3938.97</td>
+<td style="text-align: right;">51.09</td>
+<td style="text-align: right;">19.25</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gentoo penguin</td>
+<td style="text-align: left;">FEMALE</td>
+<td style="text-align: right;">58</td>
+<td style="text-align: right;">4679.74</td>
+<td style="text-align: right;">45.56</td>
+<td style="text-align: right;">14.24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Gentoo penguin</td>
+<td style="text-align: left;">MALE</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: right;">5484.84</td>
+<td style="text-align: right;">49.47</td>
+<td style="text-align: right;">15.72</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>As diferenças em isótopos (<span class="math inline">\(\delta{}^{15}\)</span>N e <span class="math inline">\(\delta{}^{13}\)</span>C) confirmam que as espécies ocupam níveis tróficos e fontes de carbono distintas, validando a hipótese de que a resposta ao clima será diferenciada.</p>
+<div id="fig-biometrica-espsex" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-biometrica-espsex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-biometrica-espsex" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-biometrica-espsex-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-biometrica-espsex-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Apresentacao_files/figure-html/fig-biometrica-espsex-1.png" class="img-fluid figure-img" data-ref-parent="fig-biometrica-espsex" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-biometrica-espsex-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Fonte de Carbono (<span class="math inline">\(\delta{}^{15}\)</span>C).
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-biometrica-espsex" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-biometrica-espsex-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-biometrica-espsex-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Apresentacao_files/figure-html/fig-biometrica-espsex-2.png" class="img-fluid figure-img" data-ref-parent="fig-biometrica-espsex" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-biometrica-espsex-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Nível Trófico (<span class="math inline">\(\delta{}^{13}\)</span>N).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-biometrica-espsex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4: Boxplot da Segregação Espacial e Estratificação alimentar
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="agradecimentos" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Agradecimentos</h1>
+<p><img src="Imagens/obrigado.jpg" class="img-fluid"></p>
+<!-- # TODO -->
+<!-- 1. Pesquisar relações para efetuar a metodologia -->
+<!-- 2. quantidade de pinguins por ano; -->
+<!-- 3. Investigar relação entre peso em funcao do comprimento e tamanho do bico -->
+<!-- 4. Buscar geolocalizações das ilhas para fazer graficos de mapa -->
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Referências</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
 <div id="ref-cnn2025planeta" class="csl-entry" role="listitem">
 CNN BRASIL. <strong>Planeta atinge 1º ponto crítico climático catastrófico e irreversível</strong>. CNN Brasil, 14 out. 2025. Disponível em: &lt;<a href="https://www.cnnbrasil.com.br/tecnologia/planeta-atinge-1o-ponto-critico-climatico-catastrofico-e-irreversivel/">https://www.cnnbrasil.com.br/tecnologia/planeta-atinge-1o-ponto-critico-climatico-catastrofico-e-irreversivel/</a>&gt;
 </div>
 <div id="ref-gorman2014" class="csl-entry" role="listitem">
 GORMAN, Kristen B. <em>et al.</em> <a href="https://doi.org/10.1371/journal.pone.0090081">Ecological <span>Sexual Dimorphism</span> and <span>Environmental Variability</span> within a <span>Community</span> of <span>Antarctic Penguins</span> (<span>Genus Pygoscelis</span>)</a>. <strong>PLOS ONE</strong>, v. 9, n. 3, p. e90081, 2014.
 </div>
-<div id="ref-kawaguchi2023" class="csl-entry" role="listitem">
-KAWAGUCHI, So <em>et al.</em> Climate change impacts on Antarctic krill behaviour and population dynamics. <strong>Nat. Rev. Earth Environ.</strong>, v. 5, n. 1, p. 43–58, dez. 2023.
+<div id="ref-allisonhorst" class="csl-entry" role="listitem">
+HORST, Allison Marie <em>et al.</em> <strong><a href="https://doi.org/10.5281/zenodo.3960218">palmerpenguins: Palmer Archipelago (Antarctica) penguin data</a></strong>. <em>[S.l.: S.n.]</em>.
 </div>
 <div id="ref-lterweather2024" class="csl-entry" role="listitem">
 LTER, Palmer Station Antarctica. <strong>Daily weather averages for Palmer Station, Antarctica (1989-2024)</strong>. Environmental Data Initiative, 2024.
 </div>
 <div id="ref-chinstrap_marinebio" class="csl-entry" role="listitem">
 MARINEBIO. <strong>Chinstrap Penguins, Pygoscelis antarcticus</strong>. MarineBio, 2025. Disponível em: &lt;<a href="https://www.marinebio.org/species/chinstrap-penguins/pygoscelis-antarcticus/">https://www.marinebio.org/species/chinstrap-penguins/pygoscelis-antarcticus/</a>&gt;
-</div>
-<div id="ref-mcmahon2019" class="csl-entry" role="listitem">
-MCMAHON, Kelton W. <em>et al.</em> <a href="https://doi.org/10.1073/pnas.1913093116">Divergent trophic responses of sympatric penguin species to historic anthropogenic exploitation and recent climate change</a>. <strong>Proceedings of the National Academy of Sciences</strong>, v. 116, n. 51, p. 25721–25727, 2019.
 </div>
 <div id="ref-adelie_natgeo" class="csl-entry" role="listitem">
 NATIONAL GEOGRAPHIC KIDS. <strong>Adélie Penguin</strong>. National Geographic Kids, 2025. Disponível em: &lt;<a href="https://kids.nationalgeographic.com/animals/birds/facts/adelie-penguin">https://kids.nationalgeographic.com/animals/birds/facts/adelie-penguin</a>&gt;
@@ -530,17 +1041,7 @@ R CORE TEAM. <strong><a href="https://www.R-project.org/">R: A Language and Envi
 <div id="ref-gentoo_secret_atlas" class="csl-entry" role="listitem">
 SECRET ATLAS. <strong>Gentoo Penguins in the Wild: Habtitat &amp; Behavior Guide</strong>. Secret Atlas, 2025. Disponível em: &lt;<a href="https://www.secretatlas.com/handbook/wildlife-and-nature-guides/antarctic/gentoo-penguins">https://www.secretatlas.com/handbook/wildlife-and-nature-guides/antarctic/gentoo-penguins</a>&gt;
 </div>
-</div>
-<!-- # TODO -->
-<!-- 1. Pesquisar relações para efetuar a metodologia -->
-<!-- 2. Pesquisar relações para fazer analises exploratorias de dados -->
-<!-- 3. Fazer previsao da populacao de pinguins em 2 anos; -->
-<!-- 4. Investigar relação entre peso em funcao do comprimento e tamanho do bico -->
-<!-- 5. Buscar geolocalizações das ilhas para fazer graficos de mapa -->
-<!-- 6. Após pesquisas, mencionar aqui ou no grupo, para discutimos melhor as próximas etapas -->
-</section>
-
-</main>
+</div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {

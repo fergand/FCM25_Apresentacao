@@ -16,48 +16,68 @@ author:
     email: gabriel.m.gonzalez@unesp.br
 toc: true
 
+css: style.css
 lang: pt-br
 csl: abnt.csl
 bibliography: references.bib
 
-format:
+format: 
   html:
-    theme:
-      - cosmo
-      - brand
-    toc-title: "Sumário"
+    theme: flatly
+    toc: true
     number-sections: true
-    code-copy: true
+    toc-location: left
+    include-in-header: "cabecalho.html"
+    
 
+toc-title: "Sumário"
 
 editor: visual
 ---
 
 ```{r}
 #| include: false
-
 library(tidyverse)
-library(palmerpenguins)
+library(fable)
+library(fabletools)
+library(ggthemes)
+set_theme(theme_clean())
+suppressWarnings(set_theme(theme_clean()))
+library(lubridate)
+library(feasts)
+library(mice)
+library(naniar)
 library(kableExtra)
 ```
 
-<!-- O conteúdo que está aqui é o mesmo do Resumo. A ideia é, conforme as análises forem feitas, irmos lapidando o texto -->
 
 # Introdução
 
-Notícias recentes como "[Planeta atinge 1º ponto crítico climático catastrófico e irreversível](https://www.cnnbrasil.com.br/tecnologia/planeta-atinge-1o-ponto-critico-climatico-catastrofico-e-irreversivel/)" [@cnn2025planeta] são impactantes e evidenciam a necessidade de estudos sobre mudanças climáticas. Embora seja um alerta global, os efeitos mais dramáticos são frequentemente observados nos polos. A Península Antártica, onde se localiza o Arquipélago de Palmer, é reconhecida como uma das regiões de aquecimento mais rápido do planeta, tornando-se um laboratório natural ideal para estudar estas mudanças.
+## O cenário climático
 
-Neste sentido, no presente trabalho, serão exploradas as consequências ecológicas das mudanças climáticas na Antártica, utilizando-se dados diários de temperatura médias da Estação de Palmer [@lterweather2024] em conjunto com o clássico conjunto de dados pinguins [@gorman2014], que detalham características de três espécies de pinguins no mesmo arquipélago: Gentoo (*Pygoscelis papua*), Adelie (*Pygoscelis adeliae*) e Chinstrap (*Pygoscelis antarcticus*), que pertencem ao gênero *Pygoscelis* e são conhecidos como pinguins de "cauda de escova" (*brush-tailed penguins*).
+Notícias recentes como [Planeta atinge 1º ponto crítico climático catastrófico e irreversível](https://www.cnnbrasil.com.br/tecnologia/planeta-atinge-1o-ponto-critico-climatico-catastrofico-e-irreversivel/) [@cnn2025planeta] são impactantes e evidenciam a necessidade de estudos sobre mudanças climáticas.
 
-O impacto das mudanças climáticas sobre as populações de pinguins não é uniforme, devido primariamente às distintas afinidades ecológicas de cada espécie. O primeiro motivo reside na diferença do habitat de inverno preferencial. Espécies como os Pinguins-de-adélia são dependentes do gelo marinho, utilizando-o como plataforma para descanso e forrageamento. Em contrapartida, os Pinguins-gentoo habitam preferencialmente águas abertas e livres de gelo, próximas à costa. O segundo motivo, uma consequência direta do primeiro, é o nível de acoplamento da cadeia alimentar de cada espécie a esse habitat. A estratégia de forrageamento dos Adélies está intrinsecamente ligada à presença do gelo, enquanto a dos Gentoos não demonstra a mesma dependência. Portanto, o aquecimento oceânico, ao reduzir a cobertura de gelo, restringe o ambiente de caça dos Adélies, ao mesmo tempo que expande o habitat disponível para os Gentoos [@gorman2014].
+- Embora seja um alerta global, os efeitos mais críticos são frequentemente observados nos polos;
+- A Península Antártica é uma das regiões de aquecimento mais rápido do planeta;
+- O Arquipélago de Palmer atua como um "laboratório natural" para estudar as consequências ecológicas.
 
-Assim, o que torna uma espécie "vencedora" ou "perdedora" é o alinhamento, ou desalinhamento, de seu nicho ecológico com as novas condições ambientais impostas pela mudança climática. Dessa forma, a espécie vencedora é aquela cujas necessidades e estratégias de vida são favorecidas pelas mudanças. Por outro lado, a espécie perdedora é aquela altamente especializada, ou seja, ecologicamente dependente de condições ambientais que estão em declínio.
+Arquipélago de Palmer abriga três espécies de Pinguins do gênero *Pygoscelis*: Gentoo (*Pygoscelis papua*), Adelie (*Pygoscelis adeliae*) e Chinstrap (*Pygoscelis antarcticus*).
 
-O objetivo principal é investigar relações entre as populações de pinguins e as variáveis climáticas, visto que estas aves são fortes indicadores de saúde oceânica. Buscaremos compreender como a dinâmica populacional e as características biométricas dessas espécies responderam às alterações ambientais, revelando possíveis "vencedores" e "perdedores" neste novo cenário ecológico.
 
-# As Espécies de pinguins
+![](Imagens/South_Shetland_Islands_and_Antarctic_Peninsula.jpg)
 
-Conforme apresentado na introdução, o estudo contempla três espécies de pinguins do gênero *Pygoscelis*, que coexistem e competem no Arquipélago de Palmer. Embora sejam parentes próximos, suas características biológicas e, crucialmente, suas relações com o ambiente de gelo são distintas. Essas são a chave para entender por que o aquecimento global favorece certas espécies enquanto coloca outras em desvantagem.
+
+## Objetivo de estudo
+
+O impacto das mudanças climáticas sobre as populações de pinguins não são iguais para cada espécie, devido, principalmente, às distintas afinidades ecológicas.
+
+Neste sentido, o objetivo do trabalho é investigar a relação entre as variáveis climáticas -- temperaturas e precipitação -- e a dinâmica populacional de pinguins do gênero *Pygoscelis*. Em particular:
+
+- Contabilizar a porcentagem entre sexo por espécies, avaliando as relações entre sexo, tamanho do bico e comprimento do bico;
+- Contabilizar a frequência das espécies por ilha;
+- Avaliar tendências de temperatura do ar, da superfície do mar e precipitação.
+
+# Conhecendo os pinguins
 
 A @tbl-pin-comp resume as principais características de cada espécie, com foco em sua ecologia e vulnerabilidade às mudanças climáticas.
 
@@ -81,9 +101,17 @@ tibble::tribble(
   column_spec(4, width = "9em")
 ```
 
-Enquanto o Pinguim Gentoo (*P. papu*) apresenta maior flexibilidade, adaptando até sua dieta quando o krill se torna escasso [@mcmahon2019], o Adelie (*P. adeliae*) e o Chinstrap (*P. antarcticus*) são os mais sensíveis às mudanças ambientais, pois dependem fortemente do gelo marinho e do krill associado a ele. O krill antártico (*Euphausia superba*) é altamente vulnerável ao aquecimento e à redução do gelo, que afeta seu habitat [@kawaguchi2023]. Assim, uma diminuição do Adelie e Chinstrap podem estar ligadas ao declínio do krill, o que reforça a importância dessas espécie como indicadores das mudanças climáticas na Antártica.
 
-O Pinguim Gentoo (*P. papua*), mais adaptável e associado a águas abertas, parece beneficiar-se do aquecimento que reduz a cobertura de gelo, permitindo-lhe expandir sua área de reprodução. Em contrapartida, tanto o Pinguim Adelie (*P. adeliae*) quanto o Chinstrap (*P. antarcticus*) estão em uma situação mais precária. O Adelie depende diretamente do gelo marinho para seu ciclo de vida [@adelie_natgeo]. Já o Chinstrap também é afetado, pois o krill, que é sua principal fonte de alimento, depende do gelo para se desenvolver.
+::: {layout="[[40, 60], [100]]" layout-valign="center"}
+
+![@allisonhorst.](Imagens/palmerpenguins.png)
+
+![Ilustração por @allisonhorst.](Imagens/lter_penguins.png)
+
+![Os pínguins: Chinstrap, Gentoo e Adélie.](Imagens/foto_pinguins.jpg)
+
+:::
+
 
 # Conjunto de dados
 
@@ -120,12 +148,13 @@ tibble::tribble(
   "Flipper Length (mm)", "Numérica", "Comprimento da nadadeira (mm)",
   "Body Mass (g)", "Numérica",   "Massa corporal (g)",
   "Sex", "Fator", "Sexo do pinguim (Male/Female)",
-  "Delta 15 N (o/oo)", "Numérica", "Isótopo δ15N (‰)",
-  "Delta 13 C (o/oo)", "Numérica", "Isótopo δ13C (‰)",
+  "Delta 15 N (o/oo)", "Numérica", "Isótopo $\\delta {}^{15}$N (‰)",
+  "Delta 13 C (o/oo)", "Numérica", "Isótopo $\\delta {}^{13}$C (‰)",
   "Comments", "Texto", "Comentários adicionais do pesquisador"
 ) %>% 
   kable(
-    align = "lll"
+    align = "lll",
+    escape = FALSE
   )
 ```
 
@@ -164,25 +193,144 @@ tibble::tribble(
   )
 ```
 
-# Metodologia
+# Análise Exploratória dos Dados
 
-A análise será conduzida por etapas: primeiramente, será realizada a exploração dos dados para inspecionar e resumir as informações de cada variável em ambos conjuntos de dados; Em seguida, a análise de série temporal para a temperatura. Nesta etapa, utilizar-se-á a decomposição STL para separar as observações brutas em componentes de tendência e sazonalidade; Por fim, análise da relação clima-ecologia, verificando se há correlação entre a tendência da temperatura e possíveis mudanças nas populações de pinguins. 
+1. Validação da Amostra: Equilíbrio Sexual
+2. Contexto Amostral: Distribuição Geográfica
+3. Biometria: Massa Corporal e Dimorfismo
+4. Evidência de Nicho Ecológico: Morfologia do Bico
+5. Síntese: Evidência de Nicho Trófico
 
-Para conduzir essa análise, utilizaremos a linguagem R e o ecossistema `tidyverse` para a manipulação e visualização de dados, Git para versionamento de código e Quarto para a geração do relatório final. O conteúdo está disponibilizado no repositório [GitHub](https://github.com/fergand/FCM25_Apresentacao).
+
+```{r}
+#| include: false
+load("Data/tabela_biometria_resumo.RData")
+load("Data/tabela_dimorfismo.RData")
+load("Data/tabela_especie_ilha.RData")
+load("Data/tabela_resumo_consolidade.RData")
+load("Data/tabela_resumo_por_especie.RData")
+load("Data/tabela_sexo_especie.RData")
+
+load("Data/plot_culmen_bivariado.RData")
+load("Data/plot_delta_13c.RData")
+load("Data/plot_delta_15n.RData")
+load("Data/plot_distribuicao_ilha.RData")
+load("Data/plot_mass.RData")
+```
+
+## Validação da Amostra: Equilíbrio Sexual
+
+```{r}
+#| echo: false
+#| tbl-cap: "Estatísticas Descritivas Consolidadas das Variáveis Biométricas, Morfológicas e Tróficas."
+#| label: tbl-res-cons
+tabela_resumo_consolidada %>% 
+  kable(digits = 2)
+```
+
+## Contexto Amostral: Distribuição Geográfica
+
+```{r}
+#| echo: false
+#| tbl-cap: "Distribuição de Frequência das Espécies de Pinguins por Ilha."
+#| label: tbl-freq-ilha
+tabela_especie_ilha %>% 
+  kable(digits = 2)
+```
+
+- **Gentoo** domina a amostra (36\%), concentrado em Biscoe;
+- **Adelie** é a espécie mais dispersa.
+
+```{r}
+#| echo: false
+#| fig-cap: "Distribuição da Amostra de Pinguins por Ilha e Espécie: Contexto Espacial e Amostral no Arquipélago de Palmer."
+#| label: fig-freq-ilha
+plot_distribuicao_ilha
+```
+
+## Biometria: Massa Corporal e Dimorfismo
+
+```{r}
+#| echo: false
+#| tbl-cap: "Contagem e Percentual de Sexo por Espécie."
+#| label: tbl-count-sex
+tabela_sexo_especie %>% 
+  kable(digits = 2)
+```
+
+- Em todas as espécies, os machos são mais pesados que as fêmeas;
+- O **Gentoo Macho** é notavelmente maior ($\approx 5.5$kg) que qualquer outro grupo, reforçando sua posição de "vencedor" em porte físico;
+- O **mínimo** do Gentoo Macho (4750g) tem um valor próximo **máximo** do Adelie Macho (4775g), indicando que quase nenhuma sobreposição de tamanho.
+
+```{r}
+#| echo: false
+#| fig-cap: "Massa Corporal por Espécie e Dimorfismo Sexual."
+#| label: fig-count-sex
+
+plot_mass
+```
+
+## Evidência de Nicho Ecológico: Morfologia do Bico
+
+![Ilustração de @allisonhorst.](Imagens/culmen_depth.png)
+
+```{r}
+#| echo: false
+#| tbl-cap: "Médias Biométricas e Tróficas por Espécie."
+#| label: tbl-biometrica-especie
+tabela_resumo_por_especie %>% 
+  kable(digits = 2)
+```
+
+Os dados confirmam que as diferenças não apenas em relação ao peso, mas estruturais (tamanho e forma do bico), sugerindo adaptações diferentes para forrageamento.
+
+```{r}
+#| echo: false
+#| fig-cap: "Relação Comprimento vs. Profundidade do Bico."
+#| label: fig-biometrica-especie
+
+plot_culmen_bivariado
+```
 
 
-# Referências {.unnumbered}
+## Síntese: Evidência de Nicho Trófico
 
-::: {#refs}
-\bibliography{references}
-:::
+```{r}
+#| echo: false
+#| tbl-cap: "Comparação de Médias Biométricas por Espécie e Sexo (Dimorfismo)"
+#| label: tbl-biometrica-espsex
+
+tabela_dimorfismo_final_morfo %>% 
+  kable(digits = 2)
+```
+
+As diferenças em isótopos ($\delta{}^{15}$N e $\delta{}^{13}$C) confirmam que as espécies ocupam níveis tróficos e fontes de carbono distintas, validando a hipótese de que a resposta ao clima será diferenciada.
+
+```{r}
+#| echo: false
+#| fig-cap: "Boxplot da Segregação Espacial e Estratificação alimentar"
+#| fig-subcap: 
+#|   - "Fonte de Carbono ($\\delta{}^{15}$C)."
+#|   - "Nível Trófico  ($\\delta{}^{13}$N)." 
+#| label: fig-biometrica-espsex
+#| layout-ncol: 2
+
+plot_delta_13c
+plot_delta_15n
+
+```
+
+# Agradecimentos
+
+![](Imagens/obrigado.jpg)
 
 
 <!-- # TODO -->
 
 <!-- 1. Pesquisar relações para efetuar a metodologia -->
-<!-- 2. Pesquisar relações para fazer analises exploratorias de dados -->
-<!-- 3. Fazer previsao da populacao de pinguins em 2 anos; -->
-<!-- 4. Investigar relação entre peso em funcao do comprimento e tamanho do bico -->
-<!-- 5. Buscar geolocalizações das ilhas para fazer graficos de mapa -->
-<!-- 6. Após pesquisas, mencionar aqui ou no grupo, para discutimos melhor as próximas etapas -->
+
+<!-- 2. quantidade de pinguins por ano; -->
+
+<!-- 3. Investigar relação entre peso em funcao do comprimento e tamanho do bico -->
+
+<!-- 4. Buscar geolocalizações das ilhas para fazer graficos de mapa -->
