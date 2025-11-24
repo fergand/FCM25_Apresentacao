@@ -37,7 +37,8 @@ palmerweather <- df %>%
     Date, Temperature.Average..C., Temperature.High..C., Temperature.Low..C.
   ) %>% 
   mutate(
-    Date = ymd(Date)
+    Date = ymd(Date),
+    day = yday(Date)
   ) %>% 
   filter(
     year(Date) >= 1997 & year(Date) <= 2023
@@ -62,7 +63,8 @@ palmerweather %>%
 dados_imputar <- palmerweather %>% 
   tsibble::fill_gaps() %>% 
   ungroup() %>% 
-  as.data.frame()
+  as.data.frame() %>% 
+  select(-Date)
 
 imp <- dados_imputar %>% 
   mice(method = "pmm", seed = 123)
@@ -97,7 +99,7 @@ stl_dec %>%
   select(Date, trend) %>% 
   lm(trend~Date, data = .) %>% summary()
 
-# Teste de Sen (1968) para verificar significancia da inclinicao linear
+# Teste de Sen (1968) para verificar significância da inclinicao linear
 trend::sens.slope(stl_dec$trend)
 
 
