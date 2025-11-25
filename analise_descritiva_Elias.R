@@ -169,6 +169,9 @@ print(tabela_especie_ilha)
 library(dplyr)
 library(knitr)
 
+
+
+
 # Tabela de Frequência: Espécies por Ilha
 tabela_especie_ilha <- data_pinguins %>%
   drop_na(Species, Island) %>%
@@ -186,16 +189,78 @@ knitr::kable(
   caption = "Distribuição de Frequência das Espécies de Pinguins por Ilha",
   digits = 2 # Duas casas decimais para a porcentagem
 )
+#.....................
 
 
-# Tabela: Sexo por Espécie
+# Tabela: Espécies por Ilha - ajustada e traduzida
+tabela_especie_ilha <- data_pinguins %>%
+  drop_na(Species, Island) %>%
+  
+  # 1. Limpando os nomes das Espécies (Valores)
+  mutate(
+    Species = case_when(
+      str_detect(Species, "Adelie") ~ "Adelie",
+      str_detect(Species, "Chinstrap") ~ "Chinstrap",
+      str_detect(Species, "Gentoo") ~ "Gentoo",
+      TRUE ~ as.character(Species)
+    )
+  ) %>%
+  
+  # 2. Fazendo a contagem e cálculo
+  count(Species, Island, name = "Contagem") %>%
+  mutate(Percentual = (Contagem / sum(Contagem)) * 100) %>%
+  
+  # 3. Renomeando as Colunas (Variáveis)
+  rename(
+    "Espécies" = Species,
+    "Ilha" = Island,
+    "Percentual (%)" = Percentual # Sugestão para ficar mais claro
+  )
+
+print("--- Tabela de Frequência: Espécies por Ilha ---")
+print(tabela_especie_ilha)
+
+# --- SALVAR O ARQUIVO ATUALIZADO ---
+save(tabela_especie_ilha, file = "Data/tabela_especie_ilha.RData")
+
+
+
+# Tabela: Sexo por Espécie - ajustada e traduzida
 tabela_sexo_especie <- data_pinguins %>%
   drop_na(Species, Sex) %>%
+  mutate(
+    Species = case_when(
+      str_detect(Species, "Adelie") ~ "Adelie",
+      str_detect(Species, "Chinstrap") ~ "Chinstrap",
+      str_detect(Species, "Gentoo") ~ "Gentoo",
+      TRUE ~ as.character(Species)
+    ),
+    Sex = case_when(
+      Sex == "FEMALE" ~ "Fêmea",
+      Sex == "MALE" ~ "Macho",
+      TRUE ~ Sex
+    )
+  ) %>%
   count(Species, Sex, name = "Contagem") %>%
   group_by(Species) %>%
-  mutate(Percentual_Especie = (Contagem / sum(Contagem)) * 100)
+  mutate(Percentual_Especie = (Contagem / sum(Contagem)) * 100) %>%
+  
+  # Renomeando as variáveis ---
+  rename(
+    "Espécie" = Species,
+    "Sexo" = Sex,
+    
+  )
+
 print("--- Tabela Cruzada: Sexo por Espécie ---")
 print(tabela_sexo_especie)
+
+# --- SALVAR O ARQUIVO ATUALIZADO ---
+save(tabela_sexo_especie, file = "Data/tabela_sexo_especie.RData")
+
+
+# --
+
 
 library(dplyr)
 library(knitr)
@@ -247,6 +312,8 @@ tabela_resumo_por_especie <- data_pinguins %>%
 print("--- Tabela 4: Médias Biométricas e Tróficas por Espécie ---")
 print(tabela_resumo_por_especie)
 
+
+#........................
 
 
 # Tabela 4: Resumo Biométrico e Trófico POR ESPÉCIE (Com Formatação Kable)
@@ -300,6 +367,69 @@ knitr::kable(
 )
 
 
+#----------------------------------
+
+
+# Tabela 6 FINAL: Dimorfismo Sexual Detalhado 
+tabela_dimorfismo_final <- data_pinguins %>%
+  # 1. Remove NAs nas variáveis chaves
+  drop_na(
+    `Body Mass (g)`, 
+    `Culmen Length (mm)`, 
+    `Culmen Depth (mm)`,
+    `Delta 15 N (o/oo)`,
+    `Delta 13 C (o/oo)`,
+    Sex
+  ) %>%
+  
+  # 2. Tradução e Limpeza dos Nomes (Padrão do projeto)
+  mutate(
+    Species = case_when(
+      str_detect(Species, "Adelie") ~ "Adelie",
+      str_detect(Species, "Chinstrap") ~ "Chinstrap",
+      str_detect(Species, "Gentoo") ~ "Gentoo",
+      TRUE ~ as.character(Species)
+    ),
+    Sex = case_when(
+      Sex == "FEMALE" ~ "Fêmea",
+      Sex == "MALE" ~ "Macho",
+      TRUE ~ Sex
+    )
+  ) %>%
+  
+  # 3. Agrupar e Calcular
+  group_by(Species, Sex) %>%
+  summarise(
+    N = n(),
+    Massa_Media_g = mean(`Body Mass (g)`),
+    Comprimento_Bico_Media_mm = mean(`Culmen Length (mm)`),
+    Profundidade_Bico_Media_mm = mean(`Culmen Depth (mm)`), 
+    Delta_15N_Media = mean(`Delta 15 N (o/oo)`),
+    Delta_13C_Media = mean(`Delta 13 C (o/oo)`),
+    .groups = 'drop'
+  ) %>%
+  
+  # 4. Renomear colunas para apresentação final
+  rename(
+    "Espécie" = Species,
+    "Sexo" = Sex,
+    "Massa Média (g)" = Massa_Media_g,
+    "Comp. Bico Médio (mm)" = Comprimento_Bico_Media_mm,
+    "Prof. Bico Média (mm)" = Profundidade_Bico_Media_mm,
+    "Delta 15N Médio (o/oo) " = Delta_15N_Media,
+    "Delta 13C Médio (o/oo)" = Delta_13C_Media
+  )
+
+# Exibe a tabela bruta no console (Tibble)
+print("--- Tabela 6: Dimorfismo Sexual Detalhado (Objeto R) ---")
+print(tabela_dimorfismo_final)
+
+# --- SALVAR O ARQUIVO ---
+# Importante: Note que o nome do arquivo agora corresponde ao nome da variável
+save(tabela_dimorfismo_final, file = "Data/tabela_dimorfismo_final.RData")
+
+#------------------------------------
+
 library(dplyr)
 library(knitr)
 
@@ -335,6 +465,60 @@ knitr::kable(
   caption = "Médias Biométricas e Tróficas por Espécie e Sexo (Dimorfismo Ecológico)",
   digits = 3 # Mantemos alta precisão para os isótopos
 )
+
+#.................................
+# Tabela 6 FINAL: Dimorfismo Sexual Detalhado 
+tabela_massa_morfologia_especie_sexo <- data_pinguins %>%
+  # 1. Remove NAs nas variáveis de interesse
+  drop_na(
+    `Body Mass (g)`, 
+    `Culmen Length (mm)`, 
+    `Culmen Depth (mm)`,
+    Sex
+  ) %>%
+  
+  # 2. Limpeza e Tradução (Padrão do projeto)
+  mutate(
+    Species = case_when(
+      str_detect(Species, "Adelie") ~ "Adelie",
+      str_detect(Species, "Chinstrap") ~ "Chinstrap",
+      str_detect(Species, "Gentoo") ~ "Gentoo",
+      TRUE ~ as.character(Species)
+    ),
+    Sex = case_when(
+      Sex == "FEMALE" ~ "Fêmea",
+      Sex == "MALE" ~ "Macho",
+      TRUE ~ Sex
+    )
+  ) %>%
+  
+  # 3. Agrupar e Calcular
+  group_by(Species, Sex) %>%
+  summarise(
+    N = n(),
+    Massa_Media_g = mean(`Body Mass (g)`),
+    Comprimento_Bico_Media_mm = mean(`Culmen Length (mm)`),
+    Profundidade_Bico_Media_mm = mean(`Culmen Depth (mm)`), 
+    .groups = 'drop'
+  ) %>%
+  
+  # 4. Renomear colunas para apresentação
+  rename(
+    "Espécie" = Species,
+    "Sexo" = Sex,
+    "Massa Média (g)" = Massa_Media_g,
+    "Comp. Bico Médio (mm)" = Comprimento_Bico_Media_mm,
+    "Prof. Bico Média (mm)" = Profundidade_Bico_Media_mm
+  )
+
+# Exibe a tabela bruta no console
+print("--- Tabela 6: Dimorfismo Sexual (Objeto R) ---")
+print(tabela_massa_morfologia_especie_sexo)
+
+# --- SALVAR O ARQUIVO ---
+save(tabela_massa_morfologia_especie_sexo, file = "Data/tabela_massa_morfologia_especie_sexo.RData")
+
+#...................
 
 library(dplyr)
 library(knitr)
@@ -440,6 +624,58 @@ knitr::kable(
 
 #....................................................
 
+# Tabela: Resumo de Massa Corporal por Espécie e Sexo (Estendida) - Ajustada e Traduzida
+tabela_massa_sexo_estendida <- data_pinguins %>%
+  # 1. Remover NAs
+  drop_na(`Body Mass (g)`, Sex) %>%
+  
+  # 2. Limpeza e Tradução dos Nomes (Antes de agrupar)
+  mutate(
+    Species = case_when(
+      str_detect(Species, "Adelie") ~ "Adelie",
+      str_detect(Species, "Chinstrap") ~ "Chinstrap",
+      str_detect(Species, "Gentoo") ~ "Gentoo",
+      TRUE ~ as.character(Species)
+    ),
+    Sex = case_when(
+      Sex == "FEMALE" ~ "Fêmea",
+      Sex == "MALE" ~ "Macho",
+      TRUE ~ Sex
+    )
+  ) %>%
+  
+  # 3. Agrupar pelos fatores de comparação
+  group_by(Species, Sex) %>%
+  
+  # 4. Calcular as estatísticas descritivas completas
+  summarise(
+    N = n(), 
+    Massa_Media_g = mean(`Body Mass (g)`),
+    Desvio_Padrao_g = sd(`Body Mass (g)`), 
+    Minimo_g = min(`Body Mass (g)`),      
+    Mediana_g = median(`Body Mass (g)`),  
+    Maximo_g = max(`Body Mass (g)`),      
+    .groups = 'drop'
+  )
+
+# 5. Exibir a tabela formatada no console
+print("--- Tabela Detalhada de Massa Corporal por Espécie e Sexo ---")
+knitr::kable(
+  tabela_massa_sexo_estendida,
+  digits = 2, # Arredondar para 2 casas decimais
+  col.names = c("Espécie", "Sexo", "N", "Média (g)", "Desvio Padrão (g)", 
+                "Mínimo (g)", "Mediana (g)", "Máximo (g)"),
+  caption = "Estatísticas Descritivas Completas da Massa Corporal"
+)
+
+# --- IMPORTANTE: SALVAR O ARQUIVO ---
+save(tabela_massa_sexo_estendida, file = "Data/tabela_massa_sexo_estendida.RData")
+
+
+
+
+#....................................................
+
 
 # Gráficos
 
@@ -507,10 +743,17 @@ plot_delta_15n <- data_pinguins %>%
   labs(
     title = "Estratificação Alimentar: Nível Trófico (Delta 15N)",
     subtitle = "Posição na Cadeia Alimentar por Espécie",
-    y = "Delta 15 N (‰)",
+    y = "Delta 15N (‰)",
     x = NULL
   ) +
-  theme_minimal()
+  theme_minimal() +
+  # ADIÇÃO: Forçar a exibição das linhas dos eixos X e Y em preto
+  theme(
+    axis.line.x = element_line(color = "black", size = 0.5),
+    axis.line.y = element_line(color = "black", size = 0.5),
+    # Opcional: Adicionar marcas (ticks) nos eixos para maior clareza
+    axis.ticks = element_line(color = "black")
+  )
 
 print(plot_delta_15n)
 
@@ -527,9 +770,17 @@ plot_delta_13c <- data_pinguins %>%
   labs(
     title = "Segregação Espacial: Fonte de Carbono (Delta 13C)",
     subtitle = "Indicador do Nicho de Forrageamento Trófico",
-    y = "Delta 13 C (‰)",
-    x = "Espécie de Pinguim"
+    y = "Delta 13C (‰)",
+    x = NULL
   ) +
-  theme_minimal()
+  theme_minimal() +
+  # ADIÇÃO: Forçar a exibição das linhas dos eixos X e Y em preto
+  theme(
+    axis.line.x = element_line(color = "black", size = 0.5),
+    axis.line.y = element_line(color = "black", size = 0.5),
+    # Opcional: Adicionar marcas (ticks) nos eixos para maior clareza
+    axis.ticks = element_line(color = "black")
+  )
+
 
 print(plot_delta_13c)
