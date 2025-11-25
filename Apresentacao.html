@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -131,8 +166,25 @@ window.Quarto = {
   <li><a href="#biometria-massa-corporal-e-dimorfismo" id="toc-biometria-massa-corporal-e-dimorfismo" class="nav-link" data-scroll-target="#biometria-massa-corporal-e-dimorfismo"><span class="header-section-number">4.3</span> Biometria: Massa Corporal e Dimorfismo</a></li>
   <li><a href="#evidência-de-nicho-ecológico-morfologia-do-bico" id="toc-evidência-de-nicho-ecológico-morfologia-do-bico" class="nav-link" data-scroll-target="#evidência-de-nicho-ecológico-morfologia-do-bico"><span class="header-section-number">4.4</span> Evidência de Nicho Ecológico: Morfologia do Bico</a></li>
   <li><a href="#síntese-evidência-de-nicho-trófico" id="toc-síntese-evidência-de-nicho-trófico" class="nav-link" data-scroll-target="#síntese-evidência-de-nicho-trófico"><span class="header-section-number">4.5</span> Síntese: Evidência de Nicho Trófico</a></li>
+  <li><a href="#temperatura-média-do-ar" id="toc-temperatura-média-do-ar" class="nav-link" data-scroll-target="#temperatura-média-do-ar"><span class="header-section-number">4.6</span> Temperatura Média do Ar</a>
+  <ul class="collapse">
+  <li><a href="#imputando-os-dados-ausentes" id="toc-imputando-os-dados-ausentes" class="nav-link" data-scroll-target="#imputando-os-dados-ausentes"><span class="header-section-number">4.6.1</span> Imputando os dados ausentes</a></li>
+  <li><a href="#medidas-resumo" id="toc-medidas-resumo" class="nav-link" data-scroll-target="#medidas-resumo"><span class="header-section-number">4.6.2</span> Medidas resumo</a></li>
   </ul></li>
-  <li><a href="#agradecimentos" id="toc-agradecimentos" class="nav-link" data-scroll-target="#agradecimentos"><span class="header-section-number">5</span> Agradecimentos</a></li>
+  <li><a href="#dados-de-temperatura-da-superfície-do-mar-e-precipitação" id="toc-dados-de-temperatura-da-superfície-do-mar-e-precipitação" class="nav-link" data-scroll-target="#dados-de-temperatura-da-superfície-do-mar-e-precipitação"><span class="header-section-number">4.7</span> Dados de Temperatura da Superfície do Mar e Precipitação</a>
+  <ul class="collapse">
+  <li><a href="#imputando-os-dados-ausentes-1" id="toc-imputando-os-dados-ausentes-1" class="nav-link" data-scroll-target="#imputando-os-dados-ausentes-1"><span class="header-section-number">4.7.1</span> Imputando os dados ausentes</a></li>
+  <li><a href="#medidas-resumo-1" id="toc-medidas-resumo-1" class="nav-link" data-scroll-target="#medidas-resumo-1"><span class="header-section-number">4.7.2</span> Medidas resumo</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#análise-de-série-temporal" id="toc-análise-de-série-temporal" class="nav-link" data-scroll-target="#análise-de-série-temporal"><span class="header-section-number">5</span> Análise de Série Temporal</a>
+  <ul class="collapse">
+  <li><a href="#decomposição-stl-das-séries-temporais" id="toc-decomposição-stl-das-séries-temporais" class="nav-link" data-scroll-target="#decomposição-stl-das-séries-temporais"><span class="header-section-number">5.1</span> Decomposição STL das séries temporais</a></li>
+  <li><a href="#analisando-tendências" id="toc-analisando-tendências" class="nav-link" data-scroll-target="#analisando-tendências"><span class="header-section-number">5.2</span> Analisando tendências</a></li>
+  <li><a href="#visualizando-a-tendência" id="toc-visualizando-a-tendência" class="nav-link" data-scroll-target="#visualizando-a-tendência"><span class="header-section-number">5.3</span> Visualizando a tendência</a></li>
+  <li><a href="#conclusões" id="toc-conclusões" class="nav-link" data-scroll-target="#conclusões"><span class="header-section-number">5.4</span> Conclusões</a></li>
+  </ul></li>
+  <li><a href="#agradecimentos" id="toc-agradecimentos" class="nav-link" data-scroll-target="#agradecimentos"><span class="header-section-number">6</span> Agradecimentos</a></li>
   </ul>
 </nav>
 </div>
@@ -1001,9 +1053,543 @@ Figura&nbsp;4: Boxplot da Segregação Espacial e Estratificação alimentar
 </figure>
 </div>
 </section>
+<section id="temperatura-média-do-ar" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="temperatura-média-do-ar"><span class="header-section-number">4.6</span> Temperatura Média do Ar</h2>
+<p>Através da <a href="#tbl-yearNA" class="quarto-xref">Tabela&nbsp;9</a> verifica-se que há anos com datas incompletas e, também, com valores ausentes.</p>
+<div class="cell">
+<div id="tbl-yearNA" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-yearNA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;9: Anos completos ou com NAs.
+</figcaption>
+<div aria-describedby="tbl-yearNA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Ano</th>
+<th style="text-align: center;">Total Dias</th>
+<th style="text-align: center;">Dias com NA</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1997</td>
+<td style="text-align: center;">365</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1998</td>
+<td style="text-align: center;">365</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1999</td>
+<td style="text-align: center;">365</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2000</td>
+<td style="text-align: center;">366</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2001</td>
+<td style="text-align: center;">365</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2002</td>
+<td style="text-align: center;">365</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2003</td>
+<td style="text-align: center;">365</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2004</td>
+<td style="text-align: center;">366</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2005</td>
+<td style="text-align: center;">365</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2006</td>
+<td style="text-align: center;">365</td>
+<td style="text-align: center;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2007</td>
+<td style="text-align: center;">365</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2008</td>
+<td style="text-align: center;">366</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2009</td>
+<td style="text-align: center;">334</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2010</td>
+<td style="text-align: center;">365</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2011</td>
+<td style="text-align: center;">365</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2012</td>
+<td style="text-align: center;">366</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2013</td>
+<td style="text-align: center;">365</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2014</td>
+<td style="text-align: center;">365</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2015</td>
+<td style="text-align: center;">365</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2016</td>
+<td style="text-align: center;">366</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2017</td>
+<td style="text-align: center;">364</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2018</td>
+<td style="text-align: center;">365</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2019</td>
+<td style="text-align: center;">365</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2020</td>
+<td style="text-align: center;">366</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2021</td>
+<td style="text-align: center;">365</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2022</td>
+<td style="text-align: center;">365</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2023</td>
+<td style="text-align: center;">363</td>
+<td style="text-align: center;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<ul>
+<li>Em 2009, dos 365 dias, há apenas 334 no conjunto de dados, mas todos com observações. Portanto, há valores ausentes no quesito de dias.</li>
+<li>Em 2006, há 365 dias no conjunto de dados, no entanto, há 8 dias com ausência de informação sobre a Temperatura média.</li>
+</ul>
+<section id="imputando-os-dados-ausentes" class="level3" data-number="4.6.1">
+<h3 data-number="4.6.1" class="anchored" data-anchor-id="imputando-os-dados-ausentes"><span class="header-section-number">4.6.1</span> Imputando os dados ausentes</h3>
+<p>A imputação dos NAs será realizada através do pacote <code>mice</code> <span class="citation" data-cites="mice">(<a href="#ref-mice" role="doc-biblioref">VAN BUUREN; GROOTHUIS-OUDSHOORN, 2011</a>)</span> com a opção <code>pmm</code>. Em termos didáticos, o processo funciona em três etapas:</p>
+<ol type="1">
+<li>O algoritmo estima um valor provável para o dado faltante (ex: 3ºC) baseando-se nas correlações com as outras variáveis presentes (como dia do ano e temperatura do ar)</li>
+<li>Ele busca no banco de dados observações reais (doadores) que tenham características estatísticas muito próximas a essa estimativa;</li>
+<li>Ele seleciona aleatoriamente um desses doadores e copia o valor real observado para preencher a lacuna.</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dados_imputar <span class="ot">&lt;-</span> palmerweather <span class="sc">%&gt;%</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  tsibble<span class="sc">::</span><span class="fu">fill_gaps</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Date)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>imp <span class="ot">&lt;-</span> dados_imputar <span class="sc">%&gt;%</span> </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mice</span>(<span class="at">method =</span> <span class="st">"pmm"</span>, <span class="at">seed =</span> <span class="dv">123</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>dados_imputar <span class="ot">&lt;-</span> <span class="fu">complete</span>(imp)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>É possível verificar se a imputação foi bem sucedida por meio da função <code>md.pattern()</code>. A <a href="#fig-pattern" class="quarto-xref">Figura&nbsp;5</a> exibe os padrões dos valores ausente, se existir.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">md.pattern</span>(dados_imputar)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> /\     /\
+{  `---'  }
+{  O   O  }
+==&gt;  V &lt;==  No need for mice. This data set is completely observed.
+ \  \|/  /
+  `-----'</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Temp_avg Temp_max Temp_min day  
+9861        1        1        1   1 0
+            0        0        0   0 0</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-pattern" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pattern-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Apresentacao_files/figure-html/fig-pattern-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pattern-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5: Gráfico de padrões dos valores ausentes.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="agradecimentos" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Agradecimentos</h1>
+<section id="medidas-resumo" class="level3" data-number="4.6.2">
+<h3 data-number="4.6.2" class="anchored" data-anchor-id="medidas-resumo"><span class="header-section-number">4.6.2</span> Medidas resumo</h3>
+<p>A <a href="#tbl-summary-temp" class="quarto-xref">Tabela&nbsp;10</a> exibe as medidas descritivas para a Temperatura Média do Ar após a imputação dos dados ausentes.</p>
+<div class="cell">
+<div id="tbl-summary-temp" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-summary-temp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;10: Medidas descritivas para a Temperatura Média do Ar.
+</figcaption>
+<div aria-describedby="tbl-summary-temp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 34%">
+<col style="width: 10%">
+<col style="width: 12%">
+<col style="width: 11%">
+<col style="width: 10%">
+<col style="width: 12%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variável</th>
+<th style="text-align: center;">Min.</th>
+<th style="text-align: center;">1st Qu.</th>
+<th style="text-align: center;">Median</th>
+<th style="text-align: center;">Mean</th>
+<th style="text-align: center;">3rd Qu.</th>
+<th style="text-align: center;">Max.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Temperatura Média do Ar</td>
+<td style="text-align: center;">-23.6</td>
+<td style="text-align: center;">-3.5</td>
+<td style="text-align: center;">-0.6</td>
+<td style="text-align: center;">-1.54</td>
+<td style="text-align: center;">1.3</td>
+<td style="text-align: center;">7.4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+</section>
+<section id="dados-de-temperatura-da-superfície-do-mar-e-precipitação" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="dados-de-temperatura-da-superfície-do-mar-e-precipitação"><span class="header-section-number">4.7</span> Dados de Temperatura da Superfície do Mar e Precipitação</h2>
+<p>Um outro método para avaliarmos as variáveis com NA é através de gráficos e a função <code>gg_miss_var()</code> permite realizar essa inspeção.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>palmerweather2 <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(SST_avg, Precip) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gg_miss_var</span>()<span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Variáveis"</span>, <span class="at">y=</span><span class="st">"Número de NAs"</span>)<span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_clean</span>()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-miss-var" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-miss-var-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Apresentacao_files/figure-html/fig-miss-var-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-miss-var-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6: Gráfico de barras com número de NAs por variável. <code>SST_avg</code> representa a Temperatura Média da Superfície do Mar; <code>Precip</code>, a Preciptação e <code>Date</code> as datas diárias.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Por meio da <a href="#fig-miss-var" class="quarto-xref">Figura&nbsp;6</a>, nota-se que em ambas variáveis contém valores ausentes, com destaque para a <code>SST_avg</code> com mais de 300 NAs.</p>
+<section id="imputando-os-dados-ausentes-1" class="level3" data-number="4.7.1">
+<h3 data-number="4.7.1" class="anchored" data-anchor-id="imputando-os-dados-ausentes-1"><span class="header-section-number">4.7.1</span> Imputando os dados ausentes</h3>
+<p>A abordagem de imputação foi novamente por meio do <code>mice</code>, também com a opção <code>pmm</code> para ambas variáveis em abordagem, envolvendo um processo análogo que será ofuscado.</p>
+</section>
+<section id="medidas-resumo-1" class="level3" data-number="4.7.2">
+<h3 data-number="4.7.2" class="anchored" data-anchor-id="medidas-resumo-1"><span class="header-section-number">4.7.2</span> Medidas resumo</h3>
+<p>A <a href="#tbl-summary2" class="quarto-xref">Tabela&nbsp;11</a> exibe as medidas descritivas para as variáveis apresentadas nesta seção.</p>
+<div class="cell">
+<div id="tbl-summary2" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-summary2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;11: Medidas descritivas para Temperatura Média da Superfície do Mar e Precipitação Média.
+</figcaption>
+<div aria-describedby="tbl-summary2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 46%">
+<col style="width: 7%">
+<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 8%">
+<col style="width: 10%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variável</th>
+<th style="text-align: center;">Min.</th>
+<th style="text-align: center;">1st Qu.</th>
+<th style="text-align: center;">Median</th>
+<th style="text-align: center;">Mean</th>
+<th style="text-align: center;">3rd Qu.</th>
+<th style="text-align: center;">Max.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Temperatura Média da Superfície do Mar</td>
+<td style="text-align: center;">-9.9</td>
+<td style="text-align: center;">-1.6</td>
+<td style="text-align: center;">-0.9</td>
+<td style="text-align: center;">-0.54</td>
+<td style="text-align: center;">0.4</td>
+<td style="text-align: center;">3.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Precipitação</td>
+<td style="text-align: center;">0.0</td>
+<td style="text-align: center;">0.0</td>
+<td style="text-align: center;">0.3</td>
+<td style="text-align: center;">1.82</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">72.9</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="análise-de-série-temporal" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Análise de Série Temporal</h1>
+<p>Segundo <span class="citation" data-cites="morettin2018">Morettin; Toloi (<a href="#ref-morettin2018" role="doc-biblioref">2018</a>)</span>, uma série temporal é qualquer conjunto de observações ordenadas no tempo, podendo ser discretos ou contínuos. Exemplos práticos incluem dados meteorológicos, tais como <code>Temperatura</code> e <code>Precipitação</code>, que são coletados em intervalos regulares (diários, mensais, anuais).</p>
+<p>Para compreender a estrutura desses dados, utiliza-se a decomposição, um procedimento estatístico que desagrega a série em três componentes fundamentais:</p>
+<ul>
+<li><strong>Tendência</strong>: representa a direção de longo prazo;</li>
+<li><strong>Sazonalidade</strong>: corresponde às flutuações periódicas;</li>
+<li><strong>Resíduos</strong>: abrange as irregularidades aleatórias, isto é, o que não foi capturado pelas outras componentes.</li>
+</ul>
+<p>Dentre as técnicas disponíveis, destaca-se a decomposição STL (<em>Seasonal and Trend decomposition using Loess</em>) pela sua robustez e flexibilidade.</p>
+<section id="decomposição-stl-das-séries-temporais" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="decomposição-stl-das-séries-temporais"><span class="header-section-number">5.1</span> Decomposição STL das séries temporais</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-stl-temp" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-stl-temp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Apresentacao_files/figure-html/fig-stl-temp-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stl-temp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7: Decomposição STL da Temperatura Média do Ar.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-stl-sst" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-stl-sst-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Apresentacao_files/figure-html/fig-stl-sst-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stl-sst-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;8: Decomposição STL da Temperatura Média do da Superfície do Mar.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-stl-precip" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-stl-precip-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Apresentacao_files/figure-html/fig-stl-precip-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stl-precip-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;9: Decomposição STL da Preciptação.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="analisando-tendências" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="analisando-tendências"><span class="header-section-number">5.2</span> Analisando tendências</h2>
+<p>Uma metodologia clássica na literatura para analisar tendências em séries temporais de forma robusta é o estimador de inclinação de Sen <span class="citation" data-cites="sen1968">(<a href="#ref-sen1968" role="doc-biblioref">SEN, 1968</a>)</span>.</p>
+<p>A grande vantagem neste método é a sua capacidade de lidar lidar com valores discrepantes, que distorcem uma análise de tendência comum. O teste de hipóteses realizado consiste em testar:</p>
+<p><span class="math display">\[\begin{cases}
+  H_0\colon \text{A tendência é nula} \\
+  H_1\colon \text{A tendência é não nula}
+\end{cases}\]</span></p>
+<p>Os resultados acerca desse teste estão exibidos na <a href="#tbl-sens" class="quarto-xref">Tabela&nbsp;12</a>.</p>
+<div class="cell">
+<div id="tbl-sens" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sens-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;12: Teste de Sen e suas estimativas pontuais e intervalares 95% para tendência.
+</figcaption>
+<div aria-describedby="tbl-sens-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variável</th>
+<th style="text-align: center;">Estimativa</th>
+<th style="text-align: center;">Valor-p</th>
+<th style="text-align: center;">IC Lower</th>
+<th style="text-align: center;">IC Upper</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Temperatura Média do Ar</td>
+<td style="text-align: center;">3.15e-05</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">2.88e-05</td>
+<td style="text-align: center;">3.42e-05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Temperatura do Mar</td>
+<td style="text-align: center;">3.96e-05</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">3.83e-05</td>
+<td style="text-align: center;">4.09e-05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Precipitação</td>
+<td style="text-align: center;">2.05e-05</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1.56e-05</td>
+<td style="text-align: center;">2.54e-05</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Uma vez que todos os valores-<span class="math inline">\(p\)</span> foram iguais a zero e, portanto, menor que <span class="math inline">\(\alpha = 0.05\)</span> de significância, rejeita-se <span class="math inline">\(H_0\)</span>. Portanto, a tendência em todas as séries temporais são estatisticamente significantes.</p>
+</section>
+<section id="visualizando-a-tendência" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="visualizando-a-tendência"><span class="header-section-number">5.3</span> Visualizando a tendência</h2>
+<p>A <a href="#fig-sens" class="quarto-xref">Figura&nbsp;10</a> permite visualizarmos com clareza a tendência a cerca das séries temporais sobre as variáveis em estudo.</p>
+<div class="cell" data-layout-nrow="3">
+<div id="fig-sens" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sens-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-sens" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-sens-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-sens-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Apresentacao_files/figure-html/fig-sens-1.png" class="img-fluid figure-img" data-ref-parent="fig-sens" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-sens-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Temperatura Média do Ar
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-sens" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-sens-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-sens-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Apresentacao_files/figure-html/fig-sens-2.png" class="img-fluid figure-img" data-ref-parent="fig-sens" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-sens-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Temperatura do Mar
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-sens" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-sens-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-sens-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Apresentacao_files/figure-html/fig-sens-3.png" class="img-fluid figure-img" data-ref-parent="fig-sens" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-sens-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) Precipitação
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sens-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10: A reta ajustada para exibir a tendência nas séries temporais.
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="conclusões" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="conclusões"><span class="header-section-number">5.4</span> Conclusões</h2>
+<p>Como evidenciado, há uma tendência significativa de aumento para a Temperatura Média do Ar, Temperatura da Superfície do Mar e Precipitação. Com isso:</p>
+<ul>
+<li>O aquecimento do ar e do mar induz a retração das plataformas de gelo. Isso reduz o habitat das espécies dependentes de gelo (Adélie e Chinstrap), enquanto favorece a expansão de espécies generalistas que evitam gelo denso (Gentoo).</li>
+<li>O aumento da precipitação eleva o risco de mortalidade de filhotes por hipotermia, visto que a penugem molhada perde o isolamento térmico e prejudica a nidificação pelo acúmulo de lama.</li>
+<li>Neste cenário, consolida-se a dinâmica de “Vencedores” e “Perdedores”, com o Gentoo tende a prevalecer populacionalmente sobre as espécies especialistas.</li>
+</ul>
+</section>
+</section>
+<section id="agradecimentos" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Agradecimentos</h1>
 <p><img src="Imagens/obrigado.jpg" class="img-fluid"></p>
 <!-- # TODO -->
 <!-- 1. Pesquisar relações para efetuar a metodologia -->
@@ -1029,6 +1615,9 @@ LTER, Palmer Station Antarctica. <strong>Daily weather averages for Palmer Stati
 <div id="ref-chinstrap_marinebio" class="csl-entry" role="listitem">
 MARINEBIO. <strong>Chinstrap Penguins, Pygoscelis antarcticus</strong>. MarineBio, 2025. Disponível em: &lt;<a href="https://www.marinebio.org/species/chinstrap-penguins/pygoscelis-antarcticus/">https://www.marinebio.org/species/chinstrap-penguins/pygoscelis-antarcticus/</a>&gt;
 </div>
+<div id="ref-morettin2018" class="csl-entry" role="listitem">
+MORETTIN, Pedro A.; TOLOI, Clélia M. C. <strong><span>An<span>á</span>lise de S<span>é</span>ries Temporais: modelos lineares univariados</span></strong>. 3. ed. S<span>ã</span>o Paulo, SP: Blucher, 2018. v. 1
+</div>
 <div id="ref-adelie_natgeo" class="csl-entry" role="listitem">
 NATIONAL GEOGRAPHIC KIDS. <strong>Adélie Penguin</strong>. National Geographic Kids, 2025. Disponível em: &lt;<a href="https://kids.nationalgeographic.com/animals/birds/facts/adelie-penguin">https://kids.nationalgeographic.com/animals/birds/facts/adelie-penguin</a>&gt;
 </div>
@@ -1040,6 +1629,12 @@ R CORE TEAM. <strong><a href="https://www.R-project.org/">R: A Language and Envi
 </div>
 <div id="ref-gentoo_secret_atlas" class="csl-entry" role="listitem">
 SECRET ATLAS. <strong>Gentoo Penguins in the Wild: Habtitat &amp; Behavior Guide</strong>. Secret Atlas, 2025. Disponível em: &lt;<a href="https://www.secretatlas.com/handbook/wildlife-and-nature-guides/antarctic/gentoo-penguins">https://www.secretatlas.com/handbook/wildlife-and-nature-guides/antarctic/gentoo-penguins</a>&gt;
+</div>
+<div id="ref-sen1968" class="csl-entry" role="listitem">
+SEN, Pranab Kumar. <a href="https://doi.org/10.1080/01621459.1968.10480934">Estimates of the <span>Regression Coefficient Based</span> on <span>Kendall</span>’s <span>Tau</span></a>. <strong>Journal of the American Statistical Association</strong>, v. 63, n. 324, p. 1379–1389, dez. 1968.
+</div>
+<div id="ref-mice" class="csl-entry" role="listitem">
+VAN BUUREN, Stef; GROOTHUIS-OUDSHOORN, Karin. <a href="https://doi.org/10.18637/jss.v045.i03"><span>mice</span>: Multivariate Imputation by Chained Equations in R</a>. <strong>Journal of Statistical Software</strong>, v. 45, n. 3, p. 1–67, 2011.
 </div>
 </div></section></div></main>
 <!-- /main column -->

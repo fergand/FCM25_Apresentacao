@@ -320,6 +320,388 @@ plot_delta_15n
 
 ```
 
+## Temperatura Média do Ar
+
+```{r}
+#| include: false
+
+df <- read.csv("Data/PalmerStation_Daily_Weather.csv", sep = ",", header = T) %>%
+  as_tibble()
+```
+
+Através da @tbl-yearNA verifica-se que há anos com datas incompletas e, também, com valores ausentes.
+
+```{r}
+#| echo: false
+#| tbl-cap: "Anos completos ou com NAs."
+#| label: tbl-yearNA
+df %>% 
+  mutate(year = year(Date)) %>% 
+  group_by(year) %>% 
+  summarise(
+    total_dias_ano = n(),                             
+    dias_com_NA = sum(is.na(Temperature.Average..C.))
+  ) %>% 
+  filter(year >= 1997 & year <= 2023) %>% 
+  kable(
+    col.names = c("Ano", "Total Dias", "Dias com NA"),
+    align = "ccc"
+  )
+```
+
+- Em 2009, dos 365 dias, há apenas 334 no conjunto de dados, mas todos com observações. Portanto, há valores ausentes no quesito de dias.
+- Em 2006, há 365 dias no conjunto de dados, no entanto, há 8 dias com ausência de informação sobre a Temperatura média.
+
+### Imputando os dados ausentes
+
+A imputação dos NAs será realizada através do pacote `mice` [@mice] com a opção `pmm`. Em termos didáticos, o processo funciona em três etapas:
+
+1. O algoritmo estima um valor provável para o dado faltante (ex: 3ºC) baseando-se nas correlações com as outras variáveis presentes (como dia do ano e temperatura do ar)
+2. Ele busca no banco de dados observações reais (doadores) que tenham características estatísticas muito próximas a essa estimativa;
+3. Ele seleciona aleatoriamente um desses doadores e copia o valor real observado para preencher a lacuna.
+
+```{r}
+#| include: false
+palmerweather <- df %>% 
+  select(
+    Date, Temperature.Average..C., Temperature.High..C., Temperature.Low..C.
+  ) %>% 
+  mutate(
+    Date = ymd(Date),
+    day = yday(Date)
+  ) %>% 
+  filter(
+    year(Date) >= 1997 & year(Date) <= 2023
+  ) %>% 
+  rename(
+    Temp_avg = Temperature.Average..C.,
+    Temp_min = Temperature.Low..C.,
+    Temp_max = Temperature.High..C.
+  ) %>% 
+  as_tsibble(index = Date)
+```
+
+
+```{r}
+#| output: false
+dados_imputar <- palmerweather %>% 
+  tsibble::fill_gaps() %>% 
+  ungroup() %>% 
+  as.data.frame() %>% 
+  select(-Date)
+
+imp <- dados_imputar %>% 
+  mice(method = "pmm", seed = 123)
+
+dados_imputar <- complete(imp)
+```
+
+É possível verificar se a imputação foi bem sucedida por meio da função `md.pattern()`. A @fig-pattern exibe os padrões dos valores ausente, se existir.
+
+```{r}
+#| fig-cap: "Gráfico de padrões dos valores ausentes."
+#| label: fig-pattern
+md.pattern(dados_imputar)
+```
+
+
+```{r}
+#| include: false
+palmerweather_imp <- palmerweather %>% 
+  tsibble::fill_gaps() %>% 
+  mutate(
+    Temp_avg = dados_imputar$Temp_avg,
+    Temp_min = dados_imputar$Temp_min,
+    Temp_max = dados_imputar$Temp_max
+  )
+```
+
+### Medidas resumo
+
+A @tbl-summary-temp exibe as medidas descritivas para a Temperatura Média do Ar após a imputação dos dados ausentes.
+
+```{r}
+#| echo: false
+#| tbl-cap: "Medidas descritivas para a Temperatura Média do Ar."
+#| label: tbl-summary-temp
+palmerweather_imp %>%
+  pull(Temp_avg) %>%
+  summary() %>%
+  as.list() %>%
+  as_tibble() %>% 
+  mutate(Variável = "Temperatura Média do Ar") %>% 
+  relocate(Variável, .before = Min.) %>%
+  kable(
+    digits = 2,
+    align = "lcccccc"
+  )
+```
+
+
+## Dados de Temperatura da Superfície do Mar e Precipitação
+
+```{r}
+#| include: false
+
+df2 <- read.csv("Data/PalmerStation_Daily_Weather.csv", sep = ",", header = T) %>%
+  as_tibble()
+
+# Seguindo o mesmo corte realizado para os dados de temperatura:
+palmerweather2 <- df2 %>% 
+  mutate(
+    Date = ymd(Date),
+    day = yday(Date)
+  ) %>% 
+  filter(
+    year(Date) >= 1997 & year(Date) <= 2023
+  ) %>% 
+  rename(
+    Temp_avg = Temperature.Average..C.,
+    SST_avg = Sea.Surface.Temperature..C.,
+    Precip = Precipitation.Melted..mm.
+  ) %>% 
+  mutate(
+    Precip = case_when(
+      Precip == "T" ~ "0.05",
+      TRUE ~ Precip
+    ),
+    Precip = as.numeric(Precip)
+  ) %>% 
+  as_tsibble(index = Date) %>% 
+  tsibble::fill_gaps()
+```
+
+Um outro método para avaliarmos as variáveis com NA é através de gráficos e a função `gg_miss_var()` permite realizar essa inspeção. 
+
+```{r}
+#| fig-cap: "Gráfico de barras com número de NAs por variável. `SST_avg` representa a Temperatura Média da Superfície do Mar; `Precip`, a Preciptação e `Date` as datas diárias."
+#| label: fig-miss-var
+palmerweather2 %>% 
+  select(SST_avg, Precip) %>% 
+  gg_miss_var()+
+  labs(x = "Variáveis", y="Número de NAs")+
+  theme_clean()
+```
+
+Por meio da @fig-miss-var, nota-se que em ambas variáveis contém valores ausentes, com destaque para a `SST_avg` com mais de 300 NAs.
+
+### Imputando os dados ausentes
+
+A abordagem de imputação foi novamente por meio do `mice`, também com a opção `pmm` para ambas variáveis em abordagem, envolvendo um processo análogo que será ofuscado.
+
+```{r}
+#| include: false
+
+dados_imputar2 <- palmerweather2 %>% 
+  as_tibble() %>%
+  select(day, SST_avg, Precip) %>% 
+  as.data.frame()
+
+imp2 <- dados_imputar2 %>% 
+  mice(method = "pmm", seed = 123)
+
+dados_imputar2 <- complete(imp2)
+
+md.pattern(dados_imputar2)
+
+palmer_full <- palmerweather2 %>% 
+  mutate(
+    SST_avg = dados_imputar2$SST_avg,
+    Precip = dados_imputar2$Precip
+  )
+```
+
+### Medidas resumo
+
+A @tbl-summary2 exibe as medidas descritivas para as variáveis apresentadas nesta seção.
+
+```{r}
+#| echo: false
+#| tbl-cap: "Medidas descritivas para Temperatura Média da Superfície do Mar e Precipitação Média."
+#| label: tbl-summary2
+t1 <- palmer_full %>% 
+  pull(SST_avg) %>%
+  summary() %>%
+  as.list() %>%
+  as_tibble() %>% 
+  mutate(Variável = "Temperatura Média da Superfície do Mar") %>% 
+  relocate(Variável, .before = Min.)
+
+t2 <- palmer_full %>% 
+  pull(Precip) %>%
+  summary() %>%
+  as.list() %>%
+  as_tibble() %>% 
+  mutate(Variável = "Precipitação") %>% 
+  relocate(Variável, .before = Min.)
+
+bind_rows(t1,t2) %>% 
+  kable(
+    digits = 2,
+    align = "lcccccc"
+  )
+```
+
+# Análise de Série Temporal
+
+Segundo @morettin2018, uma série temporal é qualquer conjunto de observações ordenadas no tempo, podendo ser discretos ou contínuos. Exemplos práticos incluem dados meteorológicos, tais como `Temperatura` e `Precipitação`, que são coletados em intervalos regulares (diários, mensais, anuais).
+
+Para compreender a estrutura desses dados, utiliza-se a decomposição, um procedimento estatístico que desagrega a série em três componentes fundamentais:
+
+- **Tendência**: representa a direção de longo prazo;
+- **Sazonalidade**: corresponde às flutuações periódicas;
+- **Resíduos**: abrange as irregularidades aleatórias, isto é, o que não foi capturado pelas outras componentes.
+
+Dentre as técnicas disponíveis, destaca-se a decomposição STL (*Seasonal and Trend decomposition using Loess*) pela sua robustez e flexibilidade.
+
+## Decomposição STL das séries temporais
+
+```{r}
+#| echo: false
+
+# Temperatura do Ar
+stl_dec <- palmerweather_imp %>% 
+  model(
+    STL(Temp_avg~trend()+season(period = 365.25),
+        robust = T)
+  ) %>% 
+  components()
+
+## Sea Surface Temperature
+stl_sst <- palmer_full %>% 
+  model(
+    STL(SST_avg~trend()+season(period = 365.25),
+        robust = T)
+  ) %>% components()
+
+## Preciptação 
+stl_precip <- palmer_full %>% 
+  model(
+    STL(Precip)
+  ) %>% components() 
+```
+
+```{r}
+#| echo: false
+#| fig-cap: "Decomposição STL da Temperatura Média do Ar."
+#| label: fig-stl-temp
+stl_dec %>% 
+  autoplot()+
+  theme(
+    plot.title = element_blank(),
+    plot.subtitle = element_blank()
+  )
+```
+
+```{r}
+#| echo: false
+#| fig-cap: "Decomposição STL da Temperatura Média do da Superfície do Mar."
+#| label: fig-stl-sst
+stl_sst %>% 
+  autoplot()+
+  theme(
+    plot.title = element_blank(),
+    plot.subtitle = element_blank()
+  )
+```
+
+```{r}
+#| echo: false
+#| fig-cap: "Decomposição STL da Preciptação."
+#| label: fig-stl-precip
+stl_precip %>% 
+  autoplot()+
+  theme(
+    plot.title = element_blank(),
+    plot.subtitle = element_blank()
+  )
+```
+
+## Analisando tendências
+
+Uma metodologia clássica na literatura para analisar tendências em séries temporais de forma robusta é o estimador de inclinação de Sen [@sen1968].
+
+A grande vantagem neste método é a sua capacidade de lidar lidar com valores discrepantes, que distorcem uma análise de tendência comum. O teste de hipóteses realizado consiste em testar:
+
+$$\begin{cases}
+  H_0\colon \text{A tendência é nula} \\
+  H_1\colon \text{A tendência é não nula}
+\end{cases}$$
+
+Os resultados acerca desse teste estão exibidos na @tbl-sens.
+```{r}
+#| echo: false
+#| tbl-cap: "Teste de Sen e suas estimativas pontuais e intervalares 95\\% para tendência."
+#| label: tbl-sens
+
+slope1 <- trend::sens.slope(stl_dec$trend)
+slope2 <- trend::sens.slope(stl_sst$trend)
+slope3 <- trend::sens.slope(stl_precip$trend)
+
+bind_rows(
+  slope1 %>% tidy(),
+  slope2 %>% tidy(),
+  slope3 %>% tidy(),
+) %>% 
+  as_tibble() %>% 
+  mutate(
+    var = c("Temperatura Média do Ar", "Temperatura do Mar", "Precipitação"),
+    est = c(slope1$estimates, slope2$estimates,
+            slope3$estimates)
+  ) %>% 
+  relocate(var, .before = statistic) %>% 
+  relocate(est, .after = var) %>% 
+  select(var, est, p.value, conf.low, conf.high) %>% 
+  kable(
+    col.names = c("Variável", "Estimativa", "Valor-p", "IC Lower", "IC Upper"),
+    align = "lcccc"
+  )
+```
+Uma vez que todos os valores-$p$ foram iguais a zero e, portanto, menor que $\alpha = 0.05$ de significância, rejeita-se $H_0$. Portanto, a tendência em todas as séries temporais são estatisticamente significantes.
+
+## Visualizando a tendência
+
+A @fig-sens permite visualizarmos com clareza a tendência a cerca das séries temporais sobre as variáveis em estudo.
+
+```{r}
+#| echo: false
+#| fig-cap: "A reta ajustada para exibir a tendência nas séries temporais."
+#| fig-subcap: 
+#|   - "Temperatura Média do Ar"
+#|   - "Temperatura do Mar"
+#|   - "Precipitação"
+#| layout-nrow: 3
+#| label: fig-sens
+
+stl_dec %>% 
+  select(Date, trend) %>% 
+  ggplot(aes(x = Date, y = trend))+
+  geom_line()+
+  geom_smooth(formula = y~x, method = lm)+
+  labs(x = "Data", y = "Tendência")
+stl_sst %>% 
+  select(Date, trend) %>% 
+  ggplot(aes(x = Date, y = trend))+
+  geom_line()+
+  geom_smooth(formula = y~x, method = lm)+
+  labs(x = "Data", y = "Tendência")
+stl_precip %>% 
+  select(Date, trend) %>% 
+  ggplot(aes(x = Date, y = trend))+
+  geom_line()+
+  geom_smooth(formula = y~x, method = lm)+
+  labs(x = "Data", y = "Tendência")
+```
+
+## Conclusões
+
+Como evidenciado, há uma tendência significativa de aumento para a Temperatura Média do Ar, Temperatura da Superfície do Mar e Precipitação. Com isso:
+
+- O aquecimento do ar e do mar induz a retração das plataformas de gelo. Isso reduz o habitat das espécies dependentes de gelo (Adélie e Chinstrap), enquanto favorece a expansão de espécies generalistas que evitam gelo denso (Gentoo).
+- O aumento da precipitação eleva o risco de mortalidade de filhotes por hipotermia, visto que a penugem molhada perde o isolamento térmico e prejudica a nidificação pelo acúmulo de lama.
+- Neste cenário, consolida-se a dinâmica de "Vencedores" e "Perdedores", com o Gentoo tende a prevalecer populacionalmente sobre as espécies especialistas.
+
+
 # Agradecimentos
 
 ![](Imagens/obrigado.jpg)
