@@ -50,22 +50,19 @@ library(naniar)
 library(kableExtra)
 ```
 
-
 # Introdução
 
 ## O cenário climático
 
 Notícias recentes como [Planeta atinge 1º ponto crítico climático catastrófico e irreversível](https://www.cnnbrasil.com.br/tecnologia/planeta-atinge-1o-ponto-critico-climatico-catastrofico-e-irreversivel/) [@cnn2025planeta] são impactantes e evidenciam a necessidade de estudos sobre mudanças climáticas.
 
-- Embora seja um alerta global, os efeitos mais críticos são frequentemente observados nos polos;
-- A Península Antártica é uma das regiões de aquecimento mais rápido do planeta;
-- O Arquipélago de Palmer atua como um "laboratório natural" para estudar as consequências ecológicas.
+-   Embora seja um alerta global, os efeitos mais críticos são frequentemente observados nos polos;
+-   A Península Antártica é uma das regiões de aquecimento mais rápido do planeta;
+-   O Arquipélago de Palmer atua como um "laboratório natural" para estudar as consequências ecológicas.
 
 Arquipélago de Palmer abriga três espécies de Pinguins do gênero *Pygoscelis*: Gentoo (*Pygoscelis papua*), Adelie (*Pygoscelis adeliae*) e Chinstrap (*Pygoscelis antarcticus*).
 
-
 ![](Imagens/South_Shetland_Islands_and_Antarctic_Peninsula.jpg)
-
 
 ## Objetivo de estudo
 
@@ -73,9 +70,9 @@ O impacto das mudanças climáticas sobre as populações de pinguins não são 
 
 Neste sentido, o objetivo do trabalho é investigar a relação entre as variáveis climáticas -- temperaturas e precipitação -- e a dinâmica populacional de pinguins do gênero *Pygoscelis*. Em particular:
 
-- Contabilizar a porcentagem entre sexo por espécies, avaliando as relações entre sexo, tamanho do bico e comprimento do bico;
-- Contabilizar a frequência das espécies por ilha;
-- Avaliar tendências de temperatura do ar, da superfície do mar e precipitação.
+-   Contabilizar a porcentagem entre sexo por espécies, avaliando as relações entre sexo, tamanho do bico e comprimento do bico;
+-   Contabilizar a frequência das espécies por ilha;
+-   Avaliar tendências de temperatura do ar, da superfície do mar e precipitação.
 
 # Conhecendo os pinguins
 
@@ -101,17 +98,13 @@ tibble::tribble(
   column_spec(4, width = "9em")
 ```
 
-
 ::: {layout="[[40, 60], [100]]" layout-valign="center"}
-
 ![@allisonhorst.](Imagens/palmerpenguins.png)
 
 ![Ilustração por @allisonhorst.](Imagens/lter_penguins.png)
 
 ![Os pínguins: Chinstrap, Gentoo e Adélie.](Imagens/foto_pinguins.jpg)
-
 :::
-
 
 # Conjunto de dados
 
@@ -126,7 +119,6 @@ O contexto ambiental é fornecido pelos dados diários da estação meteorológi
 O conjunto de dados sobre os pinguins do arquipélago de Palmer está livremente disponíveis e pode ser acessado facilmente através do pacote `palmerpenguins` no R [@R2025]. que disponibiliza os dados originalmente publicados por @gorman2014. Há dois datasets contidos nessa biblioteca: `penguins` (versão limpa) e `penguins_raw` (dados bruta).
 
 A descrição completa dos dados brutos está presente na @tbl-penguins. Entre as variáveis disponíveis, serão utilizadas `Species`, `Island`, `Culmen Length`, `Culmen Depth`, `Body Mass`, `Sex`. Também espera-se utilizar as variáveis `Delta 15 N` e `Delta 13 C`, pois os isótopos estáveis são indicadores da dieta a nível trófico dos pinguins.
-
 
 ```{r}
 #| echo: false
@@ -195,12 +187,11 @@ tibble::tribble(
 
 # Análise Exploratória dos Dados
 
-1. Validação da Amostra: Equilíbrio Sexual
-2. Contexto Amostral: Distribuição Geográfica
-3. Biometria: Massa Corporal e Dimorfismo
-4. Evidência de Nicho Ecológico: Morfologia do Bico
-5. Síntese: Evidência de Nicho Trófico
-
+1.  Validação da Amostra: Equilíbrio Sexual
+2.  Contexto Amostral: Distribuição Geográfica
+3.  Biometria: Massa Corporal e Dimorfismo
+4.  Evidência de Nicho Ecológico: Morfologia do Bico
+5.  Síntese: Evidência de Nicho Trófico
 
 ```{r}
 #| include: false
@@ -210,6 +201,9 @@ load("Data/tabela_especie_ilha.RData")
 load("Data/tabela_resumo_consolidade.RData")
 load("Data/tabela_resumo_por_especie.RData")
 load("Data/tabela_sexo_especie.RData")
+load("Data/tabela_massa_sexo_estendida.RData")
+load("Data/tabela_massa_morfologia_especie_sexo.RData")
+load("Data/tabela_dimorfismo_final.RData")
 
 load("Data/plot_culmen_bivariado.RData")
 load("Data/plot_delta_13c.RData")
@@ -221,10 +215,20 @@ load("Data/plot_mass.RData")
 ## Validação da Amostra: Equilíbrio Sexual
 
 ```{r}
+#| eval: false    #   (Não executa)
+#| include: false #   (Não mostra nada)
 #| echo: false
 #| tbl-cap: "Estatísticas Descritivas Consolidadas das Variáveis Biométricas, Morfológicas e Tróficas."
 #| label: tbl-res-cons
 tabela_resumo_consolidada %>% 
+  kable(digits = 2)
+```
+
+```{r}
+#| echo: false
+#| tbl-cap: "Contagem e Percentual de Sexo por Espécie."
+#| label: tbl-count-sex-vf
+tabela_sexo_especie %>% 
   kable(digits = 2)
 ```
 
@@ -235,11 +239,14 @@ tabela_resumo_consolidada %>%
 #| tbl-cap: "Distribuição de Frequência das Espécies de Pinguins por Ilha."
 #| label: tbl-freq-ilha
 tabela_especie_ilha %>% 
-  kable(digits = 2)
+  kable(digits = 2,
+        col.names = c("Espécie", "Ilha", "Contagem", "Percentual")
+        
+        )
 ```
 
-- **Gentoo** domina a amostra (36\%), concentrado em Biscoe;
-- **Adelie** é a espécie mais dispersa.
+-   **Gentoo** domina a amostra (36%), concentrado em Biscoe;
+-   **Adelie** é a espécie mais dispersa.
 
 ```{r}
 #| echo: false
@@ -252,15 +259,19 @@ plot_distribuicao_ilha
 
 ```{r}
 #| echo: false
-#| tbl-cap: "Contagem e Percentual de Sexo por Espécie."
-#| label: tbl-count-sex
-tabela_sexo_especie %>% 
-  kable(digits = 2)
+#| tbl-cap: "Estatísticas Descritivas Completas da Massa Corporal por Espécie e Sexo."
+#| label: tbl-massa-sexo
+tabela_massa_sexo_estendida %>% 
+  knitr::kable(
+    digits = 2,
+    col.names = c("Espécie", "Sexo", "N", "Média (g)", "Desvio (g)", 
+                  "Mínimo (g)", "Mediana (g)", "Máximo (g)")
+  )
 ```
 
-- Em todas as espécies, os machos são mais pesados que as fêmeas;
-- O **Gentoo Macho** é notavelmente maior ($\approx 5.5$kg) que qualquer outro grupo, reforçando sua posição de "vencedor" em porte físico;
-- O **mínimo** do Gentoo Macho (4750g) tem um valor próximo **máximo** do Adelie Macho (4775g), indicando que quase nenhuma sobreposição de tamanho.
+-   Em todas as espécies, os machos são mais pesados que as fêmeas;
+-   O **Gentoo Macho** é notavelmente maior ($\approx 5.5$kg) que qualquer outro grupo, reforçando sua posição de "vencedor" em porte físico;
+-   O **mínimo** do Gentoo Macho (4750g) tem um valor próximo **máximo** do Adelie Macho (4775g), indicando que quase nenhuma sobreposição de tamanho.
 
 ```{r}
 #| echo: false
@@ -276,9 +287,9 @@ plot_mass
 
 ```{r}
 #| echo: false
-#| tbl-cap: "Médias Biométricas e Tróficas por Espécie."
-#| label: tbl-biometrica-especie
-tabela_resumo_por_especie %>% 
+#| tbl-cap: "Médias de Massa e Morfológicas por Espécie e Sexo."
+#| label: tbl-morfologia-especie-vf
+tabela_massa_morfologia_especie_sexo %>% 
   kable(digits = 2)
 ```
 
@@ -292,15 +303,14 @@ Os dados confirmam que as diferenças não apenas em relação ao peso, mas estr
 plot_culmen_bivariado
 ```
 
-
 ## Síntese: Evidência de Nicho Trófico
 
 ```{r}
 #| echo: false
-#| tbl-cap: "Comparação de Médias Biométricas por Espécie e Sexo (Dimorfismo)"
+#| tbl-cap: "Comparação de Médias Biométricas e Tróficas por Espécie e Sexo"
 #| label: tbl-biometrica-espsex
 
-tabela_dimorfismo_final_morfo %>% 
+tabela_dimorfismo_final %>% 
   kable(digits = 2)
 ```
 
@@ -705,7 +715,6 @@ Como evidenciado, há uma tendência significativa de aumento para a Temperatura
 # Agradecimentos
 
 ![](Imagens/obrigado.jpg)
-
 
 <!-- # TODO -->
 

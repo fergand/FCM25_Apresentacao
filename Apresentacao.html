@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -84,15 +84,14 @@ div.csl-indent {
 <script src="Apresentacao_files/libs/clipboard/clipboard.min.js"></script>
 <script src="Apresentacao_files/libs/quarto-html/quarto.js" type="module"></script>
 <script src="Apresentacao_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="Apresentacao_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="Apresentacao_files/libs/quarto-html/popper.min.js"></script>
 <script src="Apresentacao_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="Apresentacao_files/libs/quarto-html/anchor.min.js"></script>
 <link href="Apresentacao_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="Apresentacao_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="Apresentacao_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="Apresentacao_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="Apresentacao_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="Apresentacao_files/libs/bootstrap/bootstrap-0b716d6fe31096b8dc5b1cb48462c79f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="Apresentacao_files/libs/bootstrap/bootstrap-6e5ff12f349f7d7ee99023e5a7f49be9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link rel="shortcut icon" href="https://www.ibb.unesp.br/Home/sobreocampus/administracao/comissaodeapoioaoestudante-cae/logo_ibb_1.png">
 
 
@@ -121,7 +120,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+      if (mathElements[i].tagName == "SPAN") {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -276,7 +275,7 @@ Tabela&nbsp;1: Resumo comparativo das três espécies de pinguins (Pygoscelis) d
 </figcaption>
 <div aria-describedby="tbl-pin-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Característica</th>
@@ -621,65 +620,58 @@ Tabela&nbsp;3: Descrição das variáveis do conjunto de dados meteorológico na
 <section id="validação-da-amostra-equilíbrio-sexual" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="validação-da-amostra-equilíbrio-sexual"><span class="header-section-number">4.1</span> Validação da Amostra: Equilíbrio Sexual</h2>
 <div class="cell">
-<div id="tbl-res-cons" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<div id="tbl-count-sex-vf" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-res-cons-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;4: Estatísticas Descritivas Consolidadas das Variáveis Biométricas, Morfológicas e Tróficas.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-count-sex-vf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;4: Contagem e Percentual de Sexo por Espécie.
 </figcaption>
-<div aria-describedby="tbl-res-cons-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-count-sex-vf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th style="text-align: left;">Variável</th>
-<th style="text-align: right;">Mínimo</th>
-<th style="text-align: right;">Mediana</th>
-<th style="text-align: right;">Máximo</th>
-<th style="text-align: right;">NAs</th>
+<th style="text-align: left;">Espécie</th>
+<th style="text-align: left;">Sexo</th>
+<th style="text-align: right;">Contagem</th>
+<th style="text-align: right;">Percentual_Especie</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Body Mass (g)</td>
-<td style="text-align: right;">2700.00</td>
-<td style="text-align: right;">4050.00</td>
-<td style="text-align: right;">6300.00</td>
-<td style="text-align: right;">2</td>
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Fêmea</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">50.00</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Flipper Length (mm)</td>
-<td style="text-align: right;">172.00</td>
-<td style="text-align: right;">197.00</td>
-<td style="text-align: right;">231.00</td>
-<td style="text-align: right;">2</td>
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Macho</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">50.00</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Culmen Length (mm)</td>
-<td style="text-align: right;">32.10</td>
-<td style="text-align: right;">44.45</td>
-<td style="text-align: right;">59.60</td>
-<td style="text-align: right;">2</td>
+<td style="text-align: left;">Chinstrap</td>
+<td style="text-align: left;">Fêmea</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">50.00</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Culmen Depth (mm)</td>
-<td style="text-align: right;">13.10</td>
-<td style="text-align: right;">17.30</td>
-<td style="text-align: right;">21.50</td>
-<td style="text-align: right;">2</td>
+<td style="text-align: left;">Chinstrap</td>
+<td style="text-align: left;">Macho</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">50.00</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Delta 15 N (o/oo)</td>
-<td style="text-align: right;">7.63</td>
-<td style="text-align: right;">8.65</td>
-<td style="text-align: right;">10.03</td>
-<td style="text-align: right;">14</td>
+<td style="text-align: left;">Gentoo</td>
+<td style="text-align: left;">Fêmea</td>
+<td style="text-align: right;">58</td>
+<td style="text-align: right;">48.74</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Delta 13 C (o/oo)</td>
-<td style="text-align: right;">-27.02</td>
-<td style="text-align: right;">-25.83</td>
-<td style="text-align: right;">-23.79</td>
-<td style="text-align: right;">13</td>
+<td style="text-align: left;">Gentoo</td>
+<td style="text-align: left;">Macho</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: right;">51.26</td>
 </tr>
 </tbody>
 </table>
@@ -702,39 +694,39 @@ Tabela&nbsp;5: Distribuição de Frequência das Espécies de Pinguins por Ilha.
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th style="text-align: left;">Species</th>
-<th style="text-align: left;">Island</th>
+<th style="text-align: left;">Espécie</th>
+<th style="text-align: left;">Ilha</th>
 <th style="text-align: right;">Contagem</th>
 <th style="text-align: right;">Percentual</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Adelie Penguin</td>
+<td style="text-align: left;">Adelie</td>
 <td style="text-align: left;">Biscoe</td>
 <td style="text-align: right;">44</td>
 <td style="text-align: right;">12.79</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Adelie Penguin</td>
-<td style="text-align: left;">Torgersen</td>
-<td style="text-align: right;">52</td>
-<td style="text-align: right;">15.12</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Adelie Penguin</td>
+<td style="text-align: left;">Adelie</td>
 <td style="text-align: left;">Dream</td>
 <td style="text-align: right;">56</td>
 <td style="text-align: right;">16.28</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Torgersen</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">15.12</td>
+</tr>
 <tr class="even">
-<td style="text-align: left;">Chinstrap penguin</td>
+<td style="text-align: left;">Chinstrap</td>
 <td style="text-align: left;">Dream</td>
 <td style="text-align: right;">68</td>
 <td style="text-align: right;">19.77</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Gentoo penguin</td>
+<td style="text-align: left;">Gentoo</td>
 <td style="text-align: left;">Biscoe</td>
 <td style="text-align: right;">124</td>
 <td style="text-align: right;">36.05</td>
@@ -768,58 +760,96 @@ Figura&nbsp;1: Distribuição da Amostra de Pinguins por Ilha e Espécie: Contex
 <section id="biometria-massa-corporal-e-dimorfismo" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="biometria-massa-corporal-e-dimorfismo"><span class="header-section-number">4.3</span> Biometria: Massa Corporal e Dimorfismo</h2>
 <div class="cell">
-<div id="tbl-count-sex" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<div id="tbl-massa-sexo" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-count-sex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6: Contagem e Percentual de Sexo por Espécie.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-massa-sexo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6: Estatísticas Descritivas Completas da Massa Corporal por Espécie e Sexo.
 </figcaption>
-<div aria-describedby="tbl-count-sex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-massa-sexo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 8%">
+<col style="width: 4%">
+<col style="width: 13%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 16%">
+<col style="width: 14%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Species</th>
-<th style="text-align: left;">Sex</th>
-<th style="text-align: right;">Contagem</th>
-<th style="text-align: right;">Percentual_Especie</th>
+<th style="text-align: left;">Espécie</th>
+<th style="text-align: left;">Sexo</th>
+<th style="text-align: right;">N</th>
+<th style="text-align: right;">Média (g)</th>
+<th style="text-align: right;">Desvio (g)</th>
+<th style="text-align: right;">Mínimo (g)</th>
+<th style="text-align: right;">Mediana (g)</th>
+<th style="text-align: right;">Máximo (g)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Adelie Penguin</td>
-<td style="text-align: left;">FEMALE</td>
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Fêmea</td>
 <td style="text-align: right;">73</td>
-<td style="text-align: right;">50.00</td>
+<td style="text-align: right;">3368.84</td>
+<td style="text-align: right;">269.38</td>
+<td style="text-align: right;">2850</td>
+<td style="text-align: right;">3400</td>
+<td style="text-align: right;">3900</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Adelie Penguin</td>
-<td style="text-align: left;">MALE</td>
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Macho</td>
 <td style="text-align: right;">73</td>
-<td style="text-align: right;">50.00</td>
+<td style="text-align: right;">4043.49</td>
+<td style="text-align: right;">346.81</td>
+<td style="text-align: right;">3325</td>
+<td style="text-align: right;">4000</td>
+<td style="text-align: right;">4775</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Chinstrap penguin</td>
-<td style="text-align: left;">FEMALE</td>
+<td style="text-align: left;">Chinstrap</td>
+<td style="text-align: left;">Fêmea</td>
 <td style="text-align: right;">34</td>
-<td style="text-align: right;">50.00</td>
+<td style="text-align: right;">3527.21</td>
+<td style="text-align: right;">285.33</td>
+<td style="text-align: right;">2700</td>
+<td style="text-align: right;">3550</td>
+<td style="text-align: right;">4150</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Chinstrap penguin</td>
-<td style="text-align: left;">MALE</td>
+<td style="text-align: left;">Chinstrap</td>
+<td style="text-align: left;">Macho</td>
 <td style="text-align: right;">34</td>
-<td style="text-align: right;">50.00</td>
+<td style="text-align: right;">3938.97</td>
+<td style="text-align: right;">362.14</td>
+<td style="text-align: right;">3250</td>
+<td style="text-align: right;">3950</td>
+<td style="text-align: right;">4800</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Gentoo penguin</td>
-<td style="text-align: left;">FEMALE</td>
+<td style="text-align: left;">Gentoo</td>
+<td style="text-align: left;">Fêmea</td>
 <td style="text-align: right;">58</td>
-<td style="text-align: right;">48.74</td>
+<td style="text-align: right;">4679.74</td>
+<td style="text-align: right;">281.58</td>
+<td style="text-align: right;">3950</td>
+<td style="text-align: right;">4700</td>
+<td style="text-align: right;">5200</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Gentoo penguin</td>
-<td style="text-align: left;">MALE</td>
+<td style="text-align: left;">Gentoo</td>
+<td style="text-align: left;">Macho</td>
 <td style="text-align: right;">61</td>
-<td style="text-align: right;">51.26</td>
+<td style="text-align: right;">5484.84</td>
+<td style="text-align: right;">313.16</td>
+<td style="text-align: right;">4750</td>
+<td style="text-align: right;">5500</td>
+<td style="text-align: right;">6300</td>
 </tr>
 </tbody>
 </table>
@@ -857,56 +887,80 @@ Figura&nbsp;2: Massa Corporal por Espécie e Dimorfismo Sexual.
 </figure>
 </div>
 <div class="cell">
-<div id="tbl-biometrica-especie" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<div id="tbl-morfologia-especie-vf" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-biometrica-especie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;7: Médias Biométricas e Tróficas por Espécie.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-morfologia-especie-vf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;7: Médias de Massa e Morfológicas por Espécie e Sexo.
 </figcaption>
-<div aria-describedby="tbl-biometrica-especie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-morfologia-especie-vf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
-<col style="width: 19%">
-<col style="width: 4%">
-<col style="width: 14%">
+<col style="width: 12%">
+<col style="width: 7%">
+<col style="width: 3%">
+<col style="width: 20%">
 <col style="width: 27%">
-<col style="width: 17%">
-<col style="width: 17%">
+<col style="width: 27%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Species</th>
+<th style="text-align: left;">Espécie</th>
+<th style="text-align: left;">Sexo</th>
 <th style="text-align: right;">N</th>
-<th style="text-align: right;">Massa_Media_g</th>
-<th style="text-align: right;">Comprimento_Bico_Media_mm</th>
-<th style="text-align: right;">Delta_15N_Media</th>
-<th style="text-align: right;">Delta_13C_Media</th>
+<th style="text-align: right;">Massa Média (g)</th>
+<th style="text-align: right;">Comp. Bico Médio (mm)</th>
+<th style="text-align: right;">Prof.&nbsp;Bico Média (mm)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Adelie Penguin</td>
-<td style="text-align: right;">141</td>
-<td style="text-align: right;">3703.72</td>
-<td style="text-align: right;">38.80</td>
-<td style="text-align: right;">8.86</td>
-<td style="text-align: right;">-25.80</td>
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Fêmea</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">3368.84</td>
+<td style="text-align: right;">37.26</td>
+<td style="text-align: right;">17.62</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Chinstrap penguin</td>
-<td style="text-align: right;">67</td>
-<td style="text-align: right;">3729.85</td>
-<td style="text-align: right;">48.79</td>
-<td style="text-align: right;">9.36</td>
-<td style="text-align: right;">-24.56</td>
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Macho</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">4043.49</td>
+<td style="text-align: right;">40.39</td>
+<td style="text-align: right;">19.07</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Gentoo penguin</td>
-<td style="text-align: right;">122</td>
-<td style="text-align: right;">5074.59</td>
-<td style="text-align: right;">47.51</td>
-<td style="text-align: right;">8.25</td>
-<td style="text-align: right;">-26.19</td>
+<td style="text-align: left;">Chinstrap</td>
+<td style="text-align: left;">Fêmea</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">3527.21</td>
+<td style="text-align: right;">46.57</td>
+<td style="text-align: right;">17.59</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chinstrap</td>
+<td style="text-align: left;">Macho</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">3938.97</td>
+<td style="text-align: right;">51.09</td>
+<td style="text-align: right;">19.25</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gentoo</td>
+<td style="text-align: left;">Fêmea</td>
+<td style="text-align: right;">58</td>
+<td style="text-align: right;">4679.74</td>
+<td style="text-align: right;">45.56</td>
+<td style="text-align: right;">14.24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Gentoo</td>
+<td style="text-align: left;">Macho</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: right;">5484.84</td>
+<td style="text-align: right;">49.47</td>
+<td style="text-align: right;">15.72</td>
 </tr>
 </tbody>
 </table>
@@ -937,77 +991,93 @@ Figura&nbsp;3: Relação Comprimento vs.&nbsp;Profundidade do Bico.
 <div id="tbl-biometrica-espsex" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-biometrica-espsex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;8: Comparação de Médias Biométricas por Espécie e Sexo (Dimorfismo)
+Tabela&nbsp;8: Comparação de Médias Biométricas e Tróficas por Espécie e Sexo
 </figcaption>
 <div aria-describedby="tbl-biometrica-espsex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
-<col style="width: 18%">
 <col style="width: 7%">
-<col style="width: 3%">
-<col style="width: 14%">
-<col style="width: 27%">
-<col style="width: 28%">
+<col style="width: 4%">
+<col style="width: 2%">
+<col style="width: 12%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 19%">
+<col style="width: 18%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Species</th>
-<th style="text-align: left;">Sex</th>
+<th style="text-align: left;">Espécie</th>
+<th style="text-align: left;">Sexo</th>
 <th style="text-align: right;">N</th>
-<th style="text-align: right;">Massa_Media_g</th>
-<th style="text-align: right;">Comprimento_Bico_Media_mm</th>
-<th style="text-align: right;">Profundidade_Bico_Media_mm</th>
+<th style="text-align: right;">Massa Média (g)</th>
+<th style="text-align: right;">Comp. Bico Médio (mm)</th>
+<th style="text-align: right;">Prof.&nbsp;Bico Média (mm)</th>
+<th style="text-align: right;">Delta 15N Médio (o/oo)</th>
+<th style="text-align: right;">Delta 13C Médio (o/oo)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Adelie Penguin</td>
-<td style="text-align: left;">FEMALE</td>
-<td style="text-align: right;">73</td>
-<td style="text-align: right;">3368.84</td>
-<td style="text-align: right;">37.26</td>
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Fêmea</td>
+<td style="text-align: right;">71</td>
+<td style="text-align: right;">3366.55</td>
+<td style="text-align: right;">37.21</td>
 <td style="text-align: right;">17.62</td>
+<td style="text-align: right;">8.79</td>
+<td style="text-align: right;">-25.79</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Adelie Penguin</td>
-<td style="text-align: left;">MALE</td>
-<td style="text-align: right;">73</td>
-<td style="text-align: right;">4043.49</td>
-<td style="text-align: right;">40.39</td>
-<td style="text-align: right;">19.07</td>
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Macho</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: right;">4053.68</td>
+<td style="text-align: right;">40.43</td>
+<td style="text-align: right;">19.06</td>
+<td style="text-align: right;">8.93</td>
+<td style="text-align: right;">-25.83</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Chinstrap penguin</td>
-<td style="text-align: left;">FEMALE</td>
+<td style="text-align: left;">Chinstrap</td>
+<td style="text-align: left;">Fêmea</td>
 <td style="text-align: right;">34</td>
 <td style="text-align: right;">3527.21</td>
 <td style="text-align: right;">46.57</td>
 <td style="text-align: right;">17.59</td>
+<td style="text-align: right;">9.25</td>
+<td style="text-align: right;">-24.57</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Chinstrap penguin</td>
-<td style="text-align: left;">MALE</td>
-<td style="text-align: right;">34</td>
-<td style="text-align: right;">3938.97</td>
-<td style="text-align: right;">51.09</td>
+<td style="text-align: left;">Chinstrap</td>
+<td style="text-align: left;">Macho</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">3938.64</td>
+<td style="text-align: right;">51.07</td>
 <td style="text-align: right;">19.25</td>
+<td style="text-align: right;">9.46</td>
+<td style="text-align: right;">-24.55</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Gentoo penguin</td>
-<td style="text-align: left;">FEMALE</td>
+<td style="text-align: left;">Gentoo</td>
+<td style="text-align: left;">Fêmea</td>
 <td style="text-align: right;">58</td>
 <td style="text-align: right;">4679.74</td>
 <td style="text-align: right;">45.56</td>
 <td style="text-align: right;">14.24</td>
+<td style="text-align: right;">8.19</td>
+<td style="text-align: right;">-26.20</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Gentoo penguin</td>
-<td style="text-align: left;">MALE</td>
-<td style="text-align: right;">61</td>
-<td style="text-align: right;">5484.84</td>
-<td style="text-align: right;">49.47</td>
+<td style="text-align: left;">Gentoo</td>
+<td style="text-align: left;">Macho</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">5488.75</td>
+<td style="text-align: right;">49.51</td>
 <td style="text-align: right;">15.72</td>
+<td style="text-align: right;">8.30</td>
+<td style="text-align: right;">-26.17</td>
 </tr>
 </tbody>
 </table>
@@ -1689,14 +1759,13 @@ VAN BUUREN, Stef; GROOTHUIS-OUDSHOORN, Karin. <a href="https://doi.org/10.18637/
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
