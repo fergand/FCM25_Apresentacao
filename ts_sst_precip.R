@@ -41,6 +41,7 @@ palmerweather <- df %>%
   tsibble::fill_gaps()
 # gg_miss_var() permite visualizar graficamente os NAs
 palmerweather %>% 
+  select(SST_avg, Precip) %>% 
   gg_miss_var()+
   labs(x = "Variáveis", y="Número de NAs")+
   theme_clean()
@@ -56,7 +57,7 @@ palmerweather %>%
 
 dados_imputar <- palmerweather %>% 
   as_tibble() %>%
-  select(day, Temp_avg, SST_avg, Precip) %>% 
+  select(day, SST_avg, Precip) %>% 
   as.data.frame()
 
 imp <- dados_imputar %>% 
